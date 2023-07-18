@@ -11,7 +11,7 @@
         <link href="/css/style.css" rel="stylesheet" />
         <link href="/css/bootstrap.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <title>@yield('title')</title>
+        <title>@yield('title')</title><!----Titulo das Páginas---->
 
         <script src="/js/temporizadorLogout.js"></script>
         <script src="/js/painel.js"></script>
@@ -19,3 +19,4 @@
 
 
         @yield('content')
+        <!---- conteudo da pagina, ao final da section content(conteúdo) necessário adicionar o @endsection ----->
