@@ -95,7 +95,7 @@
   --roxo-claro: #ba8fff;
   --roxo-hover: #69689E;
   --roxo: #9163db;
-  --roxo-escuro: #000311;
+  --roxo-escuro: #090011;
 
   /* Agendamento*/
   --aprovado: #91CB76;
@@ -329,7 +329,7 @@ sup {
 }
 
 a {
-  color: var(--roxo);
+  color: var(--bs-indigo);
   /* color: var(--bs-link-color); */
   text-decoration: underline;
 }

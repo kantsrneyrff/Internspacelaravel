@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="/img/Icon_Light.png">
         <link href="/css/style.css" rel="stylesheet" />
         <link href="/css/bootstrap.css" rel="stylesheet" />
+        
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <title>@yield('title')</title><!----Titulo das Páginas---->
 
@@ -18,5 +19,8 @@
 </head>
 
 
-        @yield('content')
+@yield('content')
         <!---- conteúdo da pagina, ao final da section content(conteúdo) necessário adicionar o endsection ----->
+
+
+        
