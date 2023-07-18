@@ -19,4 +19,4 @@
 
 
         @yield('content')
-        <!---- conteúdo da pagina, ao final da section content(conteúdo) necessário adicionar o @endsection ----->
+        <!---- conteúdo da pagina, ao final da section content(conteúdo) necessário adicionar o endsection ----->
