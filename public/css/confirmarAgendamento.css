@@ -1,0 +1,29 @@
+.container-tb{
+    background-color: var(--azul-escuro-fundo);
+    width: 70%;
+    border-radius: 15px;
+    top: 25vh;
+    left: 50vh;
+    position: absolute;
+    padding: 4vh;
+}
+.table{
+    color: var(--texto-claro);
+
+}
+
+.table tr{
+    text-align: center;
+}
+
+
+.pesquisa{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    gap: 1%;
+}
+#pesquisa{
+    width: 550px;
+}
+

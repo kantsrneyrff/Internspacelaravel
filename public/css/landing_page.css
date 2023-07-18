@@ -1,0 +1,177 @@
+/* estilos padrão */
+body {
+    margin: 0;
+    background-image: url("../img/fundo-pessoas-trabalhando.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.introducao {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 600px;
+    margin-top: 100px;
+    margin-left: 100px;
+    color: white;
+}
+
+#logo-introducao {
+    object-fit: cover;
+    max-height: 100px;
+}
+
+#texto-introducao {
+    font-size: 20px;
+    margin-left: 20px;
+}
+/*****************************************************/
+
+/********************* BOTÕES ************************/
+.btn-primario {
+
+    text-decoration: none;
+    width: fit-content;
+    padding: var(--padding-botao);
+    border-radius: var(--border-radius-padrao);
+    color: var(--texto-claro);
+    /* cor da fonte */
+    background-color: var(--roxo);
+    /* cor customizada localizada no style.css, dá uma olhada lá */
+    text-align: center;
+    border: none;
+    transition: 0.1s;
+}
+
+.btn-primario:hover {
+
+    background-color: var(--roxo-claro);
+    color: var(--texto-claro);
+    box-shadow: var(--box-shadow-glow);
+
+}
+
+.btn-primario:active {
+    background-color: var(--roxo-escuro);
+    color: var(--texto-claro);
+    box-shadow: none;
+
+}
+
+/*****************************************************/
+
+/****************** CENTRALIZADOR ********************/
+
+.center-vertical {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.center-horizontal {
+    position: absolute;
+    /*  left: 50%;*/
+    transform: translate(-50%, 0);
+}
+
+.center-total {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*****************************************************/
+
+/******************** NAVBAR *************************/
+nav {
+    box-sizing: border-box;
+    z-index: 2;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    /* ^^^^ ESSA LINHA CENTRALIZA TODOS OS ITENS DA NAVBAR NO MEIO */
+    padding: 20px;
+    width: 100%;
+    height: 80px;
+    justify-content: space-between;
+}
+
+.nav-transparente {
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.nav-primaria {
+    background-color: var(--azul-escuro-fundo);
+}
+
+.nav-link {
+
+    color: white;
+    text-decoration: none;
+    position: fixed;
+
+}
+
+.nav-link:hover {
+    transition: 0.6s;
+    color: var(--roxo-claro);
+
+}
+
+nav .logo {
+    height: 40px;
+    object-fit: fill;
+}
+
+/*****************************************************/
+
+/******************** SCROLLBAR **********************/
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background: white;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: grey;
+    border-radius: 20px;
+    border: 3px solid white;
+}
+
+
+/**************** CARTÃO ****************/
+.cartao {
+    box-sizing: border-box;
+    background-color: var(--azul-escuro-fundo);
+    padding: var(--padding-cartao);
+    border-radius: var(--border-radius-padrao);
+}
+
+/* responsividade */
+@media only screen and (max-width: 768px) {
+
+
+    .introducao{
+        
+        width: 100%;
+        margin: 80px 30px 30px 30px;
+
+    }
+
+    #logo-introducao {
+        object-fit: scale-down;
+        width: 90vw;
+    }
+
+    .introducao-texto{
+        margin-right: 50px;
+    }
+    #texto-introducao{
+        overflow-wrap: break-word;
+
+    }
+}

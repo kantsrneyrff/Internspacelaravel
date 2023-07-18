@@ -1,0 +1,140 @@
+html {
+    min-height: 100%;
+}
+
+
+.flex-conatiner{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* ou a altura desejada */
+      
+}
+
+#nome:hover {
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+}
+main {
+    display: flex;
+    flex-direction: column;
+}
+.informacoes_basicas{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    border-radius: 15px;
+    margin-left: 35vh;
+   
+    padding: 4vh;
+    
+}
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+#direita {
+    margin-right: 10%;
+    margin-top: 2.5%;
+}
+#esquerda {
+    margin-right: 10%;
+    margin-bottom: 2.7%;
+} 
+#negrito_nome  {
+    font-weight: bold;
+    font-size: 4vh;
+    color: var(--roxo);
+}
+#negrito {
+    font-weight: bold;
+    color: #292944;
+    color: var(--roxo);
+}
+
+p {
+    color: black;
+}
+#relatorioEscrita {
+    font-weight: bold;
+    font-size: 4.5vh;
+    color: #292944;
+    margin-top: 57vh;
+    margin-left: 37vh; 
+}
+#adicionar-relatorio{
+    font-weight: bold;
+    font-size: 1.7vh;
+    color: #292944;
+    margin-top: -3.5vh;
+    margin-left: 60vh; 
+    text-decoration: none;
+}
+
+
+
+
+
+
+input[type='file']{
+    display: grid;
+}
+
+#imgPhoto{
+    position: relative;
+    left: 1%;
+    top: -1.5vh;
+    width: 25vh;
+    object-fit: cover;
+    height: 25vh;
+    padding: 1px;
+    border:2px  black;
+    border-radius: 60%;
+    cursor: pointer;
+    transition: background.3s;
+}
+
+#imgPhoto:hover{
+background-color: white;
+border: 1px black;
+}
+
+#imagem-header{
+    right: 10%;
+    position: fixed;
+    align-items: center;
+}
+#img-edit{
+    position: absolute;
+    width: 2.2rem;
+    height: 2.2rem;
+    left: 75%;
+    margin-top: -1.5vh;
+    margin-left: 19vh;
+    }
+    @media screen and (max-width: 768px) {
+        #informacoes_basicas {
+          margin-left: 0;
+          width: 100%;
+          padding: 2vh;
+        }
+        .image-conteiner {
+          margin-right: 0;
+          margin-top: 2vh;
+        }
+        #relatorioEscrita {
+          margin-top: 2vh;
+          margin-left: 2vh;
+        }
+        #relatorio {
+          margin-left: 0;
+          margin-top: 2vh;
+          width: 100%;
+          padding: 2vh;
+        }
+      }

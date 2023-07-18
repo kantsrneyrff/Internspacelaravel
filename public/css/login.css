@@ -1,0 +1,8 @@
+body {
+  /* adicionando imagem de fundo */
+  margin: 0;
+  background-image: url(/img/fundo_landingpage_borrado.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+

@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    background-image: url("../img/fundo-pessoas-trabalhando.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+h1, p{
+    color: white;
+    text-shadow: 5px 5px 5px #0000008a;
+}
+
+.center-total {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }

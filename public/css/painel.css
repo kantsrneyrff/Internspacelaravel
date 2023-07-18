@@ -1,0 +1,74 @@
+main{
+  padding-left: 100px;
+}
+/* Configuração dos cartões */
+.cartao-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+/* Cartões dentro do container */
+ .cartao {
+  width: 100%;
+  margin: 15px;
+  color: var(--texto-claro); 
+}
+.cartao-h{
+  width: 100%;
+  margin: 15px;
+  color: var(--texto-claro); 
+}
+/* Estilização específica à tabela por precisar de mais espaço */
+#cartao-agendamento {
+
+  height: 500px;
+
+}
+
+.bar {
+  background-color: var(--roxo-claro);
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 405px;
+  height: 50px;
+  border-radius: var(--border-radius-padrao);
+
+}
+
+
+/* Tabela */
+
+.info-list{
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+}
+.info-list, th, tr{
+  border: 2px solid var(--roxo-claro);
+}
+.info-list, td{
+  text-align: center;
+}
+
+
+.info-list::-webkit-scrollbar {
+  width: 12px;
+}
+
+.info-list::-webkit-scrollbar-track {
+  background: transparent;
+  background-color: grey;
+  border-radius: 20px;
+
+}
+
+/*progress {
+  width: <?php echo $progress ?>%;
+  height: 30px;
+  background-color: #4CAF50;
+  position: absolute;
+  top: 0;
+  left: 0;
+}*/

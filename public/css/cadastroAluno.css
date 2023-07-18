@@ -1,0 +1,62 @@
+
+body{
+  background-color: var(--branco-fundo);
+}
+label{
+  color: var(--texto-claro);
+}
+
+
+
+
+.btn-primary{
+ background-color: var(--roxo);
+}
+.btn.btn-primary[disabled]:hover{
+ border-radius: none;
+ }
+.container {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.frm_cadastro {
+  box-shadow: 0px 6px 10px 1px #0000007b;
+  background-color: var(--azul-escuro-fundo);
+  border-radius: 20px;
+  width: 900px;
+  padding: 20px;
+  margin-top: 1vh;
+  position: relative; /* Altere para a posição desejada */
+  top: 50%; /* Ajuste o valor para o centro vertical */
+  left: 5%; /* Ajuste o valor para o centro horizontal */
+  justify-items: center; /* Centralize o container */
+  align-items: end;
+}
+
+
+.dados{
+  margin: 30px;
+}
+.cartao {
+  position: fixed;
+  display: flex;
+  width: 50%;
+  top: 10%;
+  flex-direction: column;
+  box-sizing: border-box;
+  box-shadow: 0px 6px 10px 1px #0000007b;
+  background-color: #D9D9D9;
+  padding: 5vh 5vh 5vh 5vh;
+  margin-top: 5vh;
+  margin-bottom: 0.1vh;
+  border-radius: 15px;
+  left: 45%;
+
+}
+.cartao h1{
+  color: var(--azul-escuro-fundo);
+}
