@@ -1,6 +1,5 @@
-@extends('layouts.header')
-@extends('layouts.sidebarUsuario')
-@extends('layouts.nav')
+@extends('layouts.template')
+
 
 @section('title', 'Painel')
 
@@ -12,14 +11,15 @@
     <body class="sb-nav-fixed">
         
         <!--NAV -->
-    @section('navbar')
-    @endsection
+    @component('components.nav')
+    @endcomponent
 
         <!---Linha importante abaixo-->
         <div id="layoutSidenav">
             <!---------------SIDE---------------->
-           @section('sidebarUsuario')
-           @endsection
+            @component('components.sidebarUsuario')
+            @endcomponent
+
         
             <div id="layoutSidenav_content">
                 <main>
@@ -93,6 +93,7 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="/js/datatables-simple-demo.js"></script>
         <script src="/js/chart-pie-demo.js"></script>
+       
 
         <script>
             /* governanca = <?php //echo $dataGraficos['horas'] 
