@@ -5,8 +5,7 @@
 
 @section('content')
 
-    <!DOCTYPE html>
-    <html lang="pt-br">
+
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <body class="sb-nav-fixed">
         
@@ -88,19 +87,14 @@
             </div>
         </div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="/js/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="/js/datatables-simple-demo.js"></script>
         <script src="/js/chart-pie-demo.js"></script>
        
 
-        <script>
-            /* governanca = <?php //echo $dataGraficos['horas'] 
-                            ?>
-            console.log(governanca)*/
-        </script>
+      
     </body>
-    <?php /*$this->view('includes/footer');*/ ?>
-    </html>
+ 
 @endsection
