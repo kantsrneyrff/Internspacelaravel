@@ -1,4 +1,4 @@
-@extends('layouts.header')<!--- Tamplate da página --->
+@extends('layouts.template')<!--- Tamplate da página --->
 
 @section('title','Login')
 

@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('layouts.template')
 
 @section('title','Home')
 
