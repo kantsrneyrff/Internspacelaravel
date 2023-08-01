@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,37 +18,16 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
-Route::get('/painel', function () {
-    return view('painel');
-});
+Route::get('/login',[LoginController::class, 'index'])->name('login-index');
 
-Route::get('/cadastroAgendamento', function () {
-    return view('cadastroAgendamento');
-});
-
-Route::get('/cadastroUsuariopha', function () {
-    return view('cadastroUsuario');
-});
-Route::get('/confirmarAgendamento', function () {
-    return view('confirmarAgendamento');
-});
-
-Route::get('/historicoAgendamento', function () {
-    return view('historicoAgendamento');
-});
-Route::get('/painelAdm', function () {
-    return view('painelAdm');
-});
-Route::get('/painelOrientador', function () {
-    return view('painelOrientador');
-});
-Route::get('/perfil', function () {
-    return view('perfil');
-});
-
-Route::get('/pesquisarUsuario', function () {
-    return view('pesquisarUsuario');
+Route::prefix('painel')->group(function(){
+    Route::get('/',[PainelController::class, 'index'])->name('painel-index');
+    Route::prefix('clientes')->group(function(){
+        Route::get('/',[ClienteController::class, 'index'])->name('clientes-index');
+        Route::get('/create',[ClienteController::class, 'create'])->name('clientes-create');
+        Route::post('/',[ClienteController::class, 'store'])->name('clientes-store');
+        Route::get('/{id}/edit',[ClienteController::class, 'edit'])->where('id', '[0-9]+')->name('clientes-edit');
+        Route::put('/{id}',[ClienteController::class, 'update'])->where('id', '[0-9]+')->name('clientes-update');
+        Route::delete('/{id}',[ClienteController::class, 'destroy'])->where('id', '[0-9]+')->name('clientes-destroy');
+    });
 });
