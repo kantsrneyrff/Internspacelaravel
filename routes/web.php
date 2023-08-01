@@ -28,7 +28,7 @@ Route::get('/cadastroAgendamento', function () {
     return view('cadastroAgendamento');
 });
 
-Route::get('/cadastroUsuario', function () {
+Route::get('/cadastroUsuariopha', function () {
     return view('cadastroUsuario');
 });
 Route::get('/confirmarAgendamento', function () {

@@ -21,7 +21,7 @@
                         <li class="nav-item" id="nav-item"><a class="nav-link"href="#services">Serviços</a></li>
                         <li class="nav-item"id="nav-item"><a class="nav-link" href="#team">Equipe</a></li>
                         <li class="nav-item"id="nav-item"><a class="nav-link" href="#contact">Contato</a></li>
-                        <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="login">Logiiiin</a></li>
                     </ul>
                 </div>
             </div>
