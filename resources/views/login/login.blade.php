@@ -30,14 +30,14 @@
                             <form action="" method="post">
                                 <!-- Email -->
                                 <div class="input-group form-floating mb-3">
-                                    <input class="form-control" id="inputEmail" type="email" name="email" id="input-email"  placeholder="name@example.com" required />
+                                    <input class="form-control" id="inputEmail" type="email" name="email" id="input-email"  placeholder="" required />
                                     <label for="inputEmail">Email</label>
                                 </div>
 
 
                                 <!-- Senha -->
                                 <div class="input-group form-floating mb-3">
-                                    <input class="form-control" id="inputPassword" name="senha" type="password" id="input-email"  placeholder="senha" required />
+                                    <input class="form-control" id="inputPassword" name="senha" type="password" id="input-email"  placeholder="" required />
                                     <label for="inputPassword">Senha</label>
                                     <button class="btn btn-outline-secondary" onclick="passwordToggle()" type="button"><i class="fa fa-eye-slash" aria-hidden="true"></i></button>
                                 </div>
@@ -52,7 +52,7 @@
                             </form>
                         </div>
                         <div class="card-footer text-center py-3">
-                            <div class="small"><a href="register.html">esqueceu a senha ?</a></div>
+                            <div class="small"><a href="register.html">Esqueceu sua senha?</a></div>
                         </div>
                     </div>
                 </div>
