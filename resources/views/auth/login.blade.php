@@ -1,8 +1,20 @@
-@extends('layouts.template')<!--- Tamplate da página --->
+<!DOCTYPE html>
+<html lang="pt-br">
 
-@section('title','Login')
-
-@section('content')
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" type="image/x-icon" href="/img/Icon_Light.png">
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <title>Login - InternSpace</title><!----Titulo das Páginas---->
+</head>
 
 <link rel="stylesheet" href="/css/login.css">
 
@@ -28,7 +40,7 @@
                                 @csrf
                                 <!-- Email -->
                                 <div class="input-group form-floating mb-3">
-                                    <input class="form-control @error('email') is-invalid @enderror" id="inputEmail" type="text" name="email" id="input-email" value="{{old('email')}}"/>
+                                    <input class="form-control @error('email') is-invalid @enderror" id="inputEmail" type="text" name="email" id="input-email" value="{{old('email')}}" />
                                     <label for="inputEmail">Email</label>
                                     @error('email')
                                     <div class="invalid-feedback">{{$message}}</div>
@@ -36,7 +48,7 @@
                                 </div>
                                 <!-- Senha -->
                                 <div class="input-group form-floating mb-3">
-                                    <input class="form-control  @error('password') is-invalid @enderror" id="inputPassword" name="password" type="password" id="input-email" value="{{old('password')}}"/>
+                                    <input class="form-control  @error('password') is-invalid @enderror" id="inputPassword" name="password" type="password" id="input-email" value="{{old('password')}}" />
                                     <label for="inputPassword">Senha</label>
                                     <button class="btn btn-outline-secondary" onclick="passwordToggle()" type="button"><i class="fa fa-eye-slash" aria-hidden="true"></i></button>
                                     @error('password')
@@ -48,7 +60,6 @@
 
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-
                                     <button class="btn btn-primary" type="submit" onclick="localStorage.setItem('tempo','3600')">Login</button>
                                 </div>
                             </form>
@@ -61,6 +72,7 @@
             </div>
         </div>
     </main>
+    <script src="/js/senha.js"></script>
 </body>
-<script src="../public/assets/js/senha.js"></script>
-@endsection
+
+</html>
