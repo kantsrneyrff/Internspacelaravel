@@ -24,7 +24,7 @@
         <!--------------SIDE----------------->
         @switch($user->cargo)
         @case('adm')
-        @component('components.sidebarAdm',['user' => $user, 'cargo' => 'Administrador'])@endcomponent
+        @component('components.sidebarAdm',['user' => $user, 'cargo' => 'Administrador(a)'])@endcomponent
         @break
         @case('prof')
         @component('components.sidebarOrientador',['user' => $user, 'cargo' => 'Professor(a)'])@endcomponent

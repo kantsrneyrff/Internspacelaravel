@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PainelController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,13 +28,13 @@ Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
 Route::middleware('auth')->group(function () {
     Route::prefix('painel')->group(function () {
         Route::get('/', [PainelController::class, 'index'])->name('painel-index');
-        Route::prefix('clientes')->group(function () {
-            Route::get('/', [ClienteController::class, 'index'])->name('clientes-index');
-            Route::get('/create', [ClienteController::class, 'create'])->name('clientes-create');
-            Route::post('/', [ClienteController::class, 'store'])->name('clientes-store');
-            Route::get('/{id}/edit', [ClienteController::class, 'edit'])->where('id', '[0-9]+')->name('clientes-edit');
-            Route::put('/{id}', [ClienteController::class, 'update'])->where('id', '[0-9]+')->name('clientes-update');
-            Route::delete('/{id}', [ClienteController::class, 'destroy'])->where('id', '[0-9]+')->name('clientes-destroy');
+        Route::prefix('usuarios')->group(function () {
+            Route::get('/', [UsuarioController::class, 'index'])->name('usuarios-index');
+            Route::get('/create', [UsuarioController::class, 'create'])->name('usuarios-create');
+            Route::post('/', [UsuarioController::class, 'store'])->name('usuarios-store');
+            Route::get('/{id}/edit', [UsuarioController::class, 'edit'])->where('id', '[0-9]+')->name('usuarios-edit');
+            Route::put('/{id}', [UsuarioController::class, 'update'])->where('id', '[0-9]+')->name('usuarios-update');
+            Route::delete('/{id}', [UsuarioController::class, 'destroy'])->where('id', '[0-9]+')->name('usuarios-destroy');
         });
     });
 });
