@@ -1,6 +1,5 @@
 @extends('layouts.template')
 
-
 @section('title', 'Painel')
 
 @section('content')
@@ -19,7 +18,6 @@
             @component('components.sidebarUsuario')
             @endcomponent
 
-        
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
