@@ -3,7 +3,7 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
 
-                <a class="nav-link" href="painel">
+                <a class="nav-link" href="{{route('painel-index')}}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></i></div>
                     Painel
                 </a>

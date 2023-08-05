@@ -12,13 +12,13 @@ class PainelController extends Controller
         $user = Auth::user();
         switch ($user->cargo) {
             case 'adm':
-                return view('painel.painelAdm', ['user' => $user]);
+                return view('painel.painelAdm');
                 break;
             case 'prof':
-                return view('painel.painelOrientador', ['user' => $user]);
+                return view('painel.painelOrientador');
                 break;
             case 'aluno':
-                return view('painel.painel', ['user' => $user]);
+                return view('painel.painel');
                 break;
         }
     }

@@ -35,7 +35,6 @@ class User extends Authenticatable
         'bairro',
         'cidade',
         'uf',
-    
     ];
     /**
      * The attributes that should be hidden for serialization.

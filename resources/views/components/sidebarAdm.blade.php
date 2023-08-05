@@ -2,7 +2,7 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
-                <a class="nav-link" href="painelAdm">
+                <a class="nav-link" href="{{route('painel-index')}}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></i></div>
                     Painel
                 </a>
@@ -25,17 +25,10 @@
                 </a>
                 <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                        <a class="nav-link" href="pesquisarUsuario">Pesquisar</a>
-                        <a class="nav-link" href="cadastroUsuario">Cadastrar</a>
+                        <a class="nav-link" href="{{route('usuarios-index')}}">Pesquisar</a>
+                        <a class="nav-link" href="{{route('usuarios-create')}}">Cadastrar</a>
                     </nav>
                 </div>
-                <div class=""></div>
-                <a class="" href="">
-                    <div class=""><i class=""></i></div>
-                </a>
-                <a class="">
-                    <div class=""><i class=""></i></div>
-                </a>
             </div>
         </div>
         <div id="sidebar-footer" class="sb-sidenav-footer">
