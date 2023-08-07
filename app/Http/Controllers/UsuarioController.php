@@ -11,7 +11,6 @@ class UsuarioController extends Controller
     public function index()
     {
         $usuarios = User::all();
-        $user = Auth::user();
         return view('painel.usuarios.index', ['usuarios' => $usuarios]);
     }
 
@@ -20,11 +19,13 @@ class UsuarioController extends Controller
         return view('painel.usuarios.create');
     }
 
-    // public function store(ClienteRequest $request)
-    // {
-    //     Cliente::create($request->all());
-    //     return redirect()->route('clientes-index');
-    // }
+    public function store(Request $request)
+    {
+        $request->merge(['password' => bcrypt($request->input('password'))]);
+
+        User::create($request->all());
+        return redirect()->route('usuarios-index');
+    }
 
     // public function edit($id)
     // {
