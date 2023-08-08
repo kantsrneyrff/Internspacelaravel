@@ -9,7 +9,7 @@
             <div class="card-body">
                 <form action="{{route('usuarios-store')}}" method="POST">
                     @csrf
-                    <div class="row">
+                    <<div class="row">
                         <div class="form-group col-md-6">
                             <label for="nome">Nome:</label>
                             <input type="text" class="form-control @error('nome') is-invalid @enderror" value="{{old('nome')}}" id="nome" name="nome">
@@ -35,7 +35,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row d-flex flex-row ">
                         <div class="form-group col-md-3">
                             <label for="cpf">CPF:</label>
                             <input type="text" class="form-control @error('cpf') is-invalid @enderror" value="{{old('cpf')}}" id="cpf" name="cpf">
@@ -54,11 +54,16 @@
                             <div class="invalid-feedback">{{$message}}</div>
                             @enderror
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-3 ">
                             <label for="cep">CEP:</label>
-                            <input type="text" class="form-control" value="{{old('cep')}}" id="cep" name="cep">
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="{{old('cep')}}" id="cep" name="cep">
+                                <button id="cep-btn" type="button" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></button>
+                            </div>
                         </div>
                     </div>
+                    <!-- Linhas posteriores permanecem inalteradas -->
+                    
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="endereco">Endereço:</label>
@@ -92,7 +97,7 @@
                         </div>
                         <div class="form-group col-md-5">
                             <label>UF:</label>
-                            <select class="form-select  @error('uf') is-invalid @enderror" name="uf">
+                            <select class="form-select  @error('uf') is-invalid @enderror" id="uf" name="uf">
                                 <option value="">Selecione</option>
                                 <option value="AC" {{ "AC" == old('uf') ? 'selected' : '' }}>Acre</option>
                                 <option value="AL" {{ "AL" == old('uf') ? 'selected' : '' }}>Alagoas</option>
@@ -172,6 +177,7 @@
     </div>
 </div>
 @section('scripts')
+<script src="/js/cep.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
 <script>
     $(document).ready(function() {
