@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('title', 'Cadastro Usuário')
+@section('title', 'Cadastrar Usuário')
 
 @section('content')
 <div class="row">
@@ -11,122 +11,155 @@
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label>Nome:</label>
-                            <input type="text" class="form-control" value="{{old('nome')}}" name="nome">
+                            <label for="nome">Nome:</label>
+                            <input type="text" class="form-control @error('nome') is-invalid @enderror" value="{{old('nome')}}" id="nome" name="nome">
+                            @error('nome')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
                         </div>
                         <div class="form-group col-md-3">
-                            <label>Data de Nascimento:</label>
-                            <input type="date" class="form-control" value="{{old('dataNascimento')}}" name="dataNascimento">
+                            <label for="dataNascimento">Data de Nascimento:</label>
+                            <input type="date" class="form-control  @error('dataNascimento') is-invalid @enderror" value="{{old('dataNascimento')}}" value="{{old('dataNascimento')}}" id="dataNascimento" name="dataNascimento">
+                            @error('dataNascimento')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
                         </div>
                         <div class="form-group col-md-3">
-                            <label>Gênero:</label>
-                            <select name="genero" class="form-select">
+                            <label for="genero">Gênero:</label>
+                            <select class="form-select" id="genero" name="genero">
                                 <option value="">Selecione</option>
-                                <option value="F" {{ "Feminio" == old('genero') ? 'selected' : '' }}>Feminio</option>
-                                <option value="M" {{ "Masculino" == old('genero') ? 'selected' : '' }}>Masculino</option>
-                                <option value="O" {{ "Outros" == old('genero') ? 'selected' : '' }}>Outros</option>
-                                <option value="ND" {{ "Não Informar" == old('genero') ? 'selected' : '' }}>Não Informar</option>
+                                <option value="F" {{ "F" == old('genero') ? 'selected' : '' }}>Feminio</option>
+                                <option value="M" {{ "M" == old('genero') ? 'selected' : '' }}>Masculino</option>
+                                <option value="O" {{ "O" == old('genero') ? 'selected' : '' }}>Outros</option>
+                                <option value="ND" {{ "ND" == old('genero') ? 'selected' : '' }}>Não Informar</option>
                             </select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-3">
-                            <label>CPF:</label>
-                            <input type="text" class="form-control" name="cpf" id="cpf">
+                            <label for="cpf">CPF:</label>
+                            <input type="text" class="form-control @error('cpf') is-invalid @enderror" value="{{old('cpf')}}" id="cpf" name="cpf">
+                            @error('cpf')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
                         </div>
                         <div class="form-group col-md-3">
-                            <label>RG:</label>
-                            <input type="text" class="form-control" name="documento">
+                            <label for="rg">RG:</label>
+                            <input type="text" class="form-control" value="{{old('rg')}}" id="rg" name="rg">
                         </div>
                         <div class="form-group col-md-3">
-                            <label>Telefone:</label>
-                            <input type="text" class="form-control" id="telefone" name="telefone">
+                            <label for="telefone">Telefone:</label>
+                            <input type="text" class="form-control  @error('telefone') is-invalid @enderror" value="{{old('telefone')}}" id="telefone" name="telefone">
+                            @error('telefone')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
                         </div>
                         <div class="form-group col-md-3">
-                            <label>CEP:</label>
-                            <input type="text" class="form-control" id="cep" name="cep">
+                            <label for="cep">CEP:</label>
+                            <input type="text" class="form-control" value="{{old('cep')}}" id="cep" name="cep">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="endereco">Endereço:</label>
-                            <input type="text" class="form-control" id="endereco">
+                            <input type="text" class="form-control" value="{{old('logradouro')}}" id="endereco" name="logradouro">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="complemento">Complemento:</label>
-                            <input type="text" class="form-control" name="complemento" id="complemento">
+                            <input type="text" class="form-control" value="{{old('complemento')}}" id="complemento" name="complemento">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-2">
                             <label for="numero">Número:</label>
-                            <input type="text" class="form-control" name="numero" id="numero">
+                            <input type="text" class="form-control" value="{{old('numero')}}" id="numero" name="numero">
                         </div>
                         <div class="form-group col-md-10">
                             <label for="bairro">Bairro:</label>
-                            <input type="text" class="form-control" name="bairro" id="bairro">
+                            <input type="text" class="form-control  @error('bairro') is-invalid @enderror" value="{{old('bairro')}}" id="bairro" name="bairro">
+                            @error('bairro')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-7">
                             <label for="cidade">Cidade:</label>
-                            <input type="text" class="form-control" name="cidade" id="cidade">
+                            <input type="text" class="form-control  @error('cidade') is-invalid @enderror" value="{{old('cidade')}}" id="cidade" name="cidade">
+                            @error('cidade')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
                         </div>
                         <div class="form-group col-md-5">
                             <label>UF:</label>
-                            <select name="uf" class="form-select">
+                            <select class="form-select  @error('uf') is-invalid @enderror" name="uf">
                                 <option value="">Selecione</option>
-                                <option value="AC">Acre</option>
-                                <option value="AL">Alagoas</option>
-                                <option value="AP">Amapá</option>
-                                <option value="AM">Amazonas</option>
-                                <option value="BA">Bahia</option>
-                                <option value="CE">Ceará</option>
-                                <option value="DF">Distrito Federal</option>
-                                <option value="ES">Espirito Santo</option>
-                                <option value="GO">Goiás</option>
-                                <option value="MA">Maranhão</option>
-                                <option value="MS">Mato Grosso do Sul</option>
-                                <option value="MT">Mato Grosso</option>
-                                <option value="MG">Minas Gerais</option>
-                                <option value="PA">Pará</option>
-                                <option value="PB">Paraíba</option>
-                                <option value="PR">Paraná</option>
-                                <option value="PE">Pernambuco</option>
-                                <option value="PI">Piauí</option>
-                                <option value="RJ">Rio de Janeiro</option>
-                                <option value="RN">Rio Grande do Norte</option>
-                                <option value="RS">Rio Grande do Sul</option>
-                                <option value="RO">Rondônia</option>
-                                <option value="RR">Roraima</option>
-                                <option value="SC">Santa Catarina</option>
-                                <option value="SP">São Paulo</option>
-                                <option value="SE">Sergipe</option>
-                                <option value="TO">Tocantins</option>
+                                <option value="AC" {{ "AC" == old('uf') ? 'selected' : '' }}>Acre</option>
+                                <option value="AL" {{ "AL" == old('uf') ? 'selected' : '' }}>Alagoas</option>
+                                <option value="AP" {{ "AP" == old('uf') ? 'selected' : '' }}>Amapá</option>
+                                <option value="AM" {{ "AM" == old('uf') ? 'selected' : '' }}>Amazonas</option>
+                                <option value="BA" {{ "BA" == old('uf') ? 'selected' : '' }}>Bahia</option>
+                                <option value="CE" {{ "CE" == old('uf') ? 'selected' : '' }}>Ceará</option>
+                                <option value="DF" {{ "DF" == old('uf') ? 'selected' : '' }}>Distrito Federal</option>
+                                <option value="ES" {{ "ES" == old('uf') ? 'selected' : '' }}>Espirito Santo</option>
+                                <option value="GO" {{ "GO" == old('uf') ? 'selected' : '' }}>Goiás</option>
+                                <option value="MA" {{ "MA" == old('uf') ? 'selected' : '' }}>Maranhão</option>
+                                <option value="MS" {{ "MS" == old('uf') ? 'selected' : '' }}>Mato Grosso do Sul</option>
+                                <option value="MT" {{ "MT" == old('uf') ? 'selected' : '' }}>Mato Grosso</option>
+                                <option value="MG" {{ "MG" == old('uf') ? 'selected' : '' }}>Minas Gerais</option>
+                                <option value="PA" {{ "PA" == old('uf') ? 'selected' : '' }}>Pará</option>
+                                <option value="PB" {{ "PB" == old('uf') ? 'selected' : '' }}>Paraíba</option>
+                                <option value="PR" {{ "PR" == old('uf') ? 'selected' : '' }}>Paraná</option>
+                                <option value="PE" {{ "PE" == old('uf') ? 'selected' : '' }}>Pernambuco</option>
+                                <option value="PI" {{ "PI" == old('uf') ? 'selected' : '' }}>Piauí</option>
+                                <option value="RJ" {{ "RJ" == old('uf') ? 'selected' : '' }}>Rio de Janeiro</option>
+                                <option value="RN" {{ "RN" == old('uf') ? 'selected' : '' }}>Rio Grande do Norte</option>
+                                <option value="RS" {{ "RS" == old('uf') ? 'selected' : '' }}>Rio Grande do Sul</option>
+                                <option value="RO" {{ "RO" == old('uf') ? 'selected' : '' }}>Rondônia</option>
+                                <option value="RR" {{ "RR" == old('uf') ? 'selected' : '' }}>Roraima</option>
+                                <option value="SC" {{ "SC" == old('uf') ? 'selected' : '' }}>Santa Catarina</option>
+                                <option value="SP" {{ "SP" == old('uf') ? 'selected' : '' }}>São Paulo</option>
+                                <option value="SE" {{ "SE" == old('uf') ? 'selected' : '' }}>Sergipe</option>
+                                <option value="TO" {{ "TO" == old('uf') ? 'selected' : '' }}>Tocantins</option>
                             </select>
+                            @error('uf')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-5">
-                            <label>E-mail:</label>
-                            <input type="email" name="email" class="form-control">
+                            <label for="email">E-mail:</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}" id="email" name="email">
+                            @error('email')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
                         </div>
                         <div class="form-group col-md-2">
-                            <label>Senha:</label>
-                            <input type="password" name="senha" class="form-control">
+                            <label for="password">Senha:</label>
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
+                            @error('password')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
                         </div>
                         <div class="form-group col-md-2">
-                            <label>Confirmar Senha:</label>
-                            <input type="password" name="senha2" class="form-control">
+                            <label for="passwordConfirm">Confirmar Senha:</label>
+                            <input type="password" class="form-control @error('passwordConfirm') is-invalid @enderror" id="passwordConfirm" name="passwordConfirm">
+                            @error('passwordConfirm')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
                         </div>
                         <div class="form-group col-md-3">
-                            <label>Cargo:</label>
-                            <select name="cargo" class="form-select">
+                            <label for="cargo">Cargo:</label>
+                            <select class="form-select @error('cargo') is-invalid @enderror" id="cargo" name="cargo">
                                 <option value=''>Selecione</option>
-                                <option value='Administrador'>Administrador</option>
-                                <option value='Aluno'>Aluno</option>
-                                <option value='Orientador'>Orientador</option>
+                                <option value='adm' {{ "adm" == old('cargo') ? 'selected' : '' }}>Administrador</option>
+                                <option value='aluno' {{ "aluno" == old('cargo') ? 'selected' : '' }}>Aluno</option>
+                                <option value='prof' {{ "prof" == old('cargo') ? 'selected' : '' }}>Orientador</option>
                             </select>
+                            @error('cargo')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="container-btn mt-2">
@@ -141,19 +174,19 @@
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
 <script>
-    $(document).ready(function () { 
+    $(document).ready(function() {
         $("#cpf").mask('000.000.000-00');
         $("#cep").mask('00000-000');
 
         var behavior = function(val) {
-            return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
-        },
-        options = {
-            onKeyPress: function(val, e, field, options) {
-                field.mask(behavior.apply({}, arguments), options);
-            }
-        };
-    $('#telefone').mask(behavior, options);
+                return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+            },
+            options = {
+                onKeyPress: function(val, e, field, options) {
+                    field.mask(behavior.apply({}, arguments), options);
+                }
+            };
+        $('#telefone').mask(behavior, options);
     });
 </script>
 @endsection

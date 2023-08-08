@@ -32,7 +32,7 @@
             </div>
         </div>
         <div id="sidebar-footer" class="sb-sidenav-footer">
-            <div class="small">{{$user->name}}</div>
+            <div class="small">{{$user->nome}}</div>
             {{$cargo}}
         </div>
     </nav>

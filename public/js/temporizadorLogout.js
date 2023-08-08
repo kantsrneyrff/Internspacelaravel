@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Se o tempo chegou a 0, podemos parar o contador
         clearInterval(intervalId);
         localStorage.removeItem('tempo');
-        window.location.href = "logout";
+        window.location.href = "/logout";
       } else {
         // Se o tempo não chegou a 0, decrementamos 1 segundo
         tempo--;

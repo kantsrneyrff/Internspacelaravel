@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UsuarioRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,7 @@ class UsuarioController extends Controller
         return view('painel.usuarios.create');
     }
 
-    public function store(Request $request)
+    public function store(UsuarioRequest $request)
     {
         $request->merge(['password' => bcrypt($request->input('password'))]);
 
@@ -27,15 +28,15 @@ class UsuarioController extends Controller
         return redirect()->route('usuarios-index');
     }
 
-    // public function edit($id)
-    // {
-    //     $clientes = Cliente::where('id', $id)->first();
-    //     if (!empty($clientes)) {
-    //         return view('painel.clientes.edit', ['cliente' => $clientes]);
-    //     } else {
-    //         return redirect()->route('clientes-index');
-    //     }
-    // }
+    public function edit($id)
+    {
+        $usuario = User::where('id', $id)->first();
+        if (!empty($usuario)) {
+            return view('painel.usuarios.edit', ['usuario' => $usuario]);
+        } else {
+            return redirect()->route('usuarios-index');
+        }
+    }
 
     // public function update(ClienteRequest $request, $id)
     // {

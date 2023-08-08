@@ -13,13 +13,39 @@
                             <th>#</th>
                             <th>Nome</th>
                             <th>Cpf</th>
-                            <th>Data de nascimento</th>
+                            <th>Data Nasc.</th>
                             <th>Cidade </th>
                             <th>Cargo</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($usuarios as $usuario)
+                        <tr>
+                            <td>{{$usuario->id}}</td>
+                            <td>{{$usuario->nome}}</td>
+                            <td>{{$usuario->cpf}}</td>
+                            <td>{{date('d/m/Y', strtotime($usuario->dataNascimento))}}</td>
+                            <td>{{$usuario->cidade}}</td>
+                            <td>
+                                @if($usuario->cargo === 'adm')
+                                Administrador(a)
+                                @elseif($usuario->cargo === 'prof')
+                                Orientador(a)
+                                @else
+                                Aluno(a)
+                                @endif
+                            </td>
+                            <td class="d-flex">
+                                <a href="{{ route('usuarios-edit', ['id'=>$usuario->id]) }}" class="btn btn-primary me-2"><i class="fas fa-edit" style="color: #ffffff;"></i></a>
+                                <form action="{{route('usuarios-destroy', ['id'=>$usuario->id])}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt" style="color: #ffffff;"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

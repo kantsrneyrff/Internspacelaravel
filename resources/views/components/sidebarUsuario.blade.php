@@ -29,19 +29,10 @@
                         </a>
                     </nav>
                 </div>
-                <div class=""></div>
-                <a class="" href="">
-                    <div class=""><i class=""></i></div>
-
-                </a>
-                <a class="">
-                    <div class=""><i class=""></i></div>
-
-                </a>
             </div>
         </div>
         <div class="sb-sidenav-footer">
-            <div class="small">{{$user->name}}</div>
+            <div class="small">{{$user->nome}}</div>
             {{$cargo}}
         </div>
     </nav>
