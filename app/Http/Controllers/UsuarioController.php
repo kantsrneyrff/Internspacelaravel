@@ -38,36 +38,22 @@ class UsuarioController extends Controller
         }
     }
 
-    // public function update(ClienteRequest $request, $id)
-    // {
-    //     $data = [
-    //         'CodCliente'=>$request->CodCliente,
-    //         'Referencia'=>$request->Referencia,
-    //         'TipoCliente'=>$request->TipoCliente,
-    //         'Nome'=>$request->Nome,
-    //         'Sexo'=>$request->Sexo,
-    //         'CPF_CNPJ'=>$request->CPF_CNPJ,
-    //         'Identidade'=>$request->Identidade,
-    //         'DataNascimento'=>$request->DataNascimento,
-    //         'DataCadastro'=>$request->DataCadastro,
-    //         'Email'=>$request->Email,
-    //         'CEP'=>$request->CEP,
-    //         'Endereco'=>$request->Endereco,
-    //         'Complemento'=>$request->Complemento,
-    //         'NuCasa'=>$request->NuCasa,
-    //         'Cidade'=>$request->Cidade,
-    //         'Bairro'=>$request->Bairro,
-    //         'UF'=>$request->UF,
-    //         'Filiacao'=>$request->Filiacao,
-    //         'Celular1'=>$request->Celular1,
-    //         'Celular2'=>$request->Celular2,
-    //         'ClienteInativo'=>$request->ClienteInativo,
-    //         'Grupo'=>$request->Grupo,
-    //         'OBS'=>$request->OBS,
-    //     ];
-    //     Cliente::where('ID', $id)->update($data);
-    //     return redirect()->route('clientes-index');
-    // }
+    public function update(UsuarioRequest $request, $id)
+    {
+        $data = [
+            'nome'=>$request->nome,
+            'dataNascimento'=>$request->dataNascimento,
+            'genero'=>$request->nome,
+            'nome'=>$request->nome,
+            'nome'=>$request->nome,
+            'nome'=>$request->nome,
+            'nome'=>$request->nome,
+            'nome'=>$request->nome,
+            'nome'=>$request->nome,
+        ];
+        User::where('ID', $id)->update($data);
+        return redirect()->route('usuarios-index');
+    }
 
     // public function destroy($id)
     // {

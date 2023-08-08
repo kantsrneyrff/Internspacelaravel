@@ -7,7 +7,7 @@
     <div class="col-xl-12">
         <div class="card mb-4">
             <div class="card-body">
-                <form action="{{route('usuarios-store')}}" method="POST">
+                <form action="{{route('usuarios-update')}}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-6">
@@ -163,8 +163,8 @@
                         </div>
                     </div>
                     <div class="container-btn mt-2">
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
-                        <a href="#" class="btn btn-dark">Trocar Senha</a>
+                        <button type="submit" class="btn btn-primary">Alterar</button>
+                        <a href="#" class="btn btn-dark m-1">Trocar Senha</a>
                         <a href="{{route('usuarios-index')}}" class="btn btn-secondary">Cancelar</a>
                     </div>
             </div>
