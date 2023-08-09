@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AgendamentoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PainelController;
@@ -36,5 +37,13 @@ Route::middleware('auth')->group(function () {
             Route::put('/{id}', [UsuarioController::class, 'update'])->where('id', '[0-9]+')->name('usuarios-update');
             Route::delete('/{id}', [UsuarioController::class, 'destroy'])->where('id', '[0-9]+')->name('usuarios-destroy');
         });
+    });
+    Route::prefix('agendamentos')->group(function () {
+        Route::get('/', [AgendamentoController::class, 'index'])->name('agendamentos-index');
+        Route::get('/create', [AgendamentoController::class, 'create'])->name('agendamentos-create');
+        Route::post('/', [AgendamentoController::class, 'store'])->name('agendamentos-store');
+        Route::get('/{id}/edit', [AgendamentoController::class, 'edit'])->where('id', '[0-9]+')->name('agendamentos-edit');
+        Route::put('/{id}', [AgendamentoController::class, 'update'])->where('id', '[0-9]+')->name('agendamentos-update');
+        Route::delete('/{id}', [AgendamentoController::class, 'destroy'])->where('id', '[0-9]+')->name('agendamentos-destroy');
     });
 });
