@@ -1,7 +1,7 @@
 :root {
   --disponivel: #00915c;
   --disponivel-active: #105736;
-  --disponivel-hover: #00d084;
+  --disponivel-hover: #b650e6;
   --indisponivel: #cf2e2e;
   --indisponivel-hover: #f78da7;
   --dark-body: #4d4c5a;
@@ -99,7 +99,7 @@
 }
 
 .calendar-day-button.selected.enabled {
-  background-color: rgb(0, 78, 52);
+  background-color: var(--bs-purple);
 }
 
 .calendar-day-button:hover.enabled {
@@ -199,7 +199,6 @@
   visibility: visible;
   pointer-events: visible;
   box-shadow: 0px 0px 150px 15px rgba(0, 0, 0, 0.75);
-  transition: all 0.5s ease-out;
 
 }
 
