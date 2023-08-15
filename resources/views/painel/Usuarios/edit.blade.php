@@ -7,8 +7,19 @@
     <div class="col-xl-12">
         <div class="card mb-4">
             <div class="card-body">
-                <form action="{{route('usuarios-update')}}" method="POST">
+                @error('password')
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Erro!</strong> {{$message}} <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+                </div>
+                @enderror
+                @error('passwordConfirm')
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Erro!</strong> {{$message}} <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+                </div>
+                @enderror
+                <form action="{{route('usuarios-update',['id'=>$usuario->id])}}" method="POST">
                     @csrf
+                    @method('PUT')
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="nome">Nome:</label>
@@ -56,7 +67,10 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="cep">CEP:</label>
-                            <input type="text" class="form-control" value="{{old('cep',$usuario->cep)}}" id="cep" name="cep">
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="{{old('cep',$usuario->cep)}}" id="cep" name="cep">
+                                <button type="button" id="cep-btn" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></button>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -164,15 +178,58 @@
                     </div>
                     <div class="container-btn mt-2">
                         <button type="submit" class="btn btn-primary">Alterar</button>
-                        <a href="#" class="btn btn-dark m-1">Trocar Senha</a>
+                        <button type="button" class="btn btn-dark m-1" onclick="$('#modal').modal('show')">Alterar Senha</button>
                         <a href="{{route('usuarios-index')}}" class="btn btn-secondary">Cancelar</a>
                     </div>
+                </form>
             </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">
+                    <p id="tituloModal">Alterar Senha?</p>
+                </h5>
+                <button type="button" class="close btn btn-secondary" data-dismiss="modal" onclick="$('#modal').modal('hide')" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('usuarios-updateSenha',['id'=>$usuario->id])}}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label for="password">Nova Senha:</label>
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
+                            @error('password')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label for="passwordConfirm">Confirmar Senha:</label>
+                            <input type="password" class="form-control @error('passwordConfirm') is-invalid @enderror" id="passwordConfirm" name="passwordConfirm">
+                            @error('passwordConfirm')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" id="modalFooter">
+                    <button type="submit" class="btn btn-primary">Alterar</button>
+                    <button type="button" class="btn btn-secondary" onclick="$('#modal').modal('hide')">Cancelar</button>
+                </div>
             </form>
         </div>
     </div>
 </div>
 @section('scripts')
+<script src="/js/cep.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
 <script>
     $(document).ready(function() {

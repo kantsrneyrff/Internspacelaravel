@@ -24,26 +24,47 @@ class UsuarioRequest extends FormRequest
     public function rules()
     {
         $id = $this->route('id');
-        return [
-            'nome' => ['required'],
-            'dataNascimento' => ['required', 'date'],
-            'telefone' => ['required'],
-            'bairro' => ['required'],
-            'cidade' => ['required'],
-            'cpf' => [
-                'required', 'unique:users,cpf,' . $id,
-                function ($attribute, $value, $fail) {
-                    if (!validarCPFCNPJ($value)) {
-                        $fail('O CPF informado não é válido.');
+        if ($id != null) {
+            return [
+                'nome' => ['required'],
+                'dataNascimento' => ['required', 'date'],
+                'telefone' => ['required'],
+                'bairro' => ['required'],
+                'cidade' => ['required'],
+                'cpf' => [
+                    'required', 'unique:users,cpf,' . $id,
+                    function ($attribute, $value, $fail) {
+                        if (!validarCPFCNPJ($value)) {
+                            $fail('O CPF informado não é válido.');
+                        }
                     }
-                }
-            ],
-            'uf' => ['required'],
-            'email' => ['required', 'email', 'unique:users,email,' . $id,],
-            'password' => ['required', 'same:passwordConfirm'],
-            'passwordConfirm' => ['required', 'same:password'],
-            'cargo' => ['required'],
-        ];
+                ],
+                'uf' => ['required'],
+                'email' => ['required', 'email', 'unique:users,email,' . $id,],
+                'cargo' => ['required'],
+            ];
+        } else {
+            return [
+                'nome' => ['required'],
+                'dataNascimento' => ['required', 'date'],
+                'telefone' => ['required'],
+                'bairro' => ['required'],
+                'cidade' => ['required'],
+                'cpf' => [
+                    'required', 'unique:users,cpf,' . $id,
+                    function ($attribute, $value, $fail) {
+                        if (!validarCPFCNPJ($value)) {
+                            $fail('O CPF informado não é válido.');
+                        }
+                    }
+                ],
+                'uf' => ['required'],
+                'email' => ['required', 'email', 'unique:users,email,' . $id,],
+                'password' => ['required', 'same:passwordConfirm'],
+                'passwordConfirm' => ['required', 'same:password'],
+                'cargo' => ['required'],
+            ];
+        }
     }
 
     public function messages()

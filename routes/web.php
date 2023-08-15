@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
             Route::post('/', [UsuarioController::class, 'store'])->name('usuarios-store');
             Route::get('/{id}/edit', [UsuarioController::class, 'edit'])->where('id', '[0-9]+')->name('usuarios-edit');
             Route::put('/{id}', [UsuarioController::class, 'update'])->where('id', '[0-9]+')->name('usuarios-update');
+            Route::put('/senha/{id}', [UsuarioController::class, 'updateSenha'])->where('id', '[0-9]+')->name('usuarios-updateSenha');
             Route::delete('/{id}', [UsuarioController::class, 'destroy'])->where('id', '[0-9]+')->name('usuarios-destroy');
         });
     });

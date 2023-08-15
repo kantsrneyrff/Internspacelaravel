@@ -12,7 +12,7 @@
                         <tr>
                             <th>#</th>
                             <th>Nome</th>
-                            <th>Cpf</th>
+                            <th>CPF</th>
                             <th>Data Nasc.</th>
                             <th>Cidade </th>
                             <th>Cargo</th>
@@ -38,11 +38,7 @@
                             </td>
                             <td class="d-flex">
                                 <a href="{{ route('usuarios-edit', ['id'=>$usuario->id]) }}" class="btn btn-primary me-2"><i class="fas fa-edit" style="color: #ffffff;"></i></a>
-                                <form action="{{route('usuarios-destroy', ['id'=>$usuario->id])}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt" style="color: #ffffff;"></i></button>
-                                </form>
+                                <button type="button" usuario="{{json_encode($usuario)}}" onclick="mostrarExcluir(<?php echo $usuario->id ?>)" id="btnExcluir{{$usuario->id}}" class="btn btn-danger"><i class="fas fa-trash-alt" style="color: #ffffff;"></i></button>
                             </td>
                         </tr>
                         @endforeach
@@ -52,58 +48,76 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Excluir?</h5>
-                <button type="button" class="btn btn-secondary close" onclick="$('#modalExcluir').modal('hide')" aria-label="Close">
+                <h5 class="modal-title" id="modalLabel">
+                    <p id="tituloModal">Excluir Usuário?</p>
+                </h5>
+                <button type="button" class="close btn btn-secondary" data-dismiss="modal" onclick="$('#modal').modal('hide')" aria-label="Fechar">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" method="POST">
-                <div class="modal-body">
-                    Deseja realmente excluir este usuário ?<br><br>
-
-                    <input type="hidden" name="id" id="id">
-                    <strong>Nome: </strong><input type="text" id="nome" disabled=""><br>
-                    <strong>CPF: </strong><input type="text" id="cpf" disabled=""><br>
-                    <strong>Cidade: </strong><input type="text" id="cidade" disabled=""><br>
-                    <strong>Cargo: </strong><input type="text" id="cargo" disabled=""><br>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-md-7">
+                        <label for="nome">Nome</label>
+                        <input type="text" class="form-control" id="nome" disabled>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="cpf">CPF</label>
+                        <input type="text" class="form-control" id="cpf" disabled>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="$('#modalExcluir').modal('hide')">Cancelar</button>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="dataNascimento">Data Nasc.</label>
+                        <input type="text" class="form-control" id="dataNascimento" disabled>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="cargo">Cargo</label>
+                        <input type="text" class="form-control" id="cargo" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" id="modalFooter">
+                <form action="{{route('usuarios-destroy', ['id'=>'ID'])}}" id="formExcluir" method="POST">
+                    @csrf
+                    @method('DELETE')
                     <button type="submit" class="btn btn-danger">Excluir</button>
-                </div>
-            </form>
+                </form>
+                <button type="button" class="btn btn-secondary" onclick="$('#modal').modal('hide')">Cancelar</button>
+            </div>
         </div>
     </div>
 </div>
-
 @section('scripts')
-<script>
-    function mostrarExcluir(e) {
-        var linha = $(e).closest("tr");
-
-        var id = linha.find("td:eq(0)").text().trim();
-        var nome = linha.find("td:eq(1)").text().trim();
-        var cpf = linha.find("td:eq(2)").text().trim();
-        var cidade = linha.find("td:eq(4)").text().trim();
-        var cargo = linha.find("td:eq(5)").text().trim();
-
-        $("#id").val(id);
-        $("#nome").val(nome);
-        $("#cpf").val(cpf);
-        $("#cidade").val(cidade);
-        $("#cargo").val(cargo);
-
-        $(document).ready(function() {
-            $('#modalExcluir').modal('show');
-        });
-    }
-</script>
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    function mostrarExcluir(e) {
+        $('#modal').modal('show')
+        let usuario = JSON.parse(document.getElementById('btnExcluir' + e).getAttribute('usuario'));
+        const id = usuario.id;
+
+        if (usuario.cargo == 'aluno') {
+            usuario.cargo = 'Aluno(a)';
+        } else if (usuario.cargo == 'adm') {
+            usuario.cargo = 'Administrador(a)';
+        } else {
+            usuario.cargo = 'Orientador(a)';
+        }
+
+        document.querySelector('#nome').value = usuario.nome;
+        document.querySelector('#cpf').value = usuario.cpf;
+        document.querySelector('#dataNascimento').value = usuario.dataNascimento.replaceAll('-', '/');
+        document.querySelector('#cargo').value = usuario.cargo;
+
+        const formulario = document.querySelector('#formExcluir');
+        formulario.action = formulario.action.replace('ID', id);
+    }
+</script>
 <script>
     $(document).ready(function() {
         $('#tabela').DataTable({

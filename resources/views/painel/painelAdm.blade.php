@@ -1,6 +1,8 @@
 @extends('layouts.template')
 
-@section('title', 'Painel Administrador(a)')
+@section('title')
+Olá, {{ auth()->user()->nome }}
+@endsection
 
 @section('content')
 

@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="sb-sidenav-footer">
-            <div class="small">{{$user->nome}}</div>
+            <div class="small">{{auth()->user()->nome}}</div>
             {{$cargo}}
         </div>
     </nav>

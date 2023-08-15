@@ -1,6 +1,8 @@
 @extends('layouts.template')
 
-@section('title', 'Painel Aluno(a)')
+@section('title')
+Olá, {{ auth()->user()->nome }}
+@endsection
 
 @section('content')
 <div class="row">

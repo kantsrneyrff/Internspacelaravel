@@ -24,13 +24,13 @@
         <!--------------SIDE----------------->
         @switch(Auth::user()->cargo)
         @case('adm')
-        @component('components.sidebarAdm',['user' => Auth::user(), 'cargo' => 'Administrador(a)'])@endcomponent
+        @component('components.sidebarAdm',['cargo' => 'Administrador(a)'])@endcomponent
         @break
         @case('prof')
-        @component('components.sidebarOrientador',['user' => Auth::user(), 'cargo' => 'Professor(a)'])@endcomponent
+        @component('components.sidebarOrientador',['cargo' => 'Professor(a)'])@endcomponent
         @break
         @case('aluno')
-        @component('components.sidebarUsuario',['user' => Auth::user(), 'cargo' => 'Aluno'])@endcomponent
+        @component('components.sidebarUsuario',['cargo' => 'Aluno'])@endcomponent
         @break
         @endswitch
         <div id="layoutSidenav_content">
