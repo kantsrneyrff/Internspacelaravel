@@ -1,61 +1,84 @@
 @extends('layouts.template')
 
-
-@section('title', 'Historico')
+@section('title', 'Pesquisar Agendamentos')
 
 @section('content')
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card mb-4">
+            <div class="card-body">
+                <table id="tabela" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nome</th>
+                            <th>Data</th>
+                            <th>Período</th>
+                            <th>Local</th>
+                            <th>Setor</th>
+                            <th>Status Aluno</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($agendamentos as $agendamento)
+                        <tr>
+                            <td>{{$agendamento->id}}</td>
+                            <td>{{$agendamento->aluno->nome}}</td>
+                            <td>{{date('d/m/Y', strtotime($agendamento->data))}}</td>
+                            <td>{{$agendamento->periodo->nome}}</td>
+                            <td>{{$agendamento->local->nome}}</td>
+                            <td>{{$agendamento->setor->nome}}</td>
+                            <td>
+                                @switch($agendamento->statusAluno)
+                                @case('A')
+                                <span class="badge text-bg-danger">AUSENTE</span>
+                                @break
 
-<!---- css necessario para a pagina ---->
+                                @case('P')
+                                <span class="badge text-bg-success">PRESENTE</span>
+                                @break
+                                @endswitch
+                            </td>
+                            <td>
+                                @switch($agendamento->status)
+                                @case('A')
+                                <span class="badge text-bg-primary">ANÁLISE</span>
+                                @break
 
-<body class="sb-nav-fixed">
+                                @case('L')
+                                <span class="badge text-bg-success">APROVADO</span>
+                                @break
 
-    <!--NAV -->
-    @component('components.nav')
-    @endcomponent
+                                @case('C')
+                                <span class="badge text-bg-secondary">CONCLUÍDO</span>
+                                @break
 
-    <!---Linha importante abaixo-->
-    <div id="layoutSidenav">
-        <!---------------SIDE---------------->
-        @component('components.sidebarUsuario')
-        @endcomponent
-        <div id="layoutSidenav_content">
-            <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">Histórico de Agendamentos</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="painelAdm">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Histórico de Agendamentos</li>
-                    </ol>
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <table id="datatablesSimple">
-                                <thead>
-                                    <tr>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Nome</th>
-                                        <th>Data</th>
-                                        <th>Período</th>
-                                        <th>Local</th>
-                                        <th>Setor</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </main>
+                                @case('R')
+                                <span class="badge text-bg-danger">RECUSADO</span>
+                                @break
+
+                                @endswitch
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-<script src="/js/datatables-simple-demo.js"></script>
-
-</body>
-
-
-
-        @endsection
+</div>
+@endsection
+@section('scripts')
+<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#tabela').DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.5/i18n/pt-BR.json',
+            },
+        });
+    });
+</script>
+@endsection

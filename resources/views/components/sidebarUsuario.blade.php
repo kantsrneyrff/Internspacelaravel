@@ -2,12 +2,10 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
-
                 <a class="nav-link" href="{{route('painel-index')}}">
-                    <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></i></div>
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
                     Painel
                 </a>
-
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fa-regular fa-calendar-days"></i></div>
                     Agendamentos
@@ -15,7 +13,7 @@
                 </a>
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="/cadastroAgendamento">Solicitar</a>
+                        <a class="nav-link" href="{{route('agendamentos-create')}}">Solicitar</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
