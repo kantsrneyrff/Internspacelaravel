@@ -8,6 +8,9 @@
 @endsection
 
 @section('content')
+
+<div class="d-flex mt-4 w-100 flex-md-row flex-column">
+
 <div class="card p-4 m-2" style="min-width: 30%">
     <div class="d-flex flex-column justify-content-center">
         <div class="d-flex justify-content-center my-4 flex-row">
@@ -149,7 +152,7 @@
 
 
 </div>
-
+</div>
 
 
 
