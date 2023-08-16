@@ -20,11 +20,11 @@
             <div class="profile-details">
                 <h3 style="text-transform: uppercase;">
                     <b>
-
+                        {{auth()->user()->nome}}
                     </b>
                 </h3>
                 <h5>
-
+                    {{auth()->user()->cargo}}
                 </h5>
             </div>
         </div>
@@ -38,9 +38,8 @@
             <div>
                 <h5><b>CONTATO</b></h5>
                 <div class="profile-contact-email my-4">
-
-                    <h6><b></b></h6>
-                    <span>
+                    <h6><b>Email</b></h6>
+                    <span>{{auth()->user()->email}}</span>
 
                     </span>
 
