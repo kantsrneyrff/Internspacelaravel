@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{id}', [AgendamentoController::class, 'destroy'])->where('id', '[0-9]+')->name('agendamentos-destroy');
     });
     Route::prefix('perfil')-> group(function() {
-        Route::get('/', [PerfilController::class, 'index'])->name('perfil-index');
+        Route::get('/{id}', [PerfilController::class, 'index'])->name('perfil-index');
 
     });
 });
