@@ -14,7 +14,7 @@
 <div class="card p-4 m-2" style="min-width: 30%">
     <div class="d-flex flex-column justify-content-center">
         <div class="d-flex justify-content-center my-4 flex-row">
-            <img src="../public/assets/img/fundo-pessoas-trabalhando.png" alt="Profile Picture" class="rounded-circle" style="max-width: 200px;">
+            <img src="/img/fundo-pessoas-trabalhando.png" alt="Profile Picture" class="rounded-circle" style="max-width: 200px;">
         </div>
         <div class="d-flex flex-col justify-content-center text-center align-items-center mx-4">
             <div class="profile-details">
@@ -78,7 +78,7 @@
     <div class="d-flex flex-col align-items-center m-2">
         <div class="profile-details">
             <h5><b>CIDADE</b></h5>
-            <h6></h6>
+            <h6>{{auth()->user()->cidade}}</h6>
         </div>
     </div>
 
@@ -86,7 +86,7 @@
     <div class="d-flex flex-col align-items-center m-2">
         <div class="profile-details">
             <h5><b>BAIRRO</b></h5>
-            <h6></h6>
+            <h6>{{auth()->user()->bairro}}</h6>
         </div>
     </div>
 
