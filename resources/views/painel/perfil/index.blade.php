@@ -3,7 +3,8 @@
 @section('title', 'Solicitar Agendamento')
 
 @section('head')
-<link rel="stylesheet" href="/css/agendamento.css">
+<link rel="stylesheet" href="/css/perfil.css">
+
 @endsection
 
 @section('content')
@@ -153,7 +154,6 @@
 
 
 @section('scripts')
-<link rel="stylesheet" href="/css/perfil.css">
 
 <script type="text/javascript">
     function mostrarEditarDados(e) {
