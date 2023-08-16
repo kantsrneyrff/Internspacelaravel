@@ -1,49 +1,17 @@
 @extends('layouts.template')
 
+@section('title', 'Solicitar Agendamento')
 
-@section('title', 'Perfil')
+@section('head')
+<link rel="stylesheet" href="/css/agendamento.css">
+@endsection
 
 @section('content')
-
-<!---- css necessario para a pagina ---->
-
-<body class="sb-nav-fixed">
-
-    <!--NAV -->
-    @component('components.nav')
-    @endcomponent
-
-    <!---Linha importante abaixo-->
-    <div id="layoutSidenav">
-        <!---------------SIDE---------------->
-        @component('components.sidebarUsuario')
-        @endcomponent
-        <div id="layoutSidenav_content">
-
-            <main>
-                <div class="container-fluid px-3">
-
-                    <h1 class="mt-4">Perfil</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="painelAdm">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Aluno</li>
-                        <li class="breadcrumb-item active">Perfil</li>
-                    </ol>
-                    <!-- Perfil -->
-                    <div class="d-flex mt-4 w-100 flex-md-row flex-column">
-
-
-                        <!-- Cartão 1 -->
                         <div class="card p-4 m-2" style="min-width: 30%">
                             <div class="d-flex flex-column justify-content-center">
-
-
                                 <div class="d-flex justify-content-center my-4 flex-row">
                                     <img src="../public/assets/img/fundo-pessoas-trabalhando.png" alt="Profile Picture" class="rounded-circle" style="max-width: 200px;">
                                 </div>
-
-
-
                                 <div class="d-flex flex-col justify-content-center text-center align-items-center mx-4">
                                     <div class="profile-details">
                                         <h3 style="text-transform: uppercase;">
@@ -56,23 +24,12 @@
                                         </h5>
                                     </div>
                                 </div>
-
-
                                 <div class="d-flex flex-col justify-content-center text-center align-items-center my-3 mb-5">
 
                                     <button class="btn btn-outline-secondary mx-2" type="button" onclick="mostrarEditarDados(this)" id="btn-perfil-dados" style="border-radius: 100px">Editar dados</button>
                                     <button class="btn btn-outline-secondary mx-2" type="button" onclick="mostrarAlterarFoto(this)" id="btn-perfil-foto" style="border-radius: 100px">Alterar foto</button>
 
                                 </div>
-
-
-
-
-
-
-
-
-
                                 <div class="d-flex flex-col justify-content-start text-start align-items-center">
                                     <div>
                                         <h5><b>CONTATO</b></h5>
@@ -95,9 +52,6 @@
 
                             </div>
                         </div>
-
-
-
                         <!-- Cartão 2 -->
                         <div class="card p-4 m-2 flex-wrap text-nowrap flex-column flex-grow-1">
 
@@ -136,12 +90,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
                 <!-- Modal -->
                 <div class="modal fade" id="modal-dados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -172,13 +120,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
-
                 <!-- Modal -->
                 <div class="modal fade" id="modal-foto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -191,11 +132,9 @@
                             </div>
                             <form action="" method="POST">
                                 <div class="modal-body">
-
                                     <div class="py-5 align-items-center justify-content-center text-center">
                                         <span>bom dia vamos trocar a foto</span>
                                     </div>
-
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" onclick="$('#modal-foto').modal('hide')">Cancelar</button>
@@ -205,8 +144,6 @@
                         </div>
                     </div>
                 </div>
-
-            </main>
         </div>
 
 
