@@ -78,7 +78,7 @@
                                         <h5><b>CONTATO</b></h5>
                                         <div class="profile-contact-email my-4">
 
-                                            <h6><b>Email</b></h6>
+                                            <h6><b>{{}}</b></h6>
                                             <span>
                                                
                                             </span>
