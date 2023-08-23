@@ -3,21 +3,35 @@
 @section('title', 'Solicitar Agendamento')
 
 @section('head')
-<link rel="stylesheet" href="/css/agendamento.css">
+<link rel="stylesheet" href="/css/perfil.css">
+
 @endsection
 
 @section('content')
+
+<div class="d-flex mt-4 w-100 flex-md-row flex-column">
+
 <div class="card p-4 m-2" style="min-width: 30%">
     <div class="d-flex flex-column justify-content-center">
         <div class="d-flex justify-content-center my-4 flex-row">
-            <img src="../public/assets/img/fundo-pessoas-trabalhando.png" alt="Profile Picture" class="rounded-circle" style="max-width: 200px;">
+            <img src="/img/fundo-pessoas-trabalhando.png" alt="Profile Picture" class="rounded-circle" style="max-width: 200px;">
         </div>
         <div class="d-flex flex-col justify-content-center text-center align-items-center mx-4">
             <div class="profile-details">
                 <h3 style="text-transform: uppercase;">
+<<<<<<< HEAD
                     <b></b>
                 </h3>
                 <h5></h5>
+=======
+                    <b>
+                        {{auth()->user()->nome}}
+                    </b>
+                </h3>
+                <h5>
+                    {{auth()->user()->cargo}}
+                </h5>
+>>>>>>> ce2e5830f3fa22a75f82b5891fbfd21ca30318f6
             </div>
         </div>
         <div class="d-flex flex-col justify-content-center text-center align-items-center my-3 mb-5">
@@ -28,8 +42,14 @@
             <div>
                 <h5><b>CONTATO</b></h5>
                 <div class="profile-contact-email my-4">
+<<<<<<< HEAD
                     <h6><b></b></h6>
                     <span>
+=======
+                    <h6><b>Email</b></h6>
+                    <span>{{auth()->user()->email}}</span>
+
+>>>>>>> ce2e5830f3fa22a75f82b5891fbfd21ca30318f6
                     </span>
                 </div>
                 <div class="profile-contact-phone my-4">
@@ -57,13 +77,13 @@
     <div class="d-flex flex-col align-items-center m-2">
         <div class="profile-details">
             <h5><b>CIDADE</b></h5>
-            <h6></h6>
+            <h6>{{auth()->user()->cidade}}</h6>
         </div>
     </div>
     <div class="d-flex flex-col align-items-center m-2">
         <div class="profile-details">
             <h5><b>BAIRRO</b></h5>
-            <h6></h6>
+            <h6>{{auth()->user()->bairro}}</h6>
         </div>
     </div>
 </div>
@@ -124,12 +144,11 @@
 
 
 </div>
-
+</div>
 
 
 
 @section('scripts')
-<link rel="stylesheet" href="/css/perfil.css">
 
 <script type="text/javascript">
     function mostrarEditarDados(e) {
