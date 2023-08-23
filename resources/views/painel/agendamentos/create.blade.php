@@ -14,7 +14,7 @@
                 <form method="POST">
                     <div class="container-agendamento">
                         <div class="form-group col">
-                            <div class="select-container">
+                            <div class="select-container mb-2">
                                 <label>Hotel</label>
                                 <select id="hotel" name="hotel" class="form-select" onchange="limitarSetores()" aria-label="Default select example">
                                     <option selected>Selecione</option>
@@ -64,7 +64,7 @@
                                     <div>S</div>
                                     <div>S</div>
                                 </div>
-                                <div class="calendar-days">
+                                <div class="calendar-days" id="calendar-days">
                                 </div>
                             </div>
                             <div class="calendar-footer">

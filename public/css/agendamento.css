@@ -110,10 +110,6 @@
 }
 
 
-
-
-
-
 .calendar-days div:empty {
   background-color: var(--bg-main);
 }
