@@ -11,16 +11,17 @@
     <div class="col-xl-12">
         <div class="card mb-4">
             <div class="card-body">
-                <form action="{{ route(agendamentos-store)}}" method="POST">
+                <form action="{{route('agendamentos-store')}}" method="POST">
                     @csrf
                     <div class="container-agendamento">
                         <div class="form-group col">
                             <div class="select-container mb-2">
                                 <label>Hotel</label>
                                 <select id="hotel" name="hotel" class="form-select" onchange="limitarSetores()" aria-label="Default select example">
-                                    <option selected>Selecione</option>
-                                    <option value="HOTEL - BELA VISTA">HOTEL - BELA VISTA</option>
-                                    <option value="HOTEL - VILA BUSINESS">HOTEL - VILA BUSINESS</option>
+                                    <option value="" >Selecione</option>
+                                    @foreach($locais as $local)
+                                    <option value="{{$local->id}}">{{$local->nome}}</option>
+                                    @endforeach
                                 </select>
                                 <label>Setor</label>
                                 <select id="setor" name="setor" class="form-select" aria-label="Default select example">

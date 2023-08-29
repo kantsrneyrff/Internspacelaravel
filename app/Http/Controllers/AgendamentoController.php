@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agendamento;
+use App\Models\Local;
+use App\Models\Periodo;
+use App\Models\Setor;
 use Illuminate\Http\Request;
 
 class AgendamentoController extends Controller
@@ -15,7 +18,10 @@ class AgendamentoController extends Controller
 
     public function create()
     {
-        return view('painel.agendamentos.create');
+        $locais = Local::all();
+        $periodos = Periodo::all();
+        $setores = Setor::all();
+        return view('painel.agendamentos.create',['locais' => $locais, 'periodos' => $periodos, 'setores' => $setores]);
     }
     public function store(Request $request)
     {
