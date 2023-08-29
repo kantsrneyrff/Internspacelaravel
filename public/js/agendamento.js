@@ -45,19 +45,34 @@ generateCalendar = (month, year) => {
   ];
 
   // Função dos botões de dia, usada para pegar a data do botão pressionado
-  function obterData() {
+  function botaoData() {
+    limparBotoes();
+    obterData(this);
+  }
+
+  function limparBotoes() {
+    lista = document.getElementById("calendar-days").childNodes
+    console.log(lista)
+    lista.forEach((index) => {
+
+      index.classList.remove("selected")
+
+    })
+  }
+
+  function obterData(day) {
     mes = parseInt(month) + parseInt(1);
     let DateSelect = document.getElementById("data");
 
-    //day.classList.toggle("selected");
+    day.classList.toggle("selected");
 
-    if (this.id != "") {
-      if (this.id.length == 1) {
+    if (day.id != "") {
+      if (day.id.length == 1) {
         document.getElementById("data").value =
-          0 + this.id + "/" + mes + "/" + year;
+          0 + day.id + "/" + mes + "/" + year;
       } else {
         document.getElementById("data").value =
-          this.id + "/" + mes + "/" + year;
+          day.id + "/" + mes + "/" + year;
         //DateSelect.textContent = day.id + " / " + mes + " / " + year
       }
     }
@@ -93,31 +108,30 @@ generateCalendar = (month, year) => {
       day.innerHTML = day2;
 
       // Adicionando função de obter data aos botões
-      day.addEventListener("click", obterData);
+      day.addEventListener("click", botaoData);
       day.classList.add("enabled");
 
 
 
-      // Lógica da adição de meses //////!!!!!!!!!!!!!!!!!!!!!!!!!!!\\\\\\\
+      // Lógica da adição de meses //////!!!!!!!!!!!!!!!!!!!!!!!!!!!\\\\\\
       if (
         i - first_day.getDay() + 1 === currDate.getDate() &&
         year === currDate.getFullYear() &&
         month === currDate.getMonth()
       ) {
         day.classList.add("curr-date");
-        console.log("Encontramos o dia de hoje! ", day.id)
       }
 
 
 
       else if (
         (i - first_day.getDay() + 1 < currDate.getDate() &&
-        month === currDate.getMonth()) || (month < currDate.getMonth() || year < currDate.getFullYear())
+          month === currDate.getMonth()) || (month < currDate.getMonth() || year < currDate.getFullYear())
       ) {
         console.log("Ainda não é o dia certo")
-        day.removeEventListener("click", obterData)
+        day.removeEventListener("click", botaoData)
         day.classList.remove("enabled");
-        
+
       }
 
     }

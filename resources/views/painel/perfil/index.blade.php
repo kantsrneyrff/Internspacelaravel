@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('title', 'Solicitar Agendamento')
+@section('title', 'Perfil')
 
 @section('head')
 <link rel="stylesheet" href="/css/perfil.css">
