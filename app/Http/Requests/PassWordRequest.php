@@ -33,8 +33,8 @@ class PassWordRequest extends FormRequest
     public function messages()
     {
         return [
-            'password.required' => 'Campo Nova Senha Obrigatório!',
-            'passwordConfirm.required' => 'Campo Confirmar Senha Obrigatório!',
+            'password.required' => 'Campo "Nova Senha" Obrigatório!',
+            'passwordConfirm.required' => 'Campo "Confirmar Senha" Obrigatório!',
             'same' => 'As senhas não conferem!',
         ];
     }
