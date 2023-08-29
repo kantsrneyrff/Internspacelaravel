@@ -11,7 +11,7 @@
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="nome">Nome_tesgte:</label>
+                            <label for="nome">Nome:</label>
                             <input type="text" class="form-control @error('nome') is-invalid @enderror" value="{{old('nome')}}" id="nome" name="nome">
                             @error('nome')
                             <div class="invalid-feedback">{{$message}}</div>
