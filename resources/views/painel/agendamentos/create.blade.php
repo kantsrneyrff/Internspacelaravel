@@ -11,7 +11,8 @@
     <div class="col-xl-12">
         <div class="card mb-4">
             <div class="card-body">
-                <form method="POST">
+                <form action="{{ route(agendamentos-store)}}" method="POST">
+                    @csrf
                     <div class="container-agendamento">
                         <div class="form-group col">
                             <div class="select-container mb-2">

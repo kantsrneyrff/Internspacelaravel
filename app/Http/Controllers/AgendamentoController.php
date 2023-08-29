@@ -17,6 +17,12 @@ class AgendamentoController extends Controller
     {
         return view('painel.agendamentos.create');
     }
+    public function store(Request $request)
+    {
+        Agendamento::create($request->all());
+        return redirect()->route('painel-index');
+
+  }
     /*
     public function store(UsuarioRequest $request)
     {
