@@ -26,18 +26,16 @@
                                 <label>Setor</label>
                                 <select id="setor" name="setor" class="form-select" aria-label="Default select example">
                                     <option selected>Selecione</option>
-                                    <option value="Barman">Barman</option>
-                                    <option value="Cozinha">Cozinha</option>
-                                    <option value="Garçom">Garçom</option>
-                                    <option value="Governança">Governança</option>
-                                    <option value="Recepção">Recepção</option>
+                                    @foreach($setores as $setor)
+                                    <option value="{{$setor->id}}">{{$setor->nome}}</option>
+                                    @endforeach
                                 </select>
                                 <label>Período</label>
                                 <select name="periodo" class="form-select" aria-label="Default select example">
                                     <option selected>Selecione</option>
-                                    <option value="manha">Manhã</option>
-                                    <option value="tarde">Tarde</option>
-                                    <option value="integral">Integral</option>
+                                    @foreach($periodos as $periodo)
+                                    <option value="{{$periodo->id}}">{{$periodo->nome}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <label id="DataSelecionada" for="DataSelecionada">Data Selecionada:</label>
