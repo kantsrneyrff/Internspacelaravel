@@ -19,11 +19,6 @@
         <div class="d-flex flex-col justify-content-center text-center align-items-center mx-4">
             <div class="profile-details">
                 <h3 style="text-transform: uppercase;">
-<<<<<<< HEAD
-                    <b></b>
-                </h3>
-                <h5></h5>
-=======
                     <b>
                         {{auth()->user()->nome}}
                     </b>
@@ -31,7 +26,6 @@
                 <h5>
                     {{auth()->user()->cargo}}
                 </h5>
->>>>>>> ce2e5830f3fa22a75f82b5891fbfd21ca30318f6
             </div>
         </div>
         <div class="d-flex flex-col justify-content-center text-center align-items-center my-3 mb-5">
@@ -42,14 +36,11 @@
             <div>
                 <h5><b>CONTATO</b></h5>
                 <div class="profile-contact-email my-4">
-<<<<<<< HEAD
                     <h6><b></b></h6>
                     <span>
-=======
                     <h6><b>Email</b></h6>
                     <span>{{auth()->user()->email}}</span>
 
->>>>>>> ce2e5830f3fa22a75f82b5891fbfd21ca30318f6
                     </span>
                 </div>
                 <div class="profile-contact-phone my-4">
