@@ -7,6 +7,7 @@ use App\Models\Local;
 use App\Models\Periodo;
 use App\Models\Setor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AgendamentoController extends Controller
 {
@@ -21,14 +22,15 @@ class AgendamentoController extends Controller
         $locais = Local::all();
         $periodos = Periodo::all();
         $setores = Setor::all();
-        return view('painel.agendamentos.create',['locais' => $locais, 'periodos' => $periodos, 'setores' => $setores]);
+        return view('painel.agendamentos.create', ['locais' => $locais, 'periodos' => $periodos, 'setores' => $setores]);
     }
     public function store(Request $request)
     {
+        $request->merge(['idAluno' => auth()->user()->id]);
+        $request->merge(['status' => "A"]);
         Agendamento::create($request->all());
         return redirect()->route('painel-index');
-
-  }
+    }
     /*
     public function store(UsuarioRequest $request)
     {

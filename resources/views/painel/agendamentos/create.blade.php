@@ -16,22 +16,22 @@
                     <div class="container-agendamento">
                         <div class="form-group col">
                             <div class="select-container mb-2">
-                                <label>Hotel</label>
-                                <select id="hotel" name="hotel" class="form-select" onchange="limitarSetores()" aria-label="Default select example">
+                                <label for="hotel">Hotel</label>
+                                <select class="form-select" id="hotel" onchange="limitarSetores()" name="idLocal">
                                     <option value="" >Selecione</option>
                                     @foreach($locais as $local)
                                     <option value="{{$local->id}}">{{$local->nome}}</option>
                                     @endforeach
                                 </select>
-                                <label>Setor</label>
-                                <select id="setor" name="setor" class="form-select" aria-label="Default select example">
+                                <label for="setor">Setor</label>
+                                <select class="form-select" id="setor" name="idSetor">
                                     <option selected>Selecione</option>
                                     @foreach($setores as $setor)
                                     <option value="{{$setor->id}}">{{$setor->nome}}</option>
                                     @endforeach
                                 </select>
-                                <label>Período</label>
-                                <select name="periodo" class="form-select" aria-label="Default select example">
+                                <label for="periodo">Período</label>
+                                <select class="form-select" id="periodo" name="idPeriodo">
                                     <option selected>Selecione</option>
                                     @foreach($periodos as $periodo)
                                     <option value="{{$periodo->id}}">{{$periodo->nome}}</option>
