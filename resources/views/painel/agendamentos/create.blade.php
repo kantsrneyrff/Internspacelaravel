@@ -16,21 +16,21 @@
                     <div class="container-agendamento">
                         <div class="form-group col">
                             <div class="select-container mb-2">
-                                <label for="hotel">Hotel</label>
-                                <select class="form-select" id="hotel" onchange="limitarSetores()" name="idLocal">
-                                    <option value="" >Selecione</option>
+                                <label for="local">Local:</label>
+                                <select class="form-select" id="local" onchange="limitarSetores()" name="idLocal">
+                                    <option value="">Selecione</option>
                                     @foreach($locais as $local)
                                     <option value="{{$local->id}}">{{$local->nome}}</option>
                                     @endforeach
                                 </select>
-                                <label for="setor">Setor</label>
+                                <label for="setor">Setor:</label>
                                 <select class="form-select" id="setor" name="idSetor">
                                     <option selected>Selecione</option>
                                     @foreach($setores as $setor)
                                     <option value="{{$setor->id}}">{{$setor->nome}}</option>
                                     @endforeach
                                 </select>
-                                <label for="periodo">Período</label>
+                                <label for="periodo">Período:</label>
                                 <select class="form-select" id="periodo" name="idPeriodo">
                                     <option selected>Selecione</option>
                                     @foreach($periodos as $periodo)
@@ -39,11 +39,10 @@
                                 </select>
                             </div>
                             <label id="DataSelecionada" for="DataSelecionada">Data Selecionada:</label>
-                            <br>
-                            <input name="data" id="data" type="text" required readonly>
-                            <div class="asdhfgdskhfgkhg">
+                            <input type="text" id="data" class="form-control data" name="data" readonly>
+                            <div>
                                 <br>
-                                <button type="submit" class="btn btn-primary">Agendar</button>
+                                <button type="button" class="btn btn-primary" onclick="$('#modal').modal('show')">Agendar</button>
                             </div>
                         </div>
                         <div class="calendar col">
@@ -86,12 +85,35 @@
                             <div class="card month-list p-3 d-flex position-fixed"></div>
                         </div>
                     </div>
+                    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLabel">
+                                        <p id="tituloModal">Agendar?</p>
+                                    </h5>
+                                    <button type="button" class="close btn btn-secondary" data-dismiss="modal" onclick="$('#modal').modal('hide')" aria-label="Fechar">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Realmente deseja agendar na data:
+                                    <!-- <input type="text" class="form-control data" name="data" readonly> -->
+                                    <strong><p class="data text-danger"></p></strong>
+                                </div>
+                                <div class="modal-footer" id="modalFooter">
+                                    <button type="submit" class="btn btn-primary">Agendar</button>
+                                    <button type="button" class="btn btn-secondary" onclick="$('#modal').modal('hide')">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endsection
                 </form>
             </div>
         </div>
     </div>
 </div>
-@endsection
 @section('scripts')
 <script src="/js/agendamento.js"></script>
 @endsection

@@ -6,32 +6,6 @@ Olá, {{ auth()->user()->nome }}
 
 @section('content')
 <div class="row">
-    <div class="col-xl-12">
-        <div class="card mb-4">
-            <div class="card-header">
-                <i class="fas fa-table me-1"></i>
-                Status dos Agendamentos
-            </div>
-            <div class="card-body">
-                <table id="tabela" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Data</th>
-                            <th>Período</th>
-                            <th>Local</th>
-                            <th>Setor</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
     <div class="col-xl-6">
         <div class="card mb-4">
             <div class="card-header">

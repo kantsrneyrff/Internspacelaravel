@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('title', 'Pesquisar Agendamentos')
+@section('title', 'Histórico Agendamentos')
 
 @section('content')
 <div class="row">
@@ -11,7 +11,6 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Nome</th>
                             <th>Data</th>
                             <th>Período</th>
                             <th>Local</th>
@@ -24,7 +23,6 @@
                         @foreach($agendamentos as $agendamento)
                         <tr>
                             <td>{{$agendamento->id}}</td>
-                            <td>{{$agendamento->aluno->nome}}</td>
                             <td>{{date('d/m/Y', strtotime($agendamento->data))}}</td>
                             <td>{{$agendamento->periodo->nome}}</td>
                             <td>{{$agendamento->local->nome}}</td>
@@ -86,6 +84,7 @@
             language: {
                 url: '//cdn.datatables.net/plug-ins/1.13.5/i18n/pt-BR.json',
             },
+            order: [[0, 'desc']]
         });
     });
 </script>
