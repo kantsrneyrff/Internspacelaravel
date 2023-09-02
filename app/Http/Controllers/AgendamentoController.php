@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AgendamentoRequest;
 use App\Models\Agendamento;
 use App\Models\Local;
 use App\Models\Periodo;
@@ -31,7 +32,7 @@ class AgendamentoController extends Controller
         $setores = Setor::all();
         return view('painel.agendamentos.create', ['locais' => $locais, 'periodos' => $periodos, 'setores' => $setores]);
     }
-    public function store(Request $request)
+    public function store(AgendamentoRequest $request)
     {
         $request->merge(['idAluno' => auth()->user()->id]);
         $request->merge(['status' => "A"]);

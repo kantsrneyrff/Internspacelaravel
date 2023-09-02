@@ -175,6 +175,8 @@
         </div>
     </div>
 </div>
+@endsection
+
 @section('scripts')
 <script src="/js/cep.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
@@ -194,5 +196,4 @@
         $('#telefone').mask(behavior, options);
     });
 </script>
-@endsection
 @endsection

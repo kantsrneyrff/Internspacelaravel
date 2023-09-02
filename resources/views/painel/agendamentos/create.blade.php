@@ -13,76 +13,99 @@
             <div class="card-body">
                 <form action="{{route('agendamentos-store')}}" method="POST">
                     @csrf
-                    <div class="container-agendamento">
-                        <div class="form-group col">
-                            <div class="select-container mb-2">
-                                <label for="local">Local:</label>
-                                <select class="form-select" id="local" onchange="limitarSetores()" name="idLocal">
-                                    <option value="">Selecione</option>
-                                    @foreach($locais as $local)
-                                    <option value="{{$local->id}}">{{$local->nome}}</option>
-                                    @endforeach
-                                </select>
-                                <label for="setor">Setor:</label>
-                                <select class="form-select" id="setor" name="idSetor">
-                                    <option selected>Selecione</option>
-                                    @foreach($setores as $setor)
-                                    <option value="{{$setor->id}}">{{$setor->nome}}</option>
-                                    @endforeach
-                                </select>
-                                <label for="periodo">Período:</label>
-                                <select class="form-select" id="periodo" name="idPeriodo">
-                                    <option selected>Selecione</option>
-                                    @foreach($periodos as $periodo)
-                                    <option value="{{$periodo->id}}">{{$periodo->nome}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <label id="DataSelecionada" for="DataSelecionada">Data Selecionada:</label>
-                            <input type="text" id="data" class="form-control data" name="data" readonly>
-                            <div>
-                                <br>
-                                <button type="button" class="btn btn-primary" onclick="$('#modal').modal('show')">Agendar</button>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="local">Local:</label>
+                                        <select class="form-select @error('idLocal') is-invalid @enderror" id="local" onchange="limitarSetores()" name="idLocal">
+                                            <option value="">Selecione</option>
+                                            @foreach($locais as $local)
+                                            <option value="{{$local->id}}" {{$local->id == old('idLocal') ? 'selected' : ''}}>{{$local->nome}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('idLocal')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="setor">Setor:</label>
+                                        <select class="form-select @error('idSetor') is-invalid @enderror" id="setor" name="idSetor">
+                                            <option value="">Selecione</option>
+                                            @foreach($setores as $setor)
+                                            <option value="{{$setor->id}}" {{$setor->id == old('idSetor') ? 'selected' : ''}}>{{$setor->nome}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('idSetor')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="periodo">Período:</label>
+                                        <select class="form-select @error('idPeriodo') is-invalid @enderror" id="periodo" name="idPeriodo">
+                                            <option value="">Selecione</option>
+                                            @foreach($periodos as $periodo)
+                                            <option value="{{$periodo->id}}" {{$periodo->id == old('idPeriodo') ? 'selected' : ''}}>{{$periodo->nome}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('idPeriodo')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <label id="DataSelecionada" for="DataSelecionada">Data Selecionada:</label>
+                                <input type="text" id="data" class="form-control data" name="data" readonly>
+                                <div>
+                                    <br>
+                                    <button type="button" class="btn btn-primary" onclick="$('#modal').modal('show')">Agendar</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="calendar col">
-                            <div class="calendar-header">
-                                <!-- BOTÃO DO MÊS -->
-                                <button class="btn btn-outline-info btn-lg" type="button" id="month-picker"></button>
-                                <div class="year-picker">
-                                    <span id="year"></span>
-                                </div>
-                            </div>
-                            <div class="calendar-body">
-                                <div class="calendar-week-day">
-                                    <div>D</div>
-                                    <div>S</div>
-                                    <div>T</div>
-                                    <div>Q</div>
-                                    <div>Q</div>
-                                    <div>S</div>
-                                    <div>S</div>
-                                </div>
-                                <div class="calendar-days" id="calendar-days">
-                                </div>
-                            </div>
-                            <div class="calendar-footer">
-                                <div class="legend">
-                                    <div class="calendar-footer-item">
-                                        <div class="circle disponivel"></div>
-                                        <span>Disponível</span>
-                                    </div>
-                                    <div class="calendar-footer-item">
-                                        <div class="circle cheio"></div>
-                                        <span>Cheio</span>
-                                    </div>
-                                    <div class="calendar-footer-item">
-                                        <div class="circle indisponivel"></div>
-                                        <span>Indisponível</span>
+                        <div class="col-md-6">
+                            <div class="calendar">
+                                <div class="calendar-header">
+                                    <!-- BOTÃO DO MÊS -->
+                                    <button class="btn btn-outline-info btn-lg" type="button" id="month-picker"></button>
+                                    <div class="year-picker">
+                                        <span id="year"></span>
                                     </div>
                                 </div>
+                                <div class="calendar-body">
+                                    <div class="calendar-week-day">
+                                        <div>D</div>
+                                        <div>S</div>
+                                        <div>T</div>
+                                        <div>Q</div>
+                                        <div>Q</div>
+                                        <div>S</div>
+                                        <div>S</div>
+                                    </div>
+                                    <div class="calendar-days" id="calendar-days">
+                                    </div>
+                                </div>
+                                <div class="calendar-footer">
+                                    <div class="legend">
+                                        <div class="calendar-footer-item">
+                                            <div class="circle disponivel"></div>
+                                            <span>Disponível</span>
+                                        </div>
+                                        <div class="calendar-footer-item">
+                                            <div class="circle cheio"></div>
+                                            <span>Cheio</span>
+                                        </div>
+                                        <div class="calendar-footer-item">
+                                            <div class="circle indisponivel"></div>
+                                            <span>Indisponível</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card month-list p-3 d-flex position-fixed"></div>
                             </div>
-                            <div class="card month-list p-3 d-flex position-fixed"></div>
                         </div>
                     </div>
                     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -99,7 +122,9 @@
                                 <div class="modal-body">
                                     Realmente deseja agendar na data:
                                     <!-- <input type="text" class="form-control data" name="data" readonly> -->
-                                    <strong><p class="data text-danger"></p></strong>
+                                    <strong>
+                                        <p class="data text-danger"></p>
+                                    </strong>
                                 </div>
                                 <div class="modal-footer" id="modalFooter">
                                     <button type="submit" class="btn btn-primary">Agendar</button>
@@ -108,12 +133,12 @@
                             </div>
                         </div>
                     </div>
-                    @endsection
                 </form>
             </div>
         </div>
     </div>
 </div>
+@endsection
 @section('scripts')
 <script src="/js/agendamento.js"></script>
 @endsection

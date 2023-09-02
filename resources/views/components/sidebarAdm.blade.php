@@ -16,7 +16,7 @@
                         <a class="nav-link" href="confirmarAgendamento">Aprovar/Recusar Agendamento</a>
                         <!-- <a class="nav-link" href="cadastroAgendamento">Cadastrar</a> -->
                         <a class="nav-link" href="{{route('agendamentos-index')}}">Pesquisar</a>
-                        <a class="nav-link" href="{{route('agendamentos-parametros')}}">Parâmetros de Agend.</a>
+                        <a class="nav-link" href="{{route('parametros-createOrEdit')}}">Parâmetros de Agend.</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">

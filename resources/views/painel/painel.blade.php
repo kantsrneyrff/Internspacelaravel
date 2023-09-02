@@ -15,7 +15,7 @@ Olá, {{ auth()->user()->nome }}
             <div class="card-body" style="position: relative;">
                 <canvas id="myBarChart" width="100%" height="40"></canvas>
                 <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
-                    <p style="color: black; text-align: center; font-size: 44px; font-family: 'Montserrat';font-weight: bold;">EM CONSTRUÇÃO!</p>
+                    <p style="color: black; text-align: center; font-size: 44px; font-family: 'Montserrat';font-weight: bold;">EM MANUTENÇÃO!</p>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@ Olá, {{ auth()->user()->nome }}
             <div class="card-body" style="position: relative;">
                 <canvas id="myPieChart" width="100%" height="40"></canvas>
                 <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
-                    <p style="color: black; text-align: center; font-size: 44px; font-family: 'Montserrat';font-weight: bold;">EM CONSTRUÇÃO!</p>
+                    <p style="color: black; text-align: center; font-size: 44px; font-family: 'Montserrat';font-weight: bold;">EM MANUTENÇÃO!</p>
                 </div>
             </div>
         </div>

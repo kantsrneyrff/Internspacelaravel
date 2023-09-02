@@ -4,6 +4,7 @@ use App\Http\Controllers\AgendamentoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PainelController;
+use App\Http\Controllers\ParametroController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,7 @@ Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
 Route::middleware('auth')->group(function () {
     Route::prefix('painel')->group(function () {
         Route::get('/', [PainelController::class, 'index'])->name('painel-index');
+
         Route::prefix('usuarios')->group(function () {
             Route::get('/', [UsuarioController::class, 'index'])->name('usuarios-index')->middleware('can:admin-access');
             Route::get('/create', [UsuarioController::class, 'create'])->name('usuarios-create')->middleware('can:admin-access');
@@ -39,18 +41,30 @@ Route::middleware('auth')->group(function () {
             Route::put('/senha/{id}', [UsuarioController::class, 'updateSenha'])->where('id', '[0-9]+')->name('usuarios-updateSenha')->middleware('can:admin-access');
             Route::delete('/{id}', [UsuarioController::class, 'destroy'])->where('id', '[0-9]+')->name('usuarios-destroy')->middleware('can:admin-access');
         });
+
         Route::prefix('agendamentos')->group(function () {
             Route::get('/', [AgendamentoController::class, 'index'])->name('agendamentos-index');
             Route::get('/historicoAluno', [AgendamentoController::class, 'histAluno'])->name('agendamentos-histAluno');
-            Route::get('/historicoAluno', [AgendamentoController::class, 'index'])->name('agendamentos-parametros');
             Route::get('/create', [AgendamentoController::class, 'create'])->name('agendamentos-create');
             Route::post('/', [AgendamentoController::class, 'store'])->name('agendamentos-store');
             Route::get('/{id}/edit', [AgendamentoController::class, 'edit'])->where('id', '[0-9]+')->name('agendamentos-edit');
             Route::put('/{id}', [AgendamentoController::class, 'update'])->where('id', '[0-9]+')->name('agendamentos-update');
             Route::delete('/{id}', [AgendamentoController::class, 'destroy'])->where('id', '[0-9]+')->name('agendamentos-destroy');
         });
+
         Route::prefix('perfil')-> group(function() {
             Route::get('/', [PerfilController::class, 'index'])->name('perfil-index');
+        });
+
+        Route::prefix('parametros')->group(function(){
+            Route::get('/{tab?}/{id?}',[ParametroController::class, 'createOrEdit'])->name('parametros-createOrEdit');
+    
+            Route::post('/local/{id?}', [ParametroController::class, 'storeOrUpdateLocal'])->name('parametrosLocal-storeOrUpdate');
+            Route::post('/setor/{id?}', [ParametroController::class, 'storeOrUpdateSetor'])->name('parametrosSetor-storeOrUpdate');
+            Route::post('/periodo/{id?}', [ParametroController::class, 'storeOrUpdatePeriodo'])->name('parametrosPeriodo-storeOrUpdate');
+            Route::delete('/local/{id}',[ParametroController::class, 'destroyLocal'])->where('id', '[0-9]+')->name('parametrosLocal-destroy');
+            Route::delete('/setor/{id}',[ParametroController::class, 'destroySetor'])->where('id', '[0-9]+')->name('parametrosSetor-destroy');
+            Route::delete('/periodo/{id}',[ParametroController::class, 'destroyPeriodo'])->where('id', '[0-9]+')->name('parametrosPeriodo-destroy');
         });
     });
 });
