@@ -31,6 +31,7 @@ Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
 Route::middleware('auth')->group(function () {
     Route::prefix('painel')->group(function () {
         Route::get('/', [PainelController::class, 'index'])->name('painel-index');
+        Route::get('/historicoAluno', [AgendamentoController::class, 'histAluno'])->name('agendamentos-histAluno');
 
         Route::prefix('usuarios')->group(function () {
             Route::get('/', [UsuarioController::class, 'index'])->name('usuarios-index')->middleware('can:admin-access');
@@ -44,7 +45,6 @@ Route::middleware('auth')->group(function () {
 
         Route::prefix('agendamentos')->group(function () {
             Route::get('/', [AgendamentoController::class, 'index'])->name('agendamentos-index');
-            Route::get('/historicoAluno', [AgendamentoController::class, 'histAluno'])->name('agendamentos-histAluno');
             Route::get('/create', [AgendamentoController::class, 'create'])->name('agendamentos-create');
             Route::post('/', [AgendamentoController::class, 'store'])->name('agendamentos-store');
             Route::get('/{id}/edit', [AgendamentoController::class, 'edit'])->where('id', '[0-9]+')->name('agendamentos-edit');
