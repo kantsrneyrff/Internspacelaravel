@@ -9,7 +9,7 @@ class ConfirmPresencController extends Controller
 {
     public function index()
     {
-        $agendamentos = Agendamento::all();
-        return view('', ['agendamentos' => $agendamentos]);
+        $agendamentos = Agendamento::where('status','L' )->get();
+        return view('painel.confirmPresenca.index', ['agendamentos' => $agendamentos]);
     }
 }

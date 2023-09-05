@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AgendamentoController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ConfirmPresencController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PainelController;
 use App\Http\Controllers\ParametroController;
@@ -32,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('painel')->group(function () {
         Route::get('/', [PainelController::class, 'index'])->name('painel-index');
         Route::get('/historicoAluno', [AgendamentoController::class, 'histAluno'])->name('agendamentos-histAluno');
+        Route::get('/confirmPresenca', [ConfirmPresencController::class, 'index'])->name('confirmPresenca-index')->middleware('can:orientador-access');
 
         Route::prefix('usuarios')->group(function () {
             Route::get('/', [UsuarioController::class, 'index'])->name('usuarios-index')->middleware('can:admin-access');
