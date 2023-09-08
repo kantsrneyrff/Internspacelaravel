@@ -29,11 +29,8 @@
                         </div>
                         <div class="card-body">
                             @error('error')
-                            <div class="alert alert-warning alert-dismissible fade show p-1" role="alert">
-                                <strong>{{$message}}</strong>
-                                <span type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </span>
+                            <div class="alert alert-warning alert-dismissible fade show" id="alertteste" role="alert">
+                                <strong>Erro!</strong> {{$message}} <button type="button" onclick="$('#alertteste').alert('close');" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
                             </div>
                             @enderror
                             <form action="{{route('login-authentication')}}" method="post">
@@ -54,10 +51,6 @@
                                     @error('password')
                                     <div class="invalid-feedback">{{$message}}</div>
                                     @enderror
-                                </div>
-
-                                <div class="form-check mb-3">
-
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                     <button class="btn btn-primary" type="submit" onclick="localStorage.setItem('tempo','3600')">Login</button>
