@@ -56,7 +56,7 @@ class ParametroController extends Controller
     {
         if ($id) {
             $data = [
-                'nome' => $request->nome,
+                'nome' => $request->nomeLocal,
             ];
             Local::where('id', $id)->update($data);
             return redirect()->route('parametros-createOrEdit', ['tab' => 'locais']);
@@ -73,12 +73,15 @@ class ParametroController extends Controller
     {
         if ($id) {
             $data = [
-                'nome' => $request->nome,
+                'nome' => $request->nomeSetor,
             ];
             Setor::where('id', $id)->update($data);
             return redirect()->route('parametros-createOrEdit', ['tab' => 'setores']);
         } else {
-            Setor::create($request->all());
+            $data = [
+                'nome' => $request->nomeSetor,
+            ];
+            Setor::create($data);
             return redirect()->route('parametros-createOrEdit', ['tab' => 'setores']);
         }
     }
@@ -87,12 +90,15 @@ class ParametroController extends Controller
     {
         if ($id) {
             $data = [
-                'nome' => $request->nome,
+                'nome' => $request->nomePeriodo,
             ];
             Periodo::where('id', $id)->update($data);
             return redirect()->route('parametros-createOrEdit', ['tab' => 'periodos']);
         } else {
-            Periodo::create($request->all());
+            $data = [
+                'nome' => $request->nomePeriodo,
+            ];
+            Periodo::create($data);
             return redirect()->route('parametros-createOrEdit', ['tab' => 'periodos']);
         }
     }

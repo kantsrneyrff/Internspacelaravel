@@ -15,13 +15,13 @@
                         <a class="nav-link" data-bs-toggle="tab" href="#setores">Setores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#periodos">Periodos</a>
+                        <a class="nav-link" data-bs-toggle="tab" href="#periodos">Períodos</a>
                     </li>
                 </ul>
                 <div class="tab-content mt-3">
                     <div id="locais" class="tab-pane fade show">
                         <h3>Cadastrar/Editar Locais</h3>
-                        <form action="{{route('parametrosLocal-storeOrUpdate', ['id' => isset($registroL) ? $registroL->ID : null])}}" method="POST">
+                        <form action="{{route('parametrosLocal-storeOrUpdate', ['id' => isset($registroL) ? $registroL->id : null])}}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="form-group col-md-12">
@@ -57,11 +57,7 @@
                                     <td class="col-10">{{$local->nome}}</td>
                                     <td class="d-flex col-1">
                                         <a href="{{ route('parametros-createOrEdit', ['tab'=>'locais','id'=>$local->id]) }}" class="btn btn-primary me-2"><i class="fas fa-edit" style="color: #ffffff;"></i></a>
-                                        <form action="{{route('parametrosLocal-destroy', ['id'=>$local->id])}}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt" style="color: #ffffff;"></i></button>
-                                        </form>
+                                        <button type="button" parametro="{{json_encode($local)}}" onclick="mostrarExcluirLocal(<?php echo $local->id ?>)" id="btnExcluirLocal{{$local->id}}" class="btn btn-danger"><i class="fas fa-trash-alt" style="color: #ffffff;"></i></button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -106,11 +102,7 @@
                                     <td class="col-10">{{$setor->nome}}</td>
                                     <td class="d-flex col-1">
                                         <a href="{{ route('parametros-createOrEdit', ['tab'=>'setores','id'=>$setor->id]) }}" class="btn btn-primary me-2"><i class="fas fa-edit" style="color: #ffffff;"></i></a>
-                                        <form action="{{route('parametrosSetor-destroy', ['id'=>$setor->id])}}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt" style="color: #ffffff;"></i></button>
-                                        </form>
+                                        <button type="button" parametro="{{json_encode($setor)}}" onclick="mostrarExcluirSetor(<?php echo $setor->id ?>)" id="btnExcluirSetor{{$setor->id}}" class="btn btn-danger"><i class="fas fa-trash-alt" style="color: #ffffff;"></i></button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -155,11 +147,7 @@
                                     <td class="col-10">{{$periodo->nome}}</td>
                                     <td class="d-flex col-1">
                                         <a href="{{ route('parametros-createOrEdit', ['tab'=>'periodos','id'=>$periodo->id]) }}" class="btn btn-primary me-2"><i class="fas fa-edit" style="color: #ffffff;"></i></a>
-                                        <form action="{{route('parametrosPeriodo-destroy', ['id'=>$periodo->id])}}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt" style="color: #ffffff;"></i></button>
-                                        </form>
+                                        <button type="button" parametro="{{json_encode($periodo)}}" onclick="mostrarExcluirPeriodo(<?php echo $periodo->id ?>)" id="btnExcluirPeriodo{{$periodo->id}}" class="btn btn-danger"><i class="fas fa-trash-alt" style="color: #ffffff;"></i></button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -171,11 +159,129 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="modalLocal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">
+                    <p id="tituloModal">Excluir Local?</p>
+                </h5>
+                <button type="button" class="btn-close" data-dismiss="modal" onclick="$('#modalLocal').modal('hide')" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="nome">Nome</label>
+                        <input type="text" class="form-control" id="modalNomeLocal" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" id="modalFooter">
+                <form action="{{route('parametrosLocal-destroy', ['id'=>'ID'])}}" id="formExcluirLocal" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+                <button type="button" class="btn btn-secondary" onclick="$('#modalLocal').modal('hide')">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalSetor" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">
+                    <p id="tituloModal">Excluir Setor?</p>
+                </h5>
+                <button type="button" class="btn-close" data-dismiss="modal" onclick="$('#modalSetor').modal('hide')" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="nome">Nome</label>
+                        <input type="text" class="form-control" id="modalNomeSetor" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" id="modalFooter">
+                <form action="{{route('parametrosSetor-destroy', ['id'=>'ID'])}}" id="formExcluirSetor" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+                <button type="button" class="btn btn-secondary" onclick="$('#modalSetor').modal('hide')">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalPeriodo" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">
+                    <p id="tituloModal">Excluir Período?</p>
+                </h5>
+                <button type="button" class="btn-close" data-dismiss="modal" onclick="$('#modalPeriodo').modal('hide')" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="nome">Nome</label>
+                        <input type="text" class="form-control" id="modalNomePeriodo" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" id="modalFooter">
+                <form action="{{route('parametrosPeriodo-destroy', ['id'=>'ID'])}}" id="formExcluirPeriodo" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+                <button type="button" class="btn btn-secondary" onclick="$('#modalPeriodo').modal('hide')">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('scripts')
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    function mostrarExcluirLocal(e) {
+        $('#modalLocal').modal('show')
+        let local = JSON.parse(document.getElementById('btnExcluirLocal' + e).getAttribute('parametro'));
+        const id = local.id;
+
+        document.querySelector('#modalNomeLocal').value = local.nome;
+
+        const formulario = document.querySelector('#formExcluirLocal');
+        formulario.action = formulario.action.replace('ID', id);
+    }
+
+    function mostrarExcluirSetor(e) {
+        $('#modalSetor').modal('show')
+        let setor = JSON.parse(document.getElementById('btnExcluirSetor' + e).getAttribute('parametro'));
+        const id = setor.id;
+
+        document.querySelector('#modalNomeSetor').value = setor.nome;
+
+        const formulario = document.querySelector('#formExcluirSetor');
+        formulario.action = formulario.action.replace('ID', id);
+    }
+
+    function mostrarExcluirPeriodo(e) {
+        $('#modalPeriodo').modal('show')
+        let periodo = JSON.parse(document.getElementById('btnExcluirPeriodo' + e).getAttribute('parametro'));
+        const id = periodo.id;
+
+        document.querySelector('#modalNomePeriodo').value = periodo.nome;
+
+        const formulario = document.querySelector('#formExcluirPeriodo');
+        formulario.action = formulario.action.replace('ID', id);
+    }
+</script>
 <script>
     $(document).ready(function() {
         $('#tabela').DataTable({

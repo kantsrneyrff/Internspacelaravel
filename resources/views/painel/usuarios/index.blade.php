@@ -55,9 +55,7 @@
                 <h5 class="modal-title" id="modalLabel">
                     <p id="tituloModal">Excluir Usuário?</p>
                 </h5>
-                <button type="button" class="close btn btn-secondary" data-dismiss="modal" onclick="$('#modal').modal('hide')" aria-label="Fechar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-dismiss="modal" onclick="$('#modal').modal('hide')" aria-label="Fechar"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
