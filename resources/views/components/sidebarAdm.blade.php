@@ -13,7 +13,7 @@
                 </a>
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="confirmarAgendamento">Aprovar/Recusar Agendamento</a>
+                        <a class="nav-link" href="{{route('confirmAgendamentos-index')}}">Aprovar/Recusar Agendamento</a>
                         <!-- <a class="nav-link" href="cadastroAgendamento">Cadastrar</a> -->
                         <a class="nav-link" href="{{route('agendamentos-index')}}">Pesquisar</a>
                         <a class="nav-link" href="{{route('parametros-createOrEdit')}}">Parâmetros de Agend.</a>

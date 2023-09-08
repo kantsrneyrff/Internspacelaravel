@@ -171,7 +171,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label for="nome">Nome</label>
+                        <label for="modalNomeLocal">Nome:</label>
                         <input type="text" class="form-control" id="modalNomeLocal" disabled>
                     </div>
                 </div>
@@ -199,7 +199,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label for="nome">Nome</label>
+                        <label for="modalNomeSetor">Nome:</label>
                         <input type="text" class="form-control" id="modalNomeSetor" disabled>
                     </div>
                 </div>
@@ -227,7 +227,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label for="nome">Nome</label>
+                        <label for="modalNomePeriodo">Nome:</label>
                         <input type="text" class="form-control" id="modalNomePeriodo" disabled>
                     </div>
                 </div>

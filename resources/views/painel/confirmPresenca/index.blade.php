@@ -17,7 +17,7 @@
                             <th>Local</th>
                             <th>Setor</th>
                             <th>Ações</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody>
@@ -30,10 +30,10 @@
                             <td>{{$agendamento->local->nome}}</td>
                             <td>{{$agendamento->setor->nome}}</td>
                             <td class="d-flex">
-                                <a href="" class="btn btn-success me-2"><i class="fa-solid fa-check"></i></i></a> 
-                                <a href="" class="btn btn-danger me-3"><i class="fa-solid fa-x"></i></i></a>
-                                </td>                       
-                        @endforeach
+                                <a href="" class="btn btn-success me-2"><i class="fa-solid fa-check"></i></a>
+                                <a href="" class="btn btn-danger me-3"><i class="fa-solid fa-x"></i></a>
+                            </td>
+                            @endforeach
                     </tbody>
                 </table>
             </div>
@@ -78,15 +78,15 @@
                 </div>
                 {{-- <div class="modal-footer" id="modalFooter">
                     <form action="{{route('usuarios-destroy', ['id'=>'ID'])}}" id="formExcluir" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Excluir</button>
-                    </form>
-                    <button type="button" class="btn btn-secondary" onclick="$('#modal').modal('hide')">Cancelar</button>
-                </div> --}}
-            </div>
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+                <button type="button" class="btn btn-secondary" onclick="$('#modal').modal('hide')">Cancelar</button>
+            </div> --}}
         </div>
     </div>
+</div>
 </div>
 
 @endsection
@@ -99,7 +99,7 @@
             language: {
                 url: '//cdn.datatables.net/plug-ins/1.13.5/i18n/pt-BR.json',
             },
-            
+
         });
     });
 </script>

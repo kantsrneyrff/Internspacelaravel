@@ -60,11 +60,11 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="form-group col-md-7">
-                        <label for="nome">Nome</label>
+                        <label for="nome">Nome:</label>
                         <input type="text" class="form-control" id="nome" disabled>
                     </div>
                     <div class="form-group col-md-5">
-                        <label for="cpf">CPF</label>
+                        <label for="cpf">CPF:</label>
                         <input type="text" class="form-control" id="cpf" disabled>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                         <input type="text" class="form-control" id="dataNascimento" disabled>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="cargo">Cargo</label>
+                        <label for="cargo">Cargo:</label>
                         <input type="text" class="form-control" id="cargo" disabled>
                     </div>
                 </div>
@@ -99,6 +99,13 @@
         $('#modal').modal('show')
         let usuario = JSON.parse(document.getElementById('btnExcluir' + e).getAttribute('usuario'));
         const id = usuario.id;
+        var data = usuario.dataNascimento;
+
+        var partesData = data.split("-");
+        var mes = partesData[1];
+        var dia = partesData[2];
+        var ano = partesData[0];
+        var dataCerta = dia + "/" + mes + "/" + ano;
 
         if (usuario.cargo == 'aluno') {
             usuario.cargo = 'Aluno(a)';
@@ -110,7 +117,7 @@
 
         document.querySelector('#nome').value = usuario.nome;
         document.querySelector('#cpf').value = usuario.cpf;
-        document.querySelector('#dataNascimento').value = usuario.dataNascimento.replaceAll('-', '/');
+        document.querySelector('#dataNascimento').value = dataCerta;
         document.querySelector('#cargo').value = usuario.cargo;
 
         const formulario = document.querySelector('#formExcluir');
