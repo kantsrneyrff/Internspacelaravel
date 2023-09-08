@@ -55,7 +55,7 @@
                                 <tr>
                                     <td class="col-1">{{$local->id}}</td>
                                     <td class="col-10">{{$local->nome}}</td>
-                                    <td class="d-flex col-1">
+                                    <td class="d-flex">
                                         <a href="{{ route('parametros-createOrEdit', ['tab'=>'locais','id'=>$local->id]) }}" class="btn btn-primary me-2"><i class="fas fa-edit" style="color: #ffffff;"></i></a>
                                         <button type="button" parametro="{{json_encode($local)}}" onclick="mostrarExcluirLocal(<?php echo $local->id ?>)" id="btnExcluirLocal{{$local->id}}" class="btn btn-danger"><i class="fas fa-trash-alt" style="color: #ffffff;"></i></button>
                                     </td>
@@ -100,7 +100,7 @@
                                 <tr>
                                     <td class="col-1">{{$setor->id}}</td>
                                     <td class="col-10">{{$setor->nome}}</td>
-                                    <td class="d-flex col-1">
+                                    <td class="d-flex">
                                         <a href="{{ route('parametros-createOrEdit', ['tab'=>'setores','id'=>$setor->id]) }}" class="btn btn-primary me-2"><i class="fas fa-edit" style="color: #ffffff;"></i></a>
                                         <button type="button" parametro="{{json_encode($setor)}}" onclick="mostrarExcluirSetor(<?php echo $setor->id ?>)" id="btnExcluirSetor{{$setor->id}}" class="btn btn-danger"><i class="fas fa-trash-alt" style="color: #ffffff;"></i></button>
                                     </td>
@@ -145,7 +145,7 @@
                                 <tr>
                                     <td class="col-1">{{$periodo->id}}</td>
                                     <td class="col-10">{{$periodo->nome}}</td>
-                                    <td class="d-flex col-1">
+                                    <td class="d-flex">
                                         <a href="{{ route('parametros-createOrEdit', ['tab'=>'periodos','id'=>$periodo->id]) }}" class="btn btn-primary me-2"><i class="fas fa-edit" style="color: #ffffff;"></i></a>
                                         <button type="button" parametro="{{json_encode($periodo)}}" onclick="mostrarExcluirPeriodo(<?php echo $periodo->id ?>)" id="btnExcluirPeriodo{{$periodo->id}}" class="btn btn-danger"><i class="fas fa-trash-alt" style="color: #ffffff;"></i></button>
                                     </td>
