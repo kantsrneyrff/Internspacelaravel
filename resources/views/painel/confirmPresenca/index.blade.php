@@ -93,7 +93,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalLabel">
-                        <p id="tituloModal">Confirmar Ausencia</p>
+                        <p id="tituloModal">Confirmar Ausência</p>
                     </h5>
                     <button type="button" class="btn-close" data-dismiss="modal" onclick="$('#modalRecusado').modal('hide')" aria-label="Fechar"></button>
                 </div>
