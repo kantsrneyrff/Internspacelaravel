@@ -14,7 +14,7 @@ class ListagensController extends Controller
         $usuarios = User::where('id', '!=', Auth::id())->get();
         return view('painel.usuarios.ListUsers', ['usuarios' => $usuarios]);
     }
-    public function agendamentos()
+    public function index1()
     {
         $agendamentos = Agendamento::all();
         return view('painel.agendamentos.ListAgend', ['agendamentos' => $agendamentos]);
