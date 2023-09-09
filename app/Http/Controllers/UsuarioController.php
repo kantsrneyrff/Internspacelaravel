@@ -76,4 +76,10 @@ class UsuarioController extends Controller
         User::where('id', $id)->delete();
         return redirect()->route('usuarios-index');
     }
+    public function listUsers(){
+        $usuarios = User::all();
+        return view('painel.usuarios.listUsers', ['usuarios' => $usuarios]);
+
+
+    }
 }

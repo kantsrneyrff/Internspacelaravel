@@ -40,4 +40,9 @@ class AgendamentoController extends Controller
         Agendamento::create($request->all());
         return redirect()->route('agendamentos-histAluno');
     }
+    public function listAgend(){
+        $agendamentos = Agendamento::all();
+        return view('painel.agendamentos.index', ['agendamentos' => $agendamentos]);
+    }
+    
 }

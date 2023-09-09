@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
             Route::put('/{id}', [UsuarioController::class, 'update'])->where('id', '[0-9]+')->name('usuarios-update')->middleware('can:admin-access');
             Route::put('/senha/{id}', [UsuarioController::class, 'updateSenha'])->where('id', '[0-9]+')->name('usuarios-updateSenha')->middleware('can:admin-access');
             Route::delete('/{id}', [UsuarioController::class, 'destroy'])->where('id', '[0-9]+')->name('usuarios-destroy')->middleware('can:admin-access');
-
+            Route::get('/', [UsuarioController::class, 'listUsers'])->name('usuarios-listUser')->middleware('can:orientador-access');
            
         });
 
@@ -58,11 +58,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/{id}/edit', [AgendamentoController::class, 'edit'])->where('id', '[0-9]+')->name('agendamentos-edit');
             Route::put('/{id}', [AgendamentoController::class, 'update'])->where('id', '[0-9]+')->name('agendamentos-update');
             Route::delete('/{id}', [AgendamentoController::class, 'destroy'])->where('id', '[0-9]+')->name('agendamentos-destroy');
-
             
-        
-
-
             Route::get('/confirmAgedamentos', [ConfirmAgendamentoController::class, 'index'])->name('confirmAgendamentos-index');
             Route::post('/aprovado', [ConfirmAgendamentoController::class, 'updateAprovado'])->where('id', '[0-9]+')->name('agendamentos-updateAprovado');
             Route::post('/recusado', [ConfirmAgendamentoController::class, 'updateRecusado'])->where('id', '[0-9]+')->name('agendamentos-updateRecusado');
