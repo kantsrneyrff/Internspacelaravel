@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function () {
             Route::put('/senha/{id}', [UsuarioController::class, 'updateSenha'])->where('id', '[0-9]+')->name('usuarios-updateSenha')->middleware('can:admin-access');
             Route::delete('/{id}', [UsuarioController::class, 'destroy'])->where('id', '[0-9]+')->name('usuarios-destroy')->middleware('can:admin-access');
 
-            Route::get('/', [ListagensController::class, 'index'])->name('usuarios-ListUsers')->middleware('can:admin-access');
+            Route::get('/', [ListagensController::class, 'index'])->name('usuarios-ListUsers')->middleware('can:orientador-access');
         });
 
         Route::prefix('agendamentos')->group(function () {
