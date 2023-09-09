@@ -35,10 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::prefix('painel')->group(function () {
         Route::get('/', [PainelController::class, 'index'])->name('painel-index');
         Route::get('/historicoAluno', [AgendamentoController::class, 'histAluno'])->name('agendamentos-histAluno');
-        Route::get('/confirmPresenca/{id}', [ConfirmPresencController::class, 'index'])->name('confirmPresenca-index')->middleware('can:orientador-access');
+        Route::get('/confirmPresenca', [ConfirmPresencController::class, 'index'])->name('confirmPresenca-index')->middleware('can:orientador-access');
         Route::post('/aprovado', [ConfirmPresencController::class, 'updatePresente'])->where('id', '[0-9]+')->name('confirmPresenca-updatePresente');
         Route::post('/recusado', [ConfirmPresencController::class, 'updateAusente'])->where('id', '[0-9]+')->name('confirmPresenca-updateAusente');
- 
+        
         Route::prefix('usuarios')->group(function () {
             Route::get('/', [UsuarioController::class, 'index'])->name('usuarios-index')->middleware('can:admin-access');
             Route::get('/create', [UsuarioController::class, 'create'])->name('usuarios-create')->middleware('can:admin-access');
@@ -59,18 +59,19 @@ Route::middleware('auth')->group(function () {
             Route::put('/{id}', [AgendamentoController::class, 'update'])->where('id', '[0-9]+')->name('agendamentos-update');
             Route::delete('/{id}', [AgendamentoController::class, 'destroy'])->where('id', '[0-9]+')->name('agendamentos-destroy');
 
+            
+        
 
 
             Route::get('/confirmAgedamentos', [ConfirmAgendamentoController::class, 'index'])->name('confirmAgendamentos-index');
             Route::post('/aprovado', [ConfirmAgendamentoController::class, 'updateAprovado'])->where('id', '[0-9]+')->name('agendamentos-updateAprovado');
             Route::post('/recusado', [ConfirmAgendamentoController::class, 'updateRecusado'])->where('id', '[0-9]+')->name('agendamentos-updateRecusado');
         });
+        
 
         Route::prefix('perfil')->group(function () {
             Route::get('/', [PerfilController::class, 'index'])->name('perfil-index');
         });
-
-       
 
         Route::prefix('parametros')->group(function () {
             Route::get('/{tab?}/{id?}', [ParametroController::class, 'createOrEdit'])->name('parametros-createOrEdit');

@@ -15,7 +15,7 @@
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="{{route('confirmPresenca-index')}}">Confirmar presença </a>
                         <!-- <a class="nav-link" href="cadastroAgendamento">Cadastrar</a> -->
-                        <a class="nav-link" href="{{route('agendamentos-ListAgend')}}">Pesquisar</a>
+                        <a class="nav-link" href="{{route('list-ListAgend')}}">Pesquisar</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -25,7 +25,7 @@
                 </a>
                 <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                        <a class="nav-link" href="{{route('usuarios-ListUsers')}}">Pesquisar</a>
+                        <a class="nav-link" href="{{route('list-ListUser')}}">Pesquisar</a>
                         <a class="nav-link" href="cadastroUsuario"></a>
                     </nav>
                 </div>
