@@ -35,6 +35,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [PainelController::class, 'index'])->name('painel-index');
         Route::get('/historicoAluno', [AgendamentoController::class, 'histAluno'])->name('agendamentos-histAluno');
         Route::get('/confirmPresenca', [ConfirmPresencController::class, 'index'])->name('confirmPresenca-index')->middleware('can:orientador-access');
+        Route::post('/aprovado', [ConfirmPresencController::class, 'updatePresente'])->where('id', '[0-9]+')->name('confirmPresenca-updatePresente');
+        Route::post('/recusado', [ConfirmPresencController::class, 'updateAusente'])->where('id', '[0-9]+')->name('confirmPresenca-updateAusente');
 
         Route::prefix('usuarios')->group(function () {
             Route::get('/', [UsuarioController::class, 'index'])->name('usuarios-index')->middleware('can:admin-access');
