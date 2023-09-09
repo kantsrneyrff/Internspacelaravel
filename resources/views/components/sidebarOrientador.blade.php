@@ -25,7 +25,7 @@
                 </a>
                 <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                        <a class="nav-link" href="pesquisarUsuario"></a>
+                        <a class="nav-link" href="{{route('usuarios-ListUsers')}}">Pesquisar</a>
                         <a class="nav-link" href="cadastroUsuario"></a>
                     </nav>
                 </div>

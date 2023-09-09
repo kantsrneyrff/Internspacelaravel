@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/confirmPresenca', [ConfirmPresencController::class, 'index'])->name('confirmPresenca-index')->middleware('can:orientador-access');
         Route::post('/aprovado', [ConfirmPresencController::class, 'updatePresente'])->where('id', '[0-9]+')->name('confirmPresenca-updatePresente');
         Route::post('/recusado', [ConfirmPresencController::class, 'updateAusente'])->where('id', '[0-9]+')->name('confirmPresenca-updateAusente');
-
+        
         Route::prefix('usuarios')->group(function () {
             Route::get('/', [UsuarioController::class, 'index'])->name('usuarios-index')->middleware('can:admin-access');
             Route::get('/create', [UsuarioController::class, 'create'])->name('usuarios-create')->middleware('can:admin-access');
@@ -46,6 +46,8 @@ Route::middleware('auth')->group(function () {
             Route::put('/{id}', [UsuarioController::class, 'update'])->where('id', '[0-9]+')->name('usuarios-update')->middleware('can:admin-access');
             Route::put('/senha/{id}', [UsuarioController::class, 'updateSenha'])->where('id', '[0-9]+')->name('usuarios-updateSenha')->middleware('can:admin-access');
             Route::delete('/{id}', [UsuarioController::class, 'destroy'])->where('id', '[0-9]+')->name('usuarios-destroy')->middleware('can:admin-access');
+
+            Route::get('/', [UsuarioController::class, 'index'])->name('usuarios-ListUsers')->middleware('can:orientador-access');
         });
 
         Route::prefix('agendamentos')->group(function () {
@@ -61,19 +63,19 @@ Route::middleware('auth')->group(function () {
             Route::post('/recusado', [ConfirmAgendamentoController::class, 'updateRecusado'])->where('id', '[0-9]+')->name('agendamentos-updateRecusado');
         });
 
-        Route::prefix('perfil')-> group(function() {
+        Route::prefix('perfil')->group(function () {
             Route::get('/', [PerfilController::class, 'index'])->name('perfil-index');
         });
 
-        Route::prefix('parametros')->group(function(){
-            Route::get('/{tab?}/{id?}',[ParametroController::class, 'createOrEdit'])->name('parametros-createOrEdit');
-    
+        Route::prefix('parametros')->group(function () {
+            Route::get('/{tab?}/{id?}', [ParametroController::class, 'createOrEdit'])->name('parametros-createOrEdit');
+
             Route::post('/local/{id?}', [ParametroController::class, 'storeOrUpdateLocal'])->name('parametrosLocal-storeOrUpdate');
             Route::post('/setor/{id?}', [ParametroController::class, 'storeOrUpdateSetor'])->name('parametrosSetor-storeOrUpdate');
             Route::post('/periodo/{id?}', [ParametroController::class, 'storeOrUpdatePeriodo'])->name('parametrosPeriodo-storeOrUpdate');
-            Route::delete('/local/{id}',[ParametroController::class, 'destroyLocal'])->where('id', '[0-9]+')->name('parametrosLocal-destroy');
-            Route::delete('/setor/{id}',[ParametroController::class, 'destroySetor'])->where('id', '[0-9]+')->name('parametrosSetor-destroy');
-            Route::delete('/periodo/{id}',[ParametroController::class, 'destroyPeriodo'])->where('id', '[0-9]+')->name('parametrosPeriodo-destroy');
+            Route::delete('/local/{id}', [ParametroController::class, 'destroyLocal'])->where('id', '[0-9]+')->name('parametrosLocal-destroy');
+            Route::delete('/setor/{id}', [ParametroController::class, 'destroySetor'])->where('id', '[0-9]+')->name('parametrosSetor-destroy');
+            Route::delete('/periodo/{id}', [ParametroController::class, 'destroyPeriodo'])->where('id', '[0-9]+')->name('parametrosPeriodo-destroy');
         });
     });
 });
