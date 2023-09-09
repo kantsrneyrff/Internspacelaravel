@@ -4,6 +4,7 @@ use App\Http\Controllers\AgendamentoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ConfirmAgendamentoController;
 use App\Http\Controllers\ConfirmPresencController;
+use App\Http\Controllers\ListagensController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PainelController;
 use App\Http\Controllers\ParametroController;
@@ -47,7 +48,7 @@ Route::middleware('auth')->group(function () {
             Route::put('/senha/{id}', [UsuarioController::class, 'updateSenha'])->where('id', '[0-9]+')->name('usuarios-updateSenha')->middleware('can:admin-access');
             Route::delete('/{id}', [UsuarioController::class, 'destroy'])->where('id', '[0-9]+')->name('usuarios-destroy')->middleware('can:admin-access');
 
-            Route::get('/', [UsuarioController::class, 'index'])->name('usuarios-ListUsers')->middleware('can:orientador-access');
+            Route::get('/', [ListagensController::class, 'index'])->name('usuarios-ListUsers')->middleware('can:admin-access');
         });
 
         Route::prefix('agendamentos')->group(function () {
@@ -57,6 +58,9 @@ Route::middleware('auth')->group(function () {
             Route::get('/{id}/edit', [AgendamentoController::class, 'edit'])->where('id', '[0-9]+')->name('agendamentos-edit');
             Route::put('/{id}', [AgendamentoController::class, 'update'])->where('id', '[0-9]+')->name('agendamentos-update');
             Route::delete('/{id}', [AgendamentoController::class, 'destroy'])->where('id', '[0-9]+')->name('agendamentos-destroy');
+
+            Route::get('/', [ListagensController::class, 'agendamentos'])->name('agendamentos-ListAgend')->middleware('can:orientador-access');
+
 
             Route::get('/confirmAgedamentos', [ConfirmAgendamentoController::class, 'index'])->name('confirmAgendamentos-index');
             Route::post('/aprovado', [ConfirmAgendamentoController::class, 'updateAprovado'])->where('id', '[0-9]+')->name('agendamentos-updateAprovado');

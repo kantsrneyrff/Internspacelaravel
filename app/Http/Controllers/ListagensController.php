@@ -9,9 +9,14 @@ use Illuminate\Support\Facades\Auth;
 
 class ListagensController extends Controller
 {
-    public function usuario()
+    public function index()
     {
-        $$usuarios = User::where('id', '!=', Auth::id())->get();
+        $usuarios = User::where('id', '!=', Auth::id())->get();
         return view('painel.usuarios.ListUsers', ['usuarios' => $usuarios]);
+    }
+    public function agendamentos()
+    {
+        $agendamentos = Agendamento::all();
+        return view('painel.agendamentos.ListAgend', ['agendamentos' => $agendamentos]);
     }
 }

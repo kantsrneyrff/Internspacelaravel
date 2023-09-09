@@ -15,7 +15,7 @@
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="{{route('confirmPresenca-index')}}">Confirmar presença </a>
                         <!-- <a class="nav-link" href="cadastroAgendamento">Cadastrar</a> -->
-                        <a class="nav-link" href="historicoAgendamento">Pesquisar</a>
+                        <a class="nav-link" href="{{route('agendamentos-ListAgend')}}">Pesquisar</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
