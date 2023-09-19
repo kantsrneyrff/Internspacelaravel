@@ -10,7 +10,7 @@ var garcom = 10;
 var bar = 10;
 var cozinha = 15;
 var recpcao = 10;
-console.log(governanca)
+
 
 var myPieChart = new Chart(ctx, {
   type: 'pie',
