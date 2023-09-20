@@ -27,6 +27,11 @@ Route::get('/', function () {
     return view('home');
 });
 
+
+Route::prefix('esqSenha')->group(function () {
+    Route::get('/', [PerfilController::class, 'index'])->name('perfil-index');
+});
+
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'authentication'])->name('login-authentication');
 Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
