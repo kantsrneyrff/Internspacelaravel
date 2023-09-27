@@ -4,6 +4,7 @@ use App\Http\Controllers\AgendamentoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ConfirmAgendamentoController;
 use App\Http\Controllers\ConfirmPresencController;
+use App\Http\Controllers\GraficoController;
 use App\Http\Controllers\ListagensController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PainelController;
@@ -25,19 +26,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
+    
 });
+ Route::get('/teste', [GraficoController::class, 'grafico'])->name('teste');
 
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'authentication'])->name('login-authentication');
 Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
 
+
 Route::middleware('auth')->group(function () {
     Route::prefix('painel')->group(function () {
         Route::get('/', [PainelController::class, 'index'])->name('painel-index');
+        Route::get('/dados', [PainelController::class, 'grafico'])->name('painel-dados');
         Route::get('/historicoAluno', [AgendamentoController::class, 'histAluno'])->name('agendamentos-histAluno');
         Route::get('/confirmPresenca', [ConfirmPresencController::class, 'index'])->name('confirmPresenca-index')->middleware('can:orientador-access');
         Route::post('/aprovado', [ConfirmPresencController::class, 'updatePresente'])->where('id', '[0-9]+')->name('confirmPresenca-updatePresente');
         Route::post('/recusado', [ConfirmPresencController::class, 'updateAusente'])->where('id', '[0-9]+')->name('confirmPresenca-updateAusente');
+        
         
         Route::prefix('usuarios')->group(function () {
             Route::get('/', [UsuarioController::class, 'index'])->name('usuarios-index')->middleware('can:admin-access');
@@ -48,6 +54,7 @@ Route::middleware('auth')->group(function () {
             Route::put('/senha/{id}', [UsuarioController::class, 'updateSenha'])->where('id', '[0-9]+')->name('usuarios-updateSenha')->middleware('can:admin-access');
             Route::delete('/{id}', [UsuarioController::class, 'destroy'])->where('id', '[0-9]+')->name('usuarios-destroy')->middleware('can:admin-access');
             Route::get('/listUsers', [UsuarioController::class, 'listUsers'])->name('usuarios-listUser')->middleware('can:orientador-access');
+           
            
         });
 
