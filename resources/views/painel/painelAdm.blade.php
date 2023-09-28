@@ -37,7 +37,7 @@ Olá, {{ auth()->user()->nome }}
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 
-<script src="/js/chart-pie-demo.js"></script>
+{{-- <script src="/js/chart-pie-demo.js"></script> --}}
 
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
@@ -102,39 +102,22 @@ var myBarChart = new Chart(ctx, {
   }
 });
 
-var ctx = document.getElementById('myPieChart');
+var ctx = document.getElementById('myChart').getContext('2d');
 
-var setoresNomes = '{!! $setoresNomes !!}';
-var setoresValores = '{!! $setoresValores !!}';
-
-setoresNomes = setoresNomes.split(',');
-setoresValores = setoresValores.split(',');
-
-var data = {
-    labels: setoresNomes,
-    datasets: [{
-        data: setoresValores,
-        backgroundColor: [
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(153, 102, 255, 0.6)',
-            'rgba(255, 159, 64, 0.6)'
-        ],
-        borderWidth: 1
-    }]
-};
-
-var options = {
-    responsive: true
-};
+var setoresNomes = {{'$setoresNomes'}}.split(',');
+var setoresValores = {{'$setoresValores'}}.split(',').map(Number);
 
 var myPieChart = new Chart(ctx, {
-    type: 'pie',
-    data: data,
-    options: options
+  type: 'pie',
+  data: {
+    labels: setoresNomes,
+    datasets: [{
+      data: setoresValores,
+      backgroundColor: ['#4F79E4', '#7DDD4F', '#ED2139', '#F8B534', '#aa48e5'],
+    }],
+  },
 });
+
 </script>
 
 

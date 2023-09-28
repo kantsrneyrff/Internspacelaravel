@@ -33,26 +33,31 @@ class PainelController extends Controller
 
                 return view('painel.painelAdm', compact('usuarios', 'userAno', 'userLabel', 'userTotal'));
 
-                $usuarios = User::all()->count();
+            
 
                 $agendamentosPorSetor = Agendamento::select([
                     'idSetor',
                     DB::raw('COUNT(*) as total')
-                ])->groupBy('IdSetor')->get();
-
+                ])
+                ->where('status', 'C') // Adicionando a condição para status concluído
+                ->groupBy('idSetor')
+                ->get();
+                
                 $labels = [];
                 $valores = [];
-
+                
                 foreach ($agendamentosPorSetor as $agendamento) {
-                    $setor = Setor::find($agendamento->IdSetor);
+                    $setor = Setor::find($agendamento->idSetor);
                     $labels[] = $setor->nome; // Substitua 'nome' pelo campo correto que armazena o nome do setor
                     $valores[] = $agendamento->total;
                 }
-
+                
                 $setoresNomes = implode(',', $labels);
                 $setoresValores = implode(',', $valores);
-
-                return view('painel.painelAdm', compact('usuarios', 'setoresNomes', 'setoresValores'));
+                
+                return view('painel.painelAdm', compact('setoresNomes', 'setoresValores'));
+            
+                
 
             case 'prof':
                 return view('painel.painelOrientador');
