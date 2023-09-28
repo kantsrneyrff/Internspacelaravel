@@ -15,9 +15,7 @@ Olá, {{ auth()->user()->nome }}
             </div>
             <div class="card-body" style="position: relative;">
                 <canvas id="myBarChart" width="100%" height="40"></canvas>
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; backdrop-filter:">
-                    {{-- <p style="color: black; text-align: center; font-size: 44px; font-family: 'Montserrat';font-weight: bold;">EM MANUTENÇÃO!</p> --}}
-                </div>
+               
             </div>
         </div>
     </div>
@@ -45,61 +43,64 @@ Olá, {{ auth()->user()->nome }}
 <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
 
 <script>
-  var usuarios = {{ $usuarios }};
-  var userAno = '{{ $userAno }}';
-  var userLabel = '{{ $userLabel }}';
-  var userTotal = '{{ $userTotal }}';
+ var usuarios = {{ $usuarios }};
+var userAno = '{{ $userAno }}';
+var userLabel = '{{ $userLabel }}';
+var userTotal = '{{ $userTotal }}';
 
-  console.log(usuarios);
-  console.log(userAno);
-  console.log(userLabel);
-  console.log(userTotal);
+var ctx = document.getElementById("myBarChart");
+var userAnoArray = userAno.split(',');
+var userTotalArray = userTotal.split(',').map(Number);
 
-  // Bar Chart Example
-  var ctx = document.getElementById("myBarChart");
-  var userAnoArray = [{{ $userAno }}];
-  var maxUserTotal = {{ $maxUserTotal }};
+userTotalArray.unshift(usuarios); // Adiciona a contagem total como o primeiro elemento
 
-var myLineChart = new Chart(ctx, {
-type: 'line',
-data: {
-labels: userAnoArray, // Agora usamos os anos como rótulos
-datasets: [{
-label: userLabel,
-backgroundColor: "rgba(2,117,216,1)",
-borderColor: "rgba(2,117,216,1)",
-data: userTotal.split(','), // Convertendo a string em um array de números
-}],
-},
-options: {
-scales: {
-xAxes: [{
-  gridLines: {
-    display: false
+var myBarChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Total', ...userAnoArray], // Adiciona "Total" como a primeira etiqueta
+    datasets: [{
+      label: userLabel,
+      backgroundColor: ["rgba(2,117,216,1)", ...Array(userAnoArray.length).fill("rgba(255,0,0,1)")],
+      borderColor: ["rgba(2,117,216,1)", ...Array(userAnoArray.length).fill("rgba(255,0,0,1)")],
+      data: userTotalArray,
+    }],
   },
-  ticks: {
-    maxTicksLimit: 6
+  options: {
+    scales: {
+      xAxes: [{
+        gridLines: {
+          display: false
+        },
+        ticks: {
+          maxTicksLimit: 6 
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          min: 0,
+          max: Math.max(...userTotalArray), // Define o máximo com base nos dados
+          maxTicksLimit: 5
+        },
+        gridLines: {
+          display: true
+        }
+      }],
+    },
+    legend: {
+      display: false
+    },
+    tooltips: {
+      mode: 'index',
+      intersect: false,
+      callbacks: {
+        label: function(tooltipItem, data) {
+          return tooltipItem.yLabel + ' usuários';
+        }
+      }
+    }
+  
   }
-}],
-yAxes: [{
-  ticks: {
-    min: 0,
-    max: maxUserTotal,
-    maxTicksLimit: 5
-  },
-  gridLines: {
-    display: true
-  }
-}],
-},
-legend: {
-display: false
-}
-}
-});       
-
-
-
+});
 </script>
 
 
