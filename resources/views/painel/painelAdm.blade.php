@@ -101,6 +101,40 @@ var myBarChart = new Chart(ctx, {
   
   }
 });
+
+var ctx = document.getElementById('myPieChart');
+
+var setoresNomes = '{!! $setoresNomes !!}';
+var setoresValores = '{!! $setoresValores !!}';
+
+setoresNomes = setoresNomes.split(',');
+setoresValores = setoresValores.split(',');
+
+var data = {
+    labels: setoresNomes,
+    datasets: [{
+        data: setoresValores,
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+            'rgba(255, 159, 64, 0.6)'
+        ],
+        borderWidth: 1
+    }]
+};
+
+var options = {
+    responsive: true
+};
+
+var myPieChart = new Chart(ctx, {
+    type: 'pie',
+    data: data,
+    options: options
+});
 </script>
 
 
