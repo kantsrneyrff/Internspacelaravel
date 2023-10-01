@@ -11,7 +11,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-chart-bar me-1"></i>
-                    Alunos/Horas
+                    Usuarios Cadastrados 
                 </div>
                 <div class="card-body" style="position: relative;">
                     <canvas id="myBarChart" width="100%" height="40"></canvas>
@@ -23,7 +23,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-chart-pie me-1"></i>
-                    Horas/Setor
+                    Agendamentos/Setor
                 </div>
                 <div class="card-body" style="position: relative;">
                     <canvas id="myPieChart" width="100%" height="40"></canvas>
