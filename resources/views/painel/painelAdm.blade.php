@@ -60,8 +60,8 @@ var myBarChart = new Chart(ctx, {
     labels: ['Total', ...userAnoArray], // Adiciona "Total" como a primeira etiqueta
     datasets: [{
       label: userLabel,
-      backgroundColor: ["rgba(2,117,216,1)", ...Array(userAnoArray.length).fill("rgba(255,0,0,1)")],
-      borderColor: ["rgba(2,117,216,1)", ...Array(userAnoArray.length).fill("rgba(255,0,0,1)")],
+      backgroundColor: ["rgba(170, 72, 229, 1)", ...Array(userAnoArray.length).fill("rgba(255,0,0,1)")],
+      borderColor: ["rgba(248, 181, 52, 1)", ...Array(userAnoArray.length).fill("rgba(255,0,0,1)")],
       data: userTotalArray,
     }],
   },
