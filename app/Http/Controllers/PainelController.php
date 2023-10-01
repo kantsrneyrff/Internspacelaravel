@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Agendamento;
 use App\Models\Setor;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use COM;
 use Illuminate\Support\Facades\DB;
 
 class PainelController extends Controller
@@ -15,13 +13,16 @@ class PainelController extends Controller
     public function index()
     {
         $user = Auth::user();
+
         switch ($user->cargo) {
             case 'adm':
                 $usuarios = User::all()->count();
+
                 $userData = User::select([
                     DB::raw('YEAR(created_at) as ano'),
                     DB::raw('COUNT(*) as total ')
                 ])->groupBy('ano')->orderBy('ano', 'asc')->get();
+
 
                 foreach ($userData as $user) {
                     $ano[] = $user->ano;
@@ -32,15 +33,11 @@ class PainelController extends Controller
                 $userAno = implode(',', $ano);
                 $userTotal = implode(',', $total);
 
-
-
-
-
                 $agendamentosPorSetor = Agendamento::select([
                     'IdSetor',
                     DB::raw('COUNT(*) as total')
                 ])
-                    ->where('status', 'C') // Aqui é onde você aplica a condição 'status = C'
+                    ->where('status', 'C')
                     ->groupBy('IdSetor')
                     ->get();
 
@@ -49,51 +46,52 @@ class PainelController extends Controller
 
                 foreach ($agendamentosPorSetor as $agendamento) {
                     $setor = Setor::find($agendamento->IdSetor);
-                    $labels[] = $setor->nome; // Substitua 'nome' pelo campo correto que armazena o nome do setor
+                    $labels[] = $setor->nome;
                     $valores[] = $agendamento->total;
                 }
 
-                $setoresNomes = $labels; // Sem a necessidade de json_encode
-
-
+                $setoresNomes = $labels;
 
                 return view('painel.painelAdm', compact('usuarios', 'userAno', 'userLabel', 'userTotal', 'setoresNomes', 'valores'));
+
             case 'prof':
                 return view('painel.painelOrientador');
 
             case 'aluno':
-                $agendamentosPorUsuarioESetor = DB::table('agendamentos')
-                    ->select([
-                        'id',
-                        'IdSetor',
-                        DB::raw('COUNT(*) as total')
-                    ])
+                // Obtém o ID do usuário autenticado
+                $idUsuario = auth()->user()->id;
+
+                // Consulta no banco de dados para obter o número total de agendamentos por setor
+                $agendamentosPorSetor = Agendamento::select([
+                    'IdSetor',
+                    DB::raw('COUNT(*) as total')
+                ])
                     ->where('status', 'C')
-                    ->groupBy('id', 'IdSetor')
+                    ->where('idAluno', $idUsuario)
+                    ->groupBy('IdSetor')
                     ->get();
 
-                $usuariosNomes = [];
-                $setoresNomes = [];
+                // Arrays para armazenar rótulos (labels) e valores
+                $labels = [];
                 $valores = [];
 
-                foreach ($agendamentosPorUsuarioESetor as $agendamento) {
-                    $usuario = User::find($agendamento->id);
+                // Itera sobre os agendamentos por setor
+                foreach ($agendamentosPorSetor as $agendamento) {
+                    // Encontra o setor correspondente
                     $setor = Setor::find($agendamento->IdSetor);
 
-                    if ($usuario && $setor) {
-                        $usuariosNomes[$usuario->nome][$setor->nome] = $agendamento->total;
-                    }
-                }
-                  
-                            
-                    // Guardando os nomes dos setores para o gráfico
-                    if (!in_array($setor->nome, $setoresNomes)) {
-                        $setoresNomes[] = $setor->nome;
-                    }
+                    // Adiciona o nome do setor aos rótulos
+                    $labels[] = $setor->nome;
+
+                    // Adiciona o total de agendamentos ao array de valores
+                    $valores[] = $agendamento->total;
                 }
 
-                return view('painel.painel', compact('usuariosNomes', 'setoresNomes'));
+                // Armazena os nomes dos setores em uma variável separada
+                $setoresNomes = $labels;
 
-
+                // Retorna a view 'painel.painel' com os dados compactados para a view
+                return view('painel.painel', compact('setoresNomes', 'valores'));
         }
     }
+}
