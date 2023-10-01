@@ -104,7 +104,7 @@
 
         var ctx = document.getElementById('myPieChart');
 
-        var setoresNomes = {!! json_encode($labels) !!};
+        var setoresNomes = {!! json_encode($setoresNomes) !!};
         var setoresValores = {!! json_encode($valores) !!};
 
         var data = {
