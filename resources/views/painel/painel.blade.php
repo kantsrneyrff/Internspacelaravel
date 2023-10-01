@@ -28,8 +28,7 @@ Olá, {{ auth()->user()->nome }}
             </div>
             <div class="card-body" style="position: relative;">
                 <canvas id="myPieChart" width="100%" height="40"></canvas>
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
-                    <p style="color: black; text-align: center; font-size: 44px; font-family: 'Montserrat';font-weight: bold;">EM MANUTENÇÃO!</p>
+                
                 </div>
             </div>
         </div>
@@ -42,7 +41,7 @@ Olá, {{ auth()->user()->nome }}
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 <script src="/js/chart-bar-demo.js"></script>
-<script src="/js/chart-pie-demo.js"></script>
+
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
 <script>
@@ -53,6 +52,41 @@ Olá, {{ auth()->user()->nome }}
             },
         });
     });
+
+   
+    var ctx = document.getElementById('myPieChart');
+
+var usuariosNomes = {!! json_encode($usuariosNomes) !!};
+var setoresNomes = {!! json_encode($setoresNomes) !!};
+
+var data = {
+    labels: setoresNomes,
+    datasets: []
+};
+
+// Para cada usuário, adiciona um novo dataset com os valores correspondentes
+for (var usuarioNome in usuariosNomes) {
+    var valores = Object.values(usuariosNomes[usuarioNome]);
+    data.datasets.push({
+        data: valores,
+        backgroundColor: ['#4F79E4', '#7DDD4F', '#ED2139', '#F8B534', '#aa48e5'],
+        borderWidth: 1,
+        label: usuarioNome
+    });
+}
+
+var options = {
+    responsive: true
+};
+
+var myPieChart = new Chart(ctx, {
+    type: 'pie',
+    data: data,
+    options: options
+});
+
+
 </script>
+
 @endsection
 @endsection
