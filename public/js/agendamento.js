@@ -14,6 +14,7 @@ const month_names = [
     "Novembro",
     "Dezembro",
 ];
+
 isLeapYear = (year) => {
     return (
         (year % 4 === 0 && year % 100 !== 0 && year % 400 !== 0) ||
@@ -28,7 +29,7 @@ getFebDays = (year) => {
 generateCalendar = (month, year) => {
     let calendar_days = calendar.querySelector(".calendar-days");
     let calendar_header_year = calendar.querySelector("#year");
-    // Pegando o ultimo dia do mês
+
     let days_of_month = [
         31,
         getFebDays(year),
@@ -44,7 +45,6 @@ generateCalendar = (month, year) => {
         31,
     ];
 
-    // Função dos botões de dia, usada para pegar a data do botão pressionado
     function botaoData() {
         limparBotoes();
         obterData(this);
@@ -52,7 +52,6 @@ generateCalendar = (month, year) => {
 
     function limparBotoes() {
         lista = document.getElementById("calendar-days").childNodes;
-        console.log(lista);
         lista.forEach((index) => {
             index.classList.remove("selected");
         });
@@ -71,7 +70,6 @@ generateCalendar = (month, year) => {
             } else {
                 DateSelect[0].value = day.id + "/" + mes + "/" + year;
                 DateSelect[1].textContent = day.id + "/" + mes + "/" + year;
-                //DateSelect.textContent = day.id + " / " + mes + " / " + year
             }
         }
     }
@@ -79,33 +77,32 @@ generateCalendar = (month, year) => {
     calendar_days.innerHTML = "";
 
     let currDate = new Date();
-    //if (!month) month = currDate.getMonth()
+
     if (!year) year = currDate.getFullYear();
 
-    // Botão para mudar o mês
     let curr_month = `${month_names[month]}`;
     month_picker.innerHTML = curr_month;
-    // Ano
     calendar_header_year.innerHTML = year;
 
-    // pegar o primeiro dia do mês
     let first_day = new Date(year, month, 1);
 
     for (let i = 0; i <= days_of_month[month] + first_day.getDay() - 1; i++) {
         let day = document.createElement("div");
         let day2 = 0;
-
+    
         if (i >= first_day.getDay()) {
             day.classList.add("calendar-day-button");
             day2 = i - first_day.getDay() + 1;
             day.id = day2;
             day.innerHTML = day2;
-
-            // Adicionando função de obter data aos botões
-            day.addEventListener("click", botaoData);
-            day.classList.add("enabled");
-
-            // Lógica da adição de meses //////!!!!!!!!!!!!!!!!!!!!!!!!!!!\\\\\\
+    
+            if (i % 7 === 0) { // Verifica se é domingo (índice 0)
+                day.classList.add("disabled");
+            } else {
+                day.addEventListener("click", botaoData);
+                day.classList.add("enabled");
+            }
+    
             if (
                 i - first_day.getDay() + 1 === currDate.getDate() &&
                 year === currDate.getFullYear() &&
@@ -122,10 +119,11 @@ generateCalendar = (month, year) => {
                 day.classList.remove("enabled");
             }
         }
-
+    
         calendar_days.appendChild(day);
     }
-    //let DateSelect = document.getElementById("data")
+    
+
     inputData = document.getElementsByClassName("data");
     inputData[0].value =
         currDate.getDate() +
@@ -152,7 +150,6 @@ month_row.classList.add("row");
 month_row.setAttribute("data-row", row_counter);
 month_list.appendChild(month_row);
 
-// Foreach
 month_names.forEach((e, index) => {
     if (index % 4 == 0) {
         row_counter += 1;
@@ -176,7 +173,7 @@ month_names.forEach((e, index) => {
 
     current_month_row.appendChild(month);
 });
-// ELEMENTO DO SELETOR DE MES
+
 let month_picker = calendar.querySelector("#month-picker");
 
 month_picker.addEventListener("click", function (e) {
@@ -196,6 +193,9 @@ let curr_month = { value: currDate.getMonth() };
 let curr_year = { value: currDate.getFullYear() };
 
 generateCalendar(curr_month.value, curr_year.value);
+
+
+
 
 function limitarSetores() {
     var hotelSelect = document.getElementById("hotel");
