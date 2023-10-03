@@ -118,7 +118,6 @@ generateCalendar = (month, year) => {
                 month < currDate.getMonth() ||
                 year < currDate.getFullYear()
             ) {
-                console.log("Ainda não é o dia certo");
                 day.removeEventListener("click", botaoData);
                 day.classList.remove("enabled");
             }
@@ -143,7 +142,7 @@ generateCalendar = (month, year) => {
 };
 
 // MONTAGEM DOS DADOS ELEMENTO SELETOR DE MESES
-let month_list = calendar.querySelector(".month-list");
+let month_list = document.querySelector(".month-list");
 
 // Configurando linha com certo número de botões de meses cada
 
