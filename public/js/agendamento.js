@@ -198,11 +198,11 @@ generateCalendar(curr_month.value, curr_year.value);
 
 
 function limitarSetores() {
-    var hotelSelect = document.getElementById("hotel");
+    var localSelect = document.getElementById("local");
     var setoresSelect = document.getElementById("setor");
 
-    // Obter o valor selecionado no hotelSelect
-    var hotelSelecionado = hotelSelect.value;
+    // Obter o valor selecionado no localSelect
+    var localSelecionado = localSelect.value;
 
     // Limpar todas as opções de setoresSelect
     setoresSelect.innerHTML = "";
@@ -211,35 +211,35 @@ function limitarSetores() {
     defaultOption.text = "Selecione";
     setoresSelect.add(defaultOption);
 
-    // Adicionar as opções de setores com base no hotel selecionado
-    if (hotelSelecionado === "HOTEL - BELA VISTA") {
+    // Adicionar as opções de setores com base no local selecionado
+    if (localSelecionado === "12") {
         var option1 = document.createElement("option");
-        option1.value = "Garçom";
+        option1.value = "2";
         option1.text = "Garçom";
         setoresSelect.add(option1);
 
         var option2 = document.createElement("option");
-        option2.value = "Cozinha";
+        option2.value = "4";
         option2.text = "Cozinha";
         setoresSelect.add(option2);
 
         var option3 = document.createElement("option");
-        option3.value = "Recepção";
+        option3.value = "5";
         option3.text = "Recepção";
         setoresSelect.add(option3);
 
         var option4 = document.createElement("option");
-        option4.value = "Bar";
+        option4.value = "3";
         option4.text = "Bar";
         setoresSelect.add(option4);
     } else {
         var option1 = document.createElement("option");
-        option1.value = "Governança";
+        option1.value = "1";
         option1.text = "Governança";
         setoresSelect.add(option1);
 
         var option2 = document.createElement("option");
-        option2.value = "Recepção";
+        option2.value = "5";
         option2.text = "Recepção";
         setoresSelect.add(option2);
     }
