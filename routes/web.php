@@ -72,9 +72,9 @@ Route::middleware('auth')->group(function () {
             Route::put('/{id}', [AgendamentoController::class, 'update'])->where('id', '[0-9]+')->name('agendamentos-update');
             Route::delete('/{id}', [AgendamentoController::class, 'destroy'])->where('id', '[0-9]+')->name('agendamentos-destroy');
             
-            Route::get('/confirmAgedamentos', [ConfirmAgendamentoController::class, 'index'])->name('confirmAgendamentos-index');
-            Route::post('/aprovado', [ConfirmAgendamentoController::class, 'updateAprovado'])->where('id', '[0-9]+')->name('agendamentos-updateAprovado');
-            Route::post('/recusado', [ConfirmAgendamentoController::class, 'updateRecusado'])->where('id', '[0-9]+')->name('agendamentos-updateRecusado');
+            Route::get('/confirmAgedamentos', [ConfirmAgendamentoController::class, 'index'])->name('confirmAgendamentos-index')->middleware('can:admin-access');;
+            Route::post('/aprovado', [ConfirmAgendamentoController::class, 'updateAprovado'])->where('id', '[0-9]+')->name('agendamentos-updateAprovado')->middleware('can:admin-access');;
+            Route::post('/recusado', [ConfirmAgendamentoController::class, 'updateRecusado'])->where('id', '[0-9]+')->name('agendamentos-updateRecusado')->middleware('can:admin-access');;
         });
         
 
@@ -83,14 +83,14 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::prefix('parametros')->group(function () {
-            Route::get('/{tab?}/{id?}', [ParametroController::class, 'createOrEdit'])->name('parametros-createOrEdit');
+            Route::get('/{tab?}/{id?}', [ParametroController::class, 'createOrEdit'])->name('parametros-createOrEdit')->middleware('can:admin-access');;
 
-            Route::post('/local/{id?}', [ParametroController::class, 'storeOrUpdateLocal'])->name('parametrosLocal-storeOrUpdate');
-            Route::post('/setor/{id?}', [ParametroController::class, 'storeOrUpdateSetor'])->name('parametrosSetor-storeOrUpdate');
-            Route::post('/periodo/{id?}', [ParametroController::class, 'storeOrUpdatePeriodo'])->name('parametrosPeriodo-storeOrUpdate');
-            Route::delete('/local/{id}', [ParametroController::class, 'destroyLocal'])->where('id', '[0-9]+')->name('parametrosLocal-destroy');
-            Route::delete('/setor/{id}', [ParametroController::class, 'destroySetor'])->where('id', '[0-9]+')->name('parametrosSetor-destroy');
-            Route::delete('/periodo/{id}', [ParametroController::class, 'destroyPeriodo'])->where('id', '[0-9]+')->name('parametrosPeriodo-destroy');
+            Route::post('/local/{id?}', [ParametroController::class, 'storeOrUpdateLocal'])->name('parametrosLocal-storeOrUpdate')->middleware('can:admin-access');;
+            Route::post('/setor/{id?}', [ParametroController::class, 'storeOrUpdateSetor'])->name('parametrosSetor-storeOrUpdate')->middleware('can:admin-access');;
+            Route::post('/periodo/{id?}', [ParametroController::class, 'storeOrUpdatePeriodo'])->name('parametrosPeriodo-storeOrUpdate')->middleware('can:admin-access');;
+            Route::delete('/local/{id}', [ParametroController::class, 'destroyLocal'])->where('id', '[0-9]+')->name('parametrosLocal-destroy')->middleware('can:admin-access');;
+            Route::delete('/setor/{id}', [ParametroController::class, 'destroySetor'])->where('id', '[0-9]+')->name('parametrosSetor-destroy')->middleware('can:admin-access');;
+            Route::delete('/periodo/{id}', [ParametroController::class, 'destroyPeriodo'])->where('id', '[0-9]+')->name('parametrosPeriodo-destroy')->middleware('can:admin-access');;
         });
     });
 });
