@@ -4,6 +4,7 @@ use App\Http\Controllers\AgendamentoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ConfirmAgendamentoController;
 use App\Http\Controllers\ConfirmPresencController;
+use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\GraficoController;
 use App\Http\Controllers\ListagensController;
 use App\Http\Controllers\LoginController;
@@ -28,7 +29,7 @@ Route::get('/', function () {
     return view('home');
     
 });
- Route::get('/teste', [GraficoController::class, 'grafico'])->name('teste');
+Route::post('/enviar-contato', [ContatoController::class, 'index']);
 
 
 Route::prefix('esqSenha')->group(function () {
