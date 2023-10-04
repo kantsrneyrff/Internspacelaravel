@@ -152,7 +152,7 @@ month_row.setAttribute("data-row", row_counter);
 month_list.appendChild(month_row);
 
 month_names.forEach((e, index) => {
-    if (index % 4 == 0) {
+    if (index % 3 == 0) {
         row_counter += 1;
 
         let month_row = document.createElement("div");
@@ -163,7 +163,7 @@ month_names.forEach((e, index) => {
     current_month_row = document.querySelector(`[data-row="${row_counter}"]`);
 
     let month = document.createElement("div");
-    month.classList.add("btn", "btn-outline-secondary", "m-2", "col");
+    month.classList.add("btn", "btn-secondary", "m-2", "col", "btn-mes");
     month.innerHTML = `<div data-month="${index}">${e}</div>`;
 
     month.querySelector("div").onclick = () => {

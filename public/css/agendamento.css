@@ -39,6 +39,7 @@
 .calendar {
   height: max-content;
   width: 100%;
+  max-width: 550px;
 }
 
 .calendar-header {
@@ -189,6 +190,8 @@
   transform: scale(1);
   pointer-events: visible;
   z-index: 1000;
+  margin-bottom: 30px;
+  margin-right: 30px;
 }
 
 
@@ -202,6 +205,10 @@
   z-index: 999;
 }
 
+.btn-mes{
+  padding: 2vh 2vw;
+  font-weight: bold;
+}
 
 .diaCheio {
   background-color: var(--indisponivel);
@@ -224,6 +231,11 @@
   }
 }
 
+
+
+
+
+
 /* responsividade */
 @media only screen and (max-width: 768px) {
 
@@ -231,6 +243,14 @@
 
     flex-direction: column-reverse;
 
+  }
+
+}
+
+@media only screen and (min-width: 1600px) {
+
+  .card-agendamentos{
+    max-width: 85%;
   }
 
 }
