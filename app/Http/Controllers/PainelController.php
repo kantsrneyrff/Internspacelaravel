@@ -55,7 +55,43 @@ class PainelController extends Controller
                 return view('painel.painelAdm', compact('usuarios', 'userAno', 'userLabel', 'userTotal', 'setoresNomes', 'valores'));
 
             case 'prof':
-                return view('painel.painelOrientador');
+                $usuarios = User::all()->count();
+
+                $userData = User::select([
+                    DB::raw('YEAR(created_at) as ano'),
+                    DB::raw('COUNT(*) as total ')
+                ])->groupBy('ano')->orderBy('ano', 'asc')->get();
+
+
+                foreach ($userData as $user) {
+                    $ano[] = $user->ano;
+                    $total[] = $user->total;
+                }
+
+                $userLabel = "'Usuários por Ano'";
+                $userAno = implode(',', $ano);
+                $userTotal = implode(',', $total);
+
+                $agendamentosPorSetor = Agendamento::select([
+                    'IdSetor',
+                    DB::raw('COUNT(*) as total')
+                ])
+                    ->where('status', 'C')
+                    ->groupBy('IdSetor')
+                    ->get();
+
+                $labels = [];
+                $valores = [];
+
+                foreach ($agendamentosPorSetor as $agendamento) {
+                    $setor = Setor::find($agendamento->IdSetor);
+                    $labels[] = $setor->nome;
+                    $valores[] = $agendamento->total;
+                }
+
+                $setoresNomes = $labels;
+
+                return view('painel.painelOrientador', compact('usuarios', 'userAno', 'userLabel', 'userTotal', 'setoresNomes', 'valores'));
 
             case 'aluno':
                 // Obtém o ID do usuário autenticado
