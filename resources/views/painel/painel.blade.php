@@ -14,7 +14,7 @@
                 </div>
                 <div class="card-body" style="position: relative;">
                     <canvas id="myBarChart" width="100%" height="40"></canvas>
-                    
+
                 </div>
             </div>
         </div>
@@ -30,11 +30,30 @@
                 </div>
             </div>
         </div>
+        <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fa-solid fa-bars-progress"></i>
+                    Progresso
+                </div>
+                <a class="r-20" style="text-align: right; margin-right: 10px; text-decoration:none;">230h</a>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
+                    aria-valuemin="0" aria-valuemax="100" style="width:55%">
+                        120h
+                    </div>
+                </div> 
+            </div>
+        </div>
+
+        </div>
+
     </div>
-    </div>
-    </div>
+
     </main>
+
     </div>
+
     </div>
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -52,7 +71,7 @@
         });
 
 
-  var ctx = document.getElementById('myPieChart');
+        var ctx = document.getElementById('myPieChart');
 
         var setoresNomes = {!! json_encode($setoresNomes) !!};
         var setoresValores = {!! json_encode($valores) !!};
@@ -75,11 +94,6 @@
             data: data,
             options: options
         });
-</script>
-
-
-
-
-
+    </script>
 @endsection
 @endsection
