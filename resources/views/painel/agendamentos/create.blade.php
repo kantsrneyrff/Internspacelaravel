@@ -14,6 +14,7 @@
                 <form action="{{route('agendamentos-store')}}" method="POST">
                     @csrf
                     <div class="row">
+
                         <div class="col-md-6">
                             <div class="container">
                                 <div class="row">
@@ -66,6 +67,8 @@
                                 </div>
                             </div>
                         </div>
+
+
                         <div class="col-md-6">
                             <div class="calendar">
                                 <div class="calendar-header">
@@ -104,9 +107,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card month-list p-3 d-flex position-fixed"></div>
+
+                                <div class="card month-list p-3 position-fixed" style="display: none" id="month-list"></div>
+                                <div class="overlay-cover-screen" id="overlay-month-list" style="display: none"></div>
+
                             </div>
                         </div>
+
+
                     </div>
                     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">

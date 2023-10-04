@@ -141,6 +141,7 @@ generateCalendar = (month, year) => {
 
 // MONTAGEM DOS DADOS ELEMENTO SELETOR DE MESES
 let month_list = document.querySelector(".month-list");
+let overlay_month_list = document.querySelector("#overlay-month-list");
 
 // Configurando linha com certo número de botões de meses cada
 
@@ -166,7 +167,9 @@ month_names.forEach((e, index) => {
     month.innerHTML = `<div data-month="${index}">${e}</div>`;
 
     month.querySelector("div").onclick = () => {
-        month_list.classList.remove("show");
+        document.getElementById('month-list').style.display = 'none';
+        document.getElementById('overlay-month-list').style.display = 'none';
+
         curr_month.value = index;
         generateCalendar(index, curr_year.value);
     };
@@ -184,7 +187,14 @@ month_picker.addEventListener("click", function (e) {
     month_list.style.top = mouseY + "px";
     month_list.style.left = mouseX + "px";
 
-    month_list.classList.add("show");
+    document.getElementById('month-list').style.display = 'flex';
+    document.getElementById('overlay-month-list').style.display = 'block';
+
+});
+
+overlay_month_list.addEventListener("click", function (e) {
+    document.getElementById('month-list').style.display = 'none';
+    document.getElementById('overlay-month-list').style.display = 'none';
 });
 
 let currDate = new Date();
@@ -212,7 +222,7 @@ function limitarSetores() {
     setoresSelect.add(defaultOption);
 
     // Adicionar as opções de setores com base no local selecionado
-    if (localSelecionado === "12") {
+    if (localSelecionado === "11") {
         var option1 = document.createElement("option");
         option1.value = "2";
         option1.text = "Garçom";
