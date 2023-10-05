@@ -102,29 +102,7 @@
         </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="modal-foto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Alterar foto de perfil</h5>
-                    <button type="button" class="btn btn-secondary close" onclick="$('#modal-foto').modal('hide')" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="" method="POST">
-                    <div class="modal-body">
-                        <div class="py-5 align-items-center justify-content-center text-center">
-                            <span>Essa funcionalidade está fora do ar no momento. Tente novamente em breve.</span>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" onclick="$('#modal-foto').modal('hide')">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Confirmar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    
 </div>
 
 
