@@ -1,6 +1,5 @@
+<title>Solicitar Agendamento</title>
 @extends('layouts.template')
-
-@section('title', 'Solicitar Agendamento')
 
 @section('head')
 <link rel="stylesheet" href="/css/agendamento.css">
@@ -18,6 +17,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="form-group col-md-12">
+                                    <h2 class="mt-lg-1 mt-3 mb-4"><b>Solicitar Agendamento</b></h2>
                                     <label for="local">Local:</label>
                                     <select class="form-select @error('idLocal') is-invalid @enderror" id="local" onchange="limitarSetores()" name="idLocal">
                                         <option value="">Selecione</option>

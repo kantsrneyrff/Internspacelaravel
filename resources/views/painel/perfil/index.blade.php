@@ -13,7 +13,7 @@
     <div class="card p-4 m-2" style="min-width: 30%">
         <div class="d-flex flex-column justify-content-center">
             <div class="d-flex justify-content-center my-4 flex-row">
-                <img src="/img/fundo-pessoas-trabalhando.png" alt="Profile Picture" class="rounded-circle" style="max-width: 200px;">
+                <img src="/img/People_Icon_Mono.svg" alt="Profile Picture" style="min-width: 200px; color: black;">
             </div>
             <div class="d-flex flex-col justify-content-center text-center align-items-center mx-4">
                 <div class="profile-details">
@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="d-flex flex-col justify-content-center text-center align-items-center my-3 mb-5">
-                <button class="btn btn-outline-secondary mx-2" type="button" onclick="mostrarAlterarFoto(this)" id="btn-perfil-foto" style="border-radius: 100px">Alterar foto</button>
+                <!-- <button class="btn btn-outline-secondary mx-2" type="button" onclick="mostrarAlterarFoto(this)" id="btn-perfil-foto" style="border-radius: 100px">Alterar foto</button> -->
             </div>
             <div class="d-flex flex-col justify-content-start text-start align-items-center">
                 <div>
