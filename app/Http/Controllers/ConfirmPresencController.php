@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agendamento;
-use App\Models\Horas;
+use App\Models\Hora;
 use Illuminate\Http\Request;
 
 
@@ -41,7 +41,7 @@ class ConfirmPresencController extends Controller
                 'idLocal' => $agendamento->idLocal,
             ];
         }
-        Horas::create($dataHoras);
+        Hora::create($dataHoras);
         return redirect()->route('confirmPresenca-index');
     }
 
