@@ -16,7 +16,6 @@ class Horas extends Model
         'idSetor',
         'idPeriodo',
         'idLocal',
-        
     ];
 
     public function periodo()
