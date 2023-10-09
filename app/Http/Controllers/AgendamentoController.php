@@ -32,6 +32,7 @@ class AgendamentoController extends Controller
         $setores = Setor::all();
         return view('painel.agendamentos.create', ['locais' => $locais, 'periodos' => $periodos, 'setores' => $setores]);
     }
+    
     public function store(AgendamentoRequest $request)
     {
         $request->merge(['idAluno' => auth()->user()->id]);

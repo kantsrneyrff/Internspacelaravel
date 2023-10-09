@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Horas extends Model
+class Hora extends Model
 {
     use HasFactory;
 
@@ -16,7 +16,6 @@ class Horas extends Model
         'idSetor',
         'idPeriodo',
         'idLocal',
-        
     ];
 
     public function periodo()
