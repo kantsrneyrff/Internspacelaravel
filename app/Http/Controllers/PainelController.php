@@ -139,7 +139,10 @@ class PainelController extends Controller
                 $horasPorSetor = Hora::select([
                     'idSetor', 
                     DB::raw('SUM(horas) as total_horas')
-                ])->groupBy('idSetor')->get();
+                ])
+                
+                ->groupBy('idSetor')
+                ->get();
                 
                 $setorIds = []; // Inicialize a variável $setorIds aqui
                 $totalHoras = []; // Inicialize a variável $totalHoras aqui
@@ -152,8 +155,15 @@ class PainelController extends Controller
                 $setorLabel = "'Horas por Setor'";
                 $setorIds = json_encode($setorIds);
                 $setorTotalHoras = implode(',', $totalHoras);
+
+                $horasTotais = Hora::select([
+                    DB::raw('SUM(horas) as totalprogress')
+                ])->first();
                 
-                return view('painel.painel', compact('setoresNomes', 'valores', 'setorLabel', 'setorIds', 'setorTotalHoras'));
+                $totalHoras = $horasTotais->totalprogress;
+                
+                
+                return view('painel.painel', compact('setoresNomes', 'valores', 'setorLabel', 'setorIds', 'setorTotalHoras','totalHoras'));
                 
         }
     }

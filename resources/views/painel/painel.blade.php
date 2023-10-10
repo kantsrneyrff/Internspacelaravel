@@ -71,6 +71,9 @@
         });
 
 
+
+
+
         var ctx = document.getElementById('myPieChart');
 
         var setoresNomes = {!! json_encode($setoresNomes) !!};
@@ -95,67 +98,74 @@
             options: options
         });
 
-      var setoresNomes = {!! json_encode($setoresNomes) !!};
-var valores = {!! json_encode($valores) !!};
-var setorLabel = '{{ $setorLabel }}';
-var setorIds = {!! json_encode($setorIds) !!};
-var setorTotalHoras = '{{ $setorTotalHoras }}';
+        var setoresNomes = {!! json_encode($setoresNomes) !!};
+        var valores = {!! json_encode($valores) !!};
+        var setorLabel = '{{ $setorLabel }}';
+        var setorIds = {!! json_encode($setorIds) !!};
+        var setorTotalHoras = '{{ $setorTotalHoras }}';
 
-if (typeof setoresNomes !== 'undefined') {
-    var ctx = document.getElementById("myBarChart");
-    var setorTotalHorasArray = setorTotalHoras.split(',').map(Number);
+        if (typeof setoresNomes !== 'undefined') {
+            var ctx = document.getElementById("myBarChart");
+            var setorTotalHorasArray = setorTotalHoras.split(',').map(Number);
 
-    var myBarChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: setoresNomes, 
-            datasets: [{
-                label: setorLabel,
-                backgroundColor: "rgba(2,117,216,1)",
-                borderColor: "rgba(2,117,216,1)",
-              
-                data: setorTotalHorasArray,
-            }],
-        },
-        options: {
-            scales: {
-                xAxes: [{
-                    gridLines: {
+            var myBarChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: setoresNomes,
+                    datasets: [{
+                        label: setorLabel,
+                        backgroundColor: "rgba(2,117,216,1)",
+                        borderColor: "rgba(2,117,216,1)",
+
+                        data: setorTotalHorasArray,
+                    }],
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                display: false
+                            },
+                            ticks: {
+                                maxTicksLimit: 6
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                min: 0,
+
+                                maxTicksLimit: 5
+                            },
+                            gridLines: {
+                                display: true
+                            }
+                        }],
+                    },
+                    legend: {
                         display: false
                     },
-                    ticks: {
-                        maxTicksLimit: 6
-                    }
-                }],
-                yAxes: [{
-                    ticks: {
-                        min: 0,
-                        
-                        maxTicksLimit: 5
-                    },
-                    gridLines: {
-                        display: true
-                    }
-                }],
-            },
-            legend: {
-                display: false
-            },
-            tooltips: {
-                mode: 'index',
-                intersect: false,
-                callbacks: {
-                    label: function(tooltipItem, data) {
-                        return tooltipItem.yLabel + ' horas';
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                return tooltipItem.yLabel + ' horas';
+                            }
+                        }
                     }
                 }
-            }
+            });
         }
-    });
-}
 
+        const totalHoras = {!! json_encode($totalHoras) !!};
 
+        const progressBar = document.querySelector('.progress-bar');
+        const progressValue = document.querySelector('.progress-bar').textContent;
 
+        const novoProgresso = (totalHoras / parseInt(progressValue)) * 100;
+
+        progressBar.style.width = `${novoProgresso}%`;
+        progressBar.textContent = `${totalHoras}h`;
     </script>
 @endsection
 @endsection

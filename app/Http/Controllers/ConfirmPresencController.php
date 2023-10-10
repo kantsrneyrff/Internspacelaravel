@@ -23,14 +23,14 @@ class ConfirmPresencController extends Controller
             'status' => 'C',
         ];
         Agendamento::where('id', $id)->update($data);
-        $usarios = User::all();
+      
 
-        foreach($usarios as $usuario){
+        
         $agendamento = Agendamento::where('id', $id)->first();
         if ($agendamento->idPeriodo == "3") {
             $dataHoras = [
                 'horas' => '8',
-                'idAluno' => $usuario->id,
+                'idAluno' => auth()->user()->id,
                 'idSetor' => $agendamento->idSetor,
                 'idPeriodo' => $agendamento->idPeriodo,
                 'idLocal' => $agendamento->idLocal,
@@ -38,7 +38,7 @@ class ConfirmPresencController extends Controller
         } else {
             $dataHoras = [
                 'horas' => '4',
-                'idAluno' => $usuario->id,
+                'idAluno' => auth()->user()->id,
                 'idSetor' => $agendamento->idSetor,
                 'idPeriodo' => $agendamento->idPeriodo,
                 'idLocal' => $agendamento->idLocal,
@@ -46,7 +46,6 @@ class ConfirmPresencController extends Controller
         }
         Hora::create($dataHoras);
         return redirect()->route('confirmPresenca-index');
-    }
     }
 
     public function updateAusente(Request $request)
