@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agendamento;
+use App\Models\Hora;
 use App\Models\Setor;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -97,6 +98,9 @@ class PainelController extends Controller
                 // Obtém o ID do usuário autenticado
                 $idUsuario = auth()->user()->id;
 
+
+
+
                 // Consulta no banco de dados para obter o número total de agendamentos por setor
                 $agendamentosPorSetor = Agendamento::select([
                     'IdSetor',
@@ -127,7 +131,30 @@ class PainelController extends Controller
                 $setoresNomes = $labels;
 
                 // Retorna a view 'painel.painel' com os dados compactados para a view
-                return view('painel.painel', compact('setoresNomes', 'valores'));
+              
+
+
+                $idUsuario = auth()->user()->id;
+
+                $horasPorSetor = Hora::select([
+                    'idSetor', 
+                    DB::raw('SUM(horas) as total_horas')
+                ])->groupBy('idSetor')->get();
+                
+                $setorIds = []; // Inicialize a variável $setorIds aqui
+                $totalHoras = []; // Inicialize a variável $totalHoras aqui
+                
+                foreach ($horasPorSetor as $hora) {
+                    $setorIds[] = $hora->idSetor;
+                    $totalHoras[] = $hora->total_horas;
+                }
+                
+                $setorLabel = "'Horas por Setor'";
+                $setorIds = json_encode($setorIds);
+                $setorTotalHoras = implode(',', $totalHoras);
+                
+                return view('painel.painel', compact('setoresNomes', 'valores', 'setorLabel', 'setorIds', 'setorTotalHoras'));
+                
         }
     }
 }

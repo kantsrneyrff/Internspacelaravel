@@ -26,7 +26,7 @@ class ConfirmPresencController extends Controller
         $agendamento = Agendamento::where('id', $id)->first();
         if ($agendamento->idPeriodo == "3") {
             $dataHoras = [
-                'horas' => '8:00:00',
+                'horas' => '8',
                 'idAluno' => auth()->user()->id,
                 'idSetor' => $agendamento->idSetor,
                 'idPeriodo' => $agendamento->idPeriodo,
@@ -34,7 +34,7 @@ class ConfirmPresencController extends Controller
             ];
         } else {
             $dataHoras = [
-                'horas' => '4:00:00',
+                'horas' => '4',
                 'idAluno' => auth()->user()->id,
                 'idSetor' => $agendamento->idSetor,
                 'idPeriodo' => $agendamento->idPeriodo,

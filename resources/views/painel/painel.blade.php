@@ -38,15 +38,15 @@
                 </div>
                 <a class="r-20" style="text-align: right; margin-right: 10px; text-decoration:none;">230h</a>
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                    aria-valuemin="0" aria-valuemax="100" style="width:55%">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+                        style="width:55%">
                         120h
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
 
-        </div>
+    </div>
 
     </div>
 
@@ -57,7 +57,7 @@
     </div>
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="/js/chart-bar-demo.js"></script>
+
 
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
@@ -94,6 +94,68 @@
             data: data,
             options: options
         });
+
+var setoresNomes = {!! json_encode($setoresNomes) !!};
+var valores = {!! json_encode($valores) !!};
+var setorLabel = '{{ $setorLabel }}';
+var setorIds = {!! json_encode($setorIds) !!};
+var setorTotalHoras = '{{ $setorTotalHoras }}';
+
+if (typeof setoresNomes !== 'undefined') {
+    var ctx = document.getElementById("myBarChart");
+    var setorTotalHorasArray = setorTotalHoras.split(',').map(Number);
+
+    var myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: setoresNomes, 
+            datasets: [{
+                label: setorLabel,
+                backgroundColor: "rgba(2,117,216,1)",
+                borderColor: "rgba(2,117,216,1)",
+              
+                data: setorTotalHorasArray,
+            }],
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: false
+                    },
+                    ticks: {
+                        maxTicksLimit: 6
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        
+                        maxTicksLimit: 5
+                    },
+                    gridLines: {
+                        display: true
+                    }
+                }],
+            },
+            legend: {
+                display: false
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        return tooltipItem.yLabel + ' horas';
+                    }
+                }
+            }
+        }
+    });
+}
+
+
+
     </script>
 @endsection
 @endsection
