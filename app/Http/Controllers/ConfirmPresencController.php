@@ -30,7 +30,7 @@ class ConfirmPresencController extends Controller
         if ($agendamento->idPeriodo == "3") {
             $dataHoras = [
                 'horas' => '8',
-                'idAluno' => auth()->user()->id,
+                'idAluno' => $agendamento->idAluno,
                 'idSetor' => $agendamento->idSetor,
                 'idPeriodo' => $agendamento->idPeriodo,
                 'idLocal' => $agendamento->idLocal,
@@ -38,7 +38,7 @@ class ConfirmPresencController extends Controller
         } else {
             $dataHoras = [
                 'horas' => '4',
-                'idAluno' => auth()->user()->id,
+                'idAluno' => $agendamento->idAluno,
                 'idSetor' => $agendamento->idSetor,
                 'idPeriodo' => $agendamento->idPeriodo,
                 'idLocal' => $agendamento->idLocal,

@@ -134,13 +134,14 @@ class PainelController extends Controller
               
 
 
-                $idUsuario = auth()->user()->id;
+              
+               
 
                 $horasPorSetor = Hora::select([
                     'idSetor', 
                     DB::raw('SUM(horas) as total_horas')
                 ])
-                
+                ->where('IdAluno',$idUsuario)                
                 ->groupBy('idSetor')
                 ->get();
                 
@@ -158,7 +159,9 @@ class PainelController extends Controller
 
                 $horasTotais = Hora::select([
                     DB::raw('SUM(horas) as totalprogress')
-                ])->first();
+                ])
+                ->where('idAluno',$idUsuario)
+                ->first();
                 
                 $totalHoras = $horasTotais->totalprogress;
                 
