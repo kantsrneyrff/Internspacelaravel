@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Agendamento;
 use App\Models\Hora;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 
@@ -22,20 +23,22 @@ class ConfirmPresencController extends Controller
             'status' => 'C',
         ];
         Agendamento::where('id', $id)->update($data);
+        $usarios = User::all();
 
+        foreach($usarios as $usuario){
         $agendamento = Agendamento::where('id', $id)->first();
         if ($agendamento->idPeriodo == "3") {
             $dataHoras = [
-                'horas' => '8:00:00',
-                'idAluno' => auth()->user()->id,
+                'horas' => '8',
+                'idAluno' => $usuario->id,
                 'idSetor' => $agendamento->idSetor,
                 'idPeriodo' => $agendamento->idPeriodo,
                 'idLocal' => $agendamento->idLocal,
             ];
         } else {
             $dataHoras = [
-                'horas' => '4:00:00',
-                'idAluno' => auth()->user()->id,
+                'horas' => '4',
+                'idAluno' => $usuario->id,
                 'idSetor' => $agendamento->idSetor,
                 'idPeriodo' => $agendamento->idPeriodo,
                 'idLocal' => $agendamento->idLocal,
@@ -43,6 +46,7 @@ class ConfirmPresencController extends Controller
         }
         Hora::create($dataHoras);
         return redirect()->route('confirmPresenca-index');
+    }
     }
 
     public function updateAusente(Request $request)
