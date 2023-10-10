@@ -80,7 +80,7 @@ class AgendamentoController extends Controller
         private function getLimite(string $local, string $setor, string $periodo)
         {
             switch ($local) {
-                case '13':
+                case '11':
                     switch ($setor) {
                         case '2':
                             switch ($periodo) {
