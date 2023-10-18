@@ -41,109 +41,11 @@ class AgendamentoController extends Controller
         Agendamento::create($request->all());
         return redirect()->route('agendamentos-histAluno');
     }
+    
+    public function gerarDiasCheios(){
+        
+    }
 
-
-        public function agendarCheio()
-        {
-            // Obtém todos os agendamentos com status "L"
-            $agendamentos = Agendamento::where('statusAluno', 'L')->get();
-    
-            // Itera sobre os agendamentos
-            foreach ($agendamentos as $agendamento) {
-                // Obtém o local do agendamento
-                $local = $agendamento->idLocal;
-    
-                // Obtém o setor do agendamento
-                $setor = $agendamento->idSetor;
-    
-                // Obtém o período do agendamento
-                $periodo = $agendamento->idPeriodo;
-    
-                // Verifica se o agendamento está dentro do limite de disponibilidade
-                $limite = $this->getLimite($local, $setor, $periodo);
-                if ($agendamento->qtd > $limite) {
-                    // Altera o status do agendamento para "R"
-                    $agendamento->statusAluno = 'R';
-                    $agendamento->save();
-                }
-            }
-        }
-    
-        /**
-         * Obtém o limite de disponibilidade de um agendamento.
-         *
-         * @param string $local
-         * @param string $setor
-         * @param string $periodo
-         * @return int
-         */
-        private function getLimite(string $local, string $setor, string $periodo)
-        {
-            switch ($local) {
-                case '11':
-                    switch ($setor) {
-                        case '2':
-                            switch ($periodo) {
-                                case '3':
-                                    return 4;
-                                case '1':
-                                    return 4;
-                                case '2':
-                                    return 4;
-                            }
-                        case '4':
-                            switch ($periodo) {
-                                case '3':
-                                    return 4;
-                                case '1':
-                                    return 4;
-                                case '2':
-                                    return 4;
-                            }
-                        case '5':
-                            switch ($periodo) {
-                                case '3':
-                                    return 3;
-                                case '1':
-                                    return 3;
-                                case '2':
-                                    return 3;
-                            }
-                        case '3':
-                            switch ($periodo) {
-                                case '3':
-                                    return 2;
-                                case '1':
-                                    return 2;
-                                case '2':
-                                    return 2;
-                            }
-                    }
-                case '12':
-                    switch ($setor) {
-                        case '1':
-                            switch ($periodo) {
-                                case '1':
-                                    return 2;
-                                case '2':
-                                    return 2;
-                            }
-                        case '5':
-                            switch ($periodo) {
-                                case '1':
-                                    return 1;
-                                case '2':
-                                    return 1;
-                            }
-                    }
-            }
-    
-            // Caso não encontre o local, setor ou período, retorna 0
-            return 0;
-        }
-    
-
-    
     public function listAgend(){
         $agendamentos = Agendamento::all();
         return view('painel.agendamentos.index', ['agendamentos' => $agendamentos]);
