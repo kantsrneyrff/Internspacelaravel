@@ -42,56 +42,8 @@ class AgendamentoController extends Controller
         return redirect()->route('agendamentos-histAluno');
     }
     
-    public function gerarDiasCheios(AgendamentoRequest $request){
 
-       
-    // Validar os dados do agendamento
-    $this->validate($request, [
-        'data' => 'required|date',
-        'idPeriodo' => 'required|string',
-        'idSetor' => 'required|integer',
-    ]);
-
-    // Obter os dias bloqueados
-    $diasBloqueados = [];
-    $agendamentos = Agendamento::where('data', $request->data)
-        ->where('idPeriodo', $request->nome)
-        ->get();
-    foreach ($agendamentos as $agendamento) {
-        $diasBoqueados[] = $agendamento->data;
-    }
-
-    // Verificar se o horário está disponível
-    $setor = Setor::find($request->idSetor);
-    $vagas_disponiveis = $setor->limite;
-    $totalAgendamentos = Agendamento::where('data', $request->data)
-        ->where('idPeriodo', $request->nome)
-        ->where('idSetor', $request->idSetor)
-        ->count();
-
-    if ($totalAgendamentos >= $vagas_disponiveis || in_array($request->data, $diasBoqueados)) {
-        // O horário está ocupado
-        return response()->json([
-            'status' => 'erro',
-            'mensagem' => 'O horário está ocupado',
-        ]);
-    }
-
-    dd($diasBloqueados);
-}
-
-    // // O horário está disponível
-    // $agendamento = new Agendamento();
-    // $agendamento->data = $request->data;
-    // $agendamento->hora = $request->hora;
-    // $agendamento->aluno_id = $request->aluno_id;
-    // $agendamento->setor_id = $request->setor_id;
-    // $agendamento->save();
-
-    // return response()->json([
-    //     'status' => 'sucesso',
-    //     'mensagem' => 'Agendamento realizado com sucesso',
-    // ]);
+ 
 
 
  
