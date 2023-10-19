@@ -118,7 +118,7 @@
                     <div class="col-lg-4">
                         <div class="team-member">
                             <img class="mx-auto rounded-circle"
-                                src="img/membros/d37950b4-f9e1-4d82-ae7b-3db1e4dc7117.jpg" alt="..." />
+                                src="img/membros/53f5d026-1c7f-47f3-bc67-a4c206de5fa3.jpg" alt="..." />
                             <h4>Gabriel Nogueira</h4>
                             <p class="text-muted">Líder</p>
                             <a class="btn btn-dark btn-social mx-2" href="https://www.instagram.com/gabri.nogueira_/"
