@@ -148,4 +148,11 @@
 @endsection
 @section('scripts')
 <script src="/js/agendamento.js"></script>
+<script>
+        // Passa os dados para o JavaScript usando JSON
+        var diasCheios = @json($diasCheios);
+
+        // Agora você pode usar a variável diasCheios no seu código JavaScript
+        console.log(diasCheios);
+    </script>
 @endsection
