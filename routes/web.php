@@ -71,6 +71,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/{id}/edit', [AgendamentoController::class, 'edit'])->where('id', '[0-9]+')->name('agendamentos-edit');
             Route::put('/{id}', [AgendamentoController::class, 'update'])->where('id', '[0-9]+')->name('agendamentos-update');
             Route::delete('/{id}', [AgendamentoController::class, 'destroy'])->where('id', '[0-9]+')->name('agendamentos-destroy');
+            Route::get('/cheio', [AgendamentoController::class, 'gerarDiasCheios']);
             
             Route::get('/confirmAgedamentos', [ConfirmAgendamentoController::class, 'index'])->name('confirmAgendamentos-index')->middleware('can:admin-access');;
             Route::post('/aprovado', [ConfirmAgendamentoController::class, 'updateAprovado'])->where('id', '[0-9]+')->name('agendamentos-updateAprovado')->middleware('can:admin-access');
