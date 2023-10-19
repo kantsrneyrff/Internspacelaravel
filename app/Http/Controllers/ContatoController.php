@@ -14,7 +14,7 @@ class ContatoController extends Controller
         $tel = $request->input('tel');
         $text = $request->input('text');
 
-        $to = "faleconosco@charmejoias.com.br";
+        $to = "contato@internspace.com.br";
         $subject = "Contato: " . $nome . " IntenSpace";
         $body = "Nome: " . $nome . "<br>" .
             "E-mail: " . $email . "<br>".
