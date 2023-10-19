@@ -215,9 +215,9 @@
                         </div>
                     </div>
                     <div class="fw-bolder"></div>
+                    <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Enviar mensagem</button></div>
                 </form>
             </div>
-            <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Enviar mensagem</button></div>
         </section>
         <!-- Footer-->
         <!-- Portfolio Modals-->
