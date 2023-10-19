@@ -199,7 +199,7 @@
                                 @enderror
                             </div>
                             <div class="form-group mb-md-0">
-                                <input class="form-control @error('tel') is-invalid @enderror" id="phone" type="tel" name="telefone" placeholder="Telefone *" name="tel" />
+                                <input class="form-control @error('tel') is-invalid @enderror" id="phone" type="tel" placeholder="Telefone *" name="tel" />
                                 @error('tel')
                                 <div class="invalid-feedback">{{$message}}</div>
                                 @enderror
