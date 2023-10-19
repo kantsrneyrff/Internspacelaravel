@@ -149,10 +149,47 @@
 @section('scripts')
 <script src="/js/agendamento.js"></script>
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // Função para marcar os botões que estão com vagas cheias
+        function bloquearDiaCheio(dateTarget) {
+            // Pegando o elemento que contém todos os botões
+            const calendar_days = document.querySelectorAll(".calendar-day-button");
+
+            // Pegando a data e separando ela no formato YYYY-MM-DD
+            const dateYmd = dateTarget.split('-');
+
+            // Criando uma nova data com os valores extraídos
+            const currDate = new Date(dateYmd[0], dateYmd[1] - 1, dateYmd[2]); // O mês começa do zero (0 - 11)
+
+            // Iterando sobre cada botão
+            calendar_days.forEach((day) => {
+    
+                if (currDate.getFullYear() == parseInt(dateYmd[0]) &&
+                    currDate.getMonth() == parseInt(dateYmd[1]) - 1 && // O mês começa do zero (0 - 11)
+                    day.id == parseInt(dateYmd[2])) {
+
+                    // Adicionando classe "cheio"
+                    day.classList.add('cheio');
+
+                    // Removendo função de alterar data do botão
+                    day.removeEventListener("click", day);
+
+                    // Removendo a classe "enabled"
+                    day.classList.remove("enabled");
+                }
+            });
+        }
+
         // Passa os dados para o JavaScript usando JSON
         var diasCheios = @json($diasCheios);
 
         // Agora você pode usar a variável diasCheios no seu código JavaScript
-        console.log(diasCheios);
-    </script>
+        if (diasCheios != null) {
+            diasCheios.forEach((item) => {
+                bloquearDiaCheio(item.date)
+            })
+        };
+    });
+</script>
 @endsection

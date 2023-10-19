@@ -74,6 +74,7 @@ generateCalendar = (month, year) => {
         }
     }
 
+
     calendar_days.innerHTML = "";
 
     let currDate = new Date();
@@ -86,23 +87,60 @@ generateCalendar = (month, year) => {
 
     let first_day = new Date(year, month, 1);
 
+
+    // Função para marcar os botões que estão com vagas cheias
+    function bloquearDiaCheio(dateTarget) {
+        // Pegando o elemento que contém todos os botões
+        const calendar_days = document.querySelectorAll("#calendar-days");
+
+        // Pegando a data e separando ela no formato YYYY-MM-DD
+        const dateYmd = dateTarget.split('-');
+
+        // Criando uma nova data com os valores extraídos
+        const currDate = new Date(dateYmd[0], dateYmd[1] - 1, dateYmd[2]); // O mês começa do zero (0 - 11)
+
+        // Iterando sobre cada botão
+        calendar_days.forEach((day) => {
+            // Comparando datas
+            if (currDate.getFullYear() == dateYmd[0] &&
+                currDate.getMonth() == dateYmd[1] - 1 && // O mês começa do zero (0 - 11)
+                currDate.getDate() == dateYmd[2]) {
+
+                // Adicionando classe "cheio"
+                day.classList.add('cheio');
+
+                // Removendo função de alterar data do botão
+                day.removeEventListener("click", botaoData);
+
+                // Removendo a classe "enabled"
+                day.classList.remove("enabled");
+            }
+        });
+    }
+
+    console.log("Função bloquearDiaCheio:", typeof bloquearDiaCheio);
+
+
+
+
+
     for (let i = 0; i <= days_of_month[month] + first_day.getDay() - 1; i++) {
         let day = document.createElement("div");
         let day2 = 0;
-    
+
         if (i >= first_day.getDay()) {
             day.classList.add("calendar-day-button");
             day2 = i - first_day.getDay() + 1;
             day.id = day2;
             day.innerHTML = day2;
-    
+
             if (i % 7 === 0) { // Verifica se é domingo (índice 0)
                 day.classList.add("disabled");
             } else {
                 day.addEventListener("click", botaoData);
                 day.classList.add("enabled");
             }
-    
+
             if (
                 i - first_day.getDay() + 1 === currDate.getDate() &&
                 year === currDate.getFullYear() &&
@@ -119,10 +157,10 @@ generateCalendar = (month, year) => {
                 day.classList.remove("enabled");
             }
         }
-    
+
         calendar_days.appendChild(day);
     }
-    
+
 
     inputData = document.getElementsByClassName("data");
     inputData[0].value =

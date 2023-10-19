@@ -33,7 +33,7 @@ class AgendamentoController extends Controller
         $anoAtual = Carbon::now()->year;
 
         $diasCheios = DB::table('agendamentos')
-            ->select(DB::raw('DATE(agendamentos.created_at) as data, agendamentos.idSetor, agendamentos.idPeriodo, setores.limite'))
+            ->select(DB::raw('DATE(agendamentos.created_at) as date, agendamentos.idSetor, agendamentos.idPeriodo, setores.limite'))
             ->whereYear('agendamentos.created_at', $anoAtual)
             ->groupBy('data', 'agendamentos.idSetor', 'agendamentos.idPeriodo', 'setores.limite', 'agendamentos.created_at')
             ->havingRaw('COUNT(*) >= setores.limite')
