@@ -29,7 +29,7 @@ Route::get('/', function () {
     return view('home');
     
 });
-Route::post('/enviar-contato', [ContatoController::class, 'index']);
+Route::post('/email', [ContatoController::class, 'index'])->name('enviarEmail');
 
 
 Route::prefix('esqSenha')->group(function () {

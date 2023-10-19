@@ -182,7 +182,7 @@
                     <h2 class="section-heading text-uppercase">Contato</h2>
                     <h3 class="section-subheading text-muted"></h3>
                 </div>
-                <form id="contactForm" action="{{}}" method="post">
+                <form id="contactForm" action="{{route('enviarEmail')}}" method="post">
                     @csrf
                     <div class="row align-items-stretch mb-5">
                         <div class="col-md-6">
