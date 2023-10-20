@@ -29,20 +29,33 @@ class AgendamentoController extends Controller
     // Função vinda dos céus
     public function diasCheios()
     {
-
         $anoAtual = Carbon::now()->year;
 
         $diasCheios = DB::table('agendamentos')
-            ->select(DB::raw('DATE(agendamentos.created_at) as date, agendamentos.idSetor, agendamentos.idPeriodo, setores.limite'))
-            ->whereYear('agendamentos.created_at', $anoAtual)
-            ->groupBy('data', 'agendamentos.idSetor', 'agendamentos.idPeriodo', 'setores.limite', 'agendamentos.created_at')
+            ->select(
+                DB::raw('agendamentos.data as date'),
+                'agendamentos.idLocal',
+                'agendamentos.idSetor',
+                'agendamentos.idPeriodo'
+            )
+            ->whereYear('agendamentos.data', $anoAtual)
+            ->where('agendamentos.status', '=', 'L')
+            ->groupBy(
+                'date',
+                'agendamentos.idLocal',
+                'agendamentos.idSetor',
+                'agendamentos.idPeriodo',
+                'agendamentos.status',
+                'setores.limite'
+            )
             ->havingRaw('COUNT(*) >= setores.limite')
             ->join('setores', 'agendamentos.idSetor', '=', 'setores.id')
             ->get();
 
         return $diasCheios;
-
     }
+
+
 
 
 
@@ -182,5 +195,4 @@ class AgendamentoController extends Controller
         $agendamentos = Agendamento::all();
         return view('painel.agendamentos.index', ['agendamentos' => $agendamentos]);
     }
-
 }
