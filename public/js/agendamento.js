@@ -74,35 +74,130 @@ generateCalendar = (month, year) => {
         }
     }
 
+    // Pegar valor de qualquer select por id
+    function getValueFromElementId(id) {
+        select = document.getElementById(id);
+        return select.value;
+
+    }
+
+
+
+    window.forEachDiasCheios = function () {
+        if (diasCheios) {
+            diasCheios.forEach((item) => {
+                bloquearDiaCheio(item.date, item.idLocal, item.idSetor, item.idPeriodo)
+            })
+        };
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        forEachDiasCheios();
+    });
+
+    selectLocal = document.getElementById("local");
+    selectLocal.addEventListener("change", function () {
+        reiniciarCheio();
+        forEachDiasCheios();
+    });
+    selectSetor = document.getElementById("setor");
+    selectSetor.addEventListener("change", function () {
+        reiniciarCheio();
+        forEachDiasCheios();
+    });
+    selectPeriodo = document.getElementById("periodo");
+    selectPeriodo.addEventListener("change", function () {
+        reiniciarCheio();
+        forEachDiasCheios();
+    });
+
+    // Tirar a classe cheio de todos os botões
+    function reiniciarCheio() {
+        lista = document.getElementById("calendar-days").childNodes;
+        lista.forEach((index) => {
+            if (index.classList.contains("cheio")) {
+                index.classList.remove("cheio");
+                index.classList.add("enabled");
+                index.addEventListener("click", botaoData);
+
+            }
+        });
+    }
+
+    // Função para marcar os botões que estão com vagas cheias
+    function bloquearDiaCheio(dateTarget, localTarget, setorTarget, periodoTarget) {
+        // Pegando o elemento que contém todos os botões
+        const calendar_days = document.querySelectorAll(".calendar-day-button");
+
+        var idLocalSelecionado = getValueFromElementId("local");
+        var idSetorSelecionado = getValueFromElementId("setor");
+        var idPeriodoSelecionado = getValueFromElementId("periodo");
+        var dataSelecionada = getValueFromElementId("data");
+        var dataSplit = dataSelecionada.split("/");
+        var mesSelecionado = month_names.indexOf(document.getElementById("month-picker").innerHTML)
+        var anoSelecionado = document.getElementById("year").innerHTML
+
+        // Pegando a data e separando ela no formato YYYY-MM-DD
+        const dateYmd = dateTarget.split('-');
+
+        // Iterando sobre cada botão
+        calendar_days.forEach((day) => {
+            // Comparando se a data do botão corresponde com a data que está cheia
+            if (
+                anoSelecionado == parseInt(dateYmd[0]) &&
+                mesSelecionado == parseInt(dateYmd[1]) - 1 &&
+                day.id == parseInt(dateYmd[2]) &&
+                idLocalSelecionado == localTarget &&
+                idSetorSelecionado == setorTarget &&
+                idPeriodoSelecionado == periodoTarget
+            ) {
+                if (!day.classList.contains('cheio')) {
+                    day.classList.add('cheio');
+                    day.classList.remove('enabled');
+
+                    // Removendo a função de alterar data do botão
+                    day.removeEventListener("click", botaoData);
+
+                    // Apagando o dia selecionado se estiver cheio
+                    if (dataSplit[0] == dateYmd[2]) {
+                        document.getElementById("data").value = "-";
+                    }
+                }
+            }
+        });
+    }
+
+
+
+
     calendar_days.innerHTML = "";
 
     let currDate = new Date();
-
     if (!year) year = currDate.getFullYear();
-
     let curr_month = `${month_names[month]}`;
     month_picker.innerHTML = curr_month;
     calendar_header_year.innerHTML = year;
 
     let first_day = new Date(year, month, 1);
 
+
     for (let i = 0; i <= days_of_month[month] + first_day.getDay() - 1; i++) {
         let day = document.createElement("div");
         let day2 = 0;
-    
+
         if (i >= first_day.getDay()) {
             day.classList.add("calendar-day-button");
             day2 = i - first_day.getDay() + 1;
             day.id = day2;
             day.innerHTML = day2;
-    
+
             if (i % 7 === 0) { // Verifica se é domingo (índice 0)
                 day.classList.add("disabled");
             } else {
                 day.addEventListener("click", botaoData);
                 day.classList.add("enabled");
             }
-    
+
             if (
                 i - first_day.getDay() + 1 === currDate.getDate() &&
                 year === currDate.getFullYear() &&
@@ -119,10 +214,10 @@ generateCalendar = (month, year) => {
                 day.classList.remove("enabled");
             }
         }
-    
+
         calendar_days.appendChild(day);
     }
-    
+
 
     inputData = document.getElementsByClassName("data");
     inputData[0].value =
@@ -172,6 +267,7 @@ month_names.forEach((e, index) => {
 
         curr_month.value = index;
         generateCalendar(index, curr_year.value);
+        forEachDiasCheios();
     };
 
     current_month_row.appendChild(month);

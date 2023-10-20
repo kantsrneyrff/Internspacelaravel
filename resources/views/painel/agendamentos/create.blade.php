@@ -148,4 +148,7 @@
 @endsection
 @section('scripts')
 <script src="/js/agendamento.js"></script>
+<script>
+    window.diasCheios = @json($diasCheios);
+</script>
 @endsection
