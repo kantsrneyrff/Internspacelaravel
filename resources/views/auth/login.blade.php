@@ -58,7 +58,7 @@
                             </form>
                         </div>
                         <div class="card-footer text-center py-3">
-                            <div class="small"><a href="esqSenha">Esqueceu sua senha?</a></div>
+                            <!-- <div class="small"><a href="esqSenha">Esqueceu sua senha?</a></div> -->
                         </div>
                     </div>
                 </div>
