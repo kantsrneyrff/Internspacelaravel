@@ -12,7 +12,7 @@
     <link href="/css/bootstrap.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css" />
-    <link rel="stylesheet" type="text/css" href="/css/login.css">
+  
     <title>Login - InternSpace</title><!----Titulo das Páginas---->
 </head>
 
