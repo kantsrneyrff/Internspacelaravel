@@ -78,7 +78,7 @@
                     yAxes: [{
                         ticks: {
                             min: 0,
-                            max: Math.max(...userTotalArray), // Define o máximo com base nos dados
+                            max: Math.max(20), // Define o máximo com base nos dados
                             maxTicksLimit: 5
                         },
                         gridLines: {
