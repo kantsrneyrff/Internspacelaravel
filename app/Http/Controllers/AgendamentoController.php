@@ -87,7 +87,7 @@ class AgendamentoController extends Controller
         Agendamento::create($request->all());
         return redirect()->route('agendamentos-histAluno');
     }
-
+    
 
     public function agendarCheio()
     {

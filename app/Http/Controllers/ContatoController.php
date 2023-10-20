@@ -2,32 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContatoRequest;
 use Illuminate\Http\Request;
 
 class ContatoController extends Controller
 {
-    public function index(Request $request)
+    public function create(ContatoRequest $request)
     {
-        if ($request->isMethod('post')) {
-            $data = $request->input();
-            if (!isset($data['nome'])) {
-                // O usuário não preencheu o campo nome
-                return redirect()->back()->with('error', 'O campo nome é obrigatório.');
-            }
+        $nome = $request->input('nome');
+        $email = $request->input('email');
+        $tel = $request->input('tel');
+        $text = $request->input('text');
 
-            $to = "internspace@internspace.com.br";
-            $subject = "Contato de " . $data['nome'];
-            $body = "Nome: " . $data['nome'] . "\r\n" .
-                "Email: " . $data['email'] . "\r\n" .
-                "Telefone: " . $data['telefone'] . "\r\n" .
-                "Mensagem: " . $data['mensagem'] . "\r\n";
+        $to = "contato@internspace.com.br";
+        $subject = "Contato: " . $nome . " - IntenSpace";
+        $body = "Nome: " . $nome . "<br>" .
+            "E-mail: " . $email . "<br>".
+            "Telefone: " . $tel . "<br>".
+            "Mensagem: " . $text . "<br>";
 
-            $header = "From:internspace@internspace.com.br" . "\r\n" . "Reply-To:internspace@internspace.com.br" . "\r\n" . "X=Mailer:PHP/" . phpversion();
-            mail($to, $subject, $body, $header);
-
-            return redirect()->back()->with('success', 'Mensagem enviada com sucesso!');
-        }
-
-        return view('home');
+        $header = "From:contato@internspace.com.br" . "\r\n" . "Reply-To:contato@internspace.com.br" . "\r\n" . "X=Mailer:PHP/" . phpversion();
+        $header .= "MIME-Version: 1.0" . "\r\n";
+        $header .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        mail($to, $subject, $body, $header);
+        return redirect()->route('home');
     }
 }

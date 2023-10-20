@@ -12,5 +12,6 @@ class Setor extends Model
     protected $fillable = [
         'id',
         'nome',
+        'limite',
     ];
 }

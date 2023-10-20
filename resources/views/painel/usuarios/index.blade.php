@@ -53,7 +53,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalLabel">
-                    <p id="tituloModal">Excluir Usuário?</p>
+                    <p id="tituloModal">Desativar Usuário?</p>
                 </h5>
                 <button type="button" class="btn-close" data-dismiss="modal" onclick="$('#modal').modal('hide')" aria-label="Fechar"></button>
             </div>
@@ -83,7 +83,7 @@
                 <form action="{{route('usuarios-destroy', ['id'=>'ID'])}}" id="formExcluir" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Excluir</button>
+                    <button type="submit" class="btn btn-danger">Desativar</button>
                 </form>
                 <button type="button" class="btn btn-secondary" onclick="$('#modal').modal('hide')">Cancelar</button>
             </div>
