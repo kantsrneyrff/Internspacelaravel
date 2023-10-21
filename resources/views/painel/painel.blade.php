@@ -133,7 +133,6 @@
                         yAxes: [{
                             ticks: {
                                 min: 0,
-
                                 maxTicksLimit: 5
                             },
                             gridLines: {
@@ -142,6 +141,10 @@
                         }],
                     },
                     legend: {
+                        labels: {
+                            fontColor: 'black', // Cor do texto da legenda
+                            fontWeight: "bold",
+                        },
                         display: false
                     },
                     tooltips: {
@@ -152,26 +155,30 @@
                                 return tooltipItem.yLabel + ' horas';
                             }
                         }
+                    },
+                    labels: {
+                        fontSize: 24,
+                        color: "black"
                     }
                 }
             });
         }
 
 
-    const totalHoras = {!! json_encode($totalHoras) !!};
-    const progressValue = parseInt(document.querySelector('.progress-bar').getAttribute('aria-valuenow'));
-    
-    let novoTotalHoras = totalHoras;
-    if (totalHoras > 230) {
-        novoTotalHoras = 230;
-    }
 
-    const novoProgresso = (novoTotalHoras / 230) * 100; // Agora estamos usando 230 como valor máximo
+        const totalHoras = {!! json_encode($totalHoras) !!};
+        const progressValue = parseInt(document.querySelector('.progress-bar').getAttribute('aria-valuenow'));
 
-    const progressBar = document.querySelector('.progress-bar');
-    progressBar.style.width = `${novoProgresso}%`;
-    progressBar.textContent = `${novoTotalHoras}h`;
-</script>
+        let novoTotalHoras = totalHoras;
+        if (totalHoras > 230) {
+            novoTotalHoras = 230;
+        }
 
+        const novoProgresso = (novoTotalHoras / 230) * 100; // Agora estamos usando 230 como valor máximo
+
+        const progressBar = document.querySelector('.progress-bar');
+        progressBar.style.width = `${novoProgresso}%`;
+        progressBar.textContent = `${novoTotalHoras}h`;
+    </script>
 @endsection
 @endsection
