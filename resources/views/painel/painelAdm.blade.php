@@ -11,7 +11,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-chart-bar me-1"></i>
-                    Usuarios Cadastrados 
+                    Usuarios Cadastrados
                 </div>
                 <div class="card-body" style="position: relative;">
                     <canvas id="myBarChart" width="100%" height="40"></canvas>
@@ -106,11 +106,14 @@
 
         var setoresNomes = {!! json_encode($setoresNomes) !!};
         var setoresValores = {!! json_encode($valores) !!};
+        var total = setoresValores.reduce((a, b) => a + b, 0);
+
+        var percentuais = setoresValores.map(valor => ((valor / total) * 100).toFixed(2));
 
         var data = {
             labels: setoresNomes,
             datasets: [{
-                data: setoresValores,
+                data: percentuais,
                 backgroundColor: ['#4F79E4', '#7DDD4F', '#ED2139', '#F8B534', '#aa48e5'],
                 borderWidth: 1
             }]
