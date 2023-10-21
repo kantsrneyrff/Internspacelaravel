@@ -38,9 +38,9 @@
                 </div>
                 <a class="r-20" style="text-align: right; margin-right: 10px; text-decoration:none;">230h</a>
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+                    <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="230"
                         style="width:55%">
-                        120h
+
                     </div>
                 </div>
             </div>
@@ -157,15 +157,21 @@
             });
         }
 
-        const totalHoras = {!! json_encode($totalHoras) !!};
 
-        const progressBar = document.querySelector('.progress-bar');
-        const progressValue = document.querySelector('.progress-bar').textContent;
+    const totalHoras = {!! json_encode($totalHoras) !!};
+    const progressValue = parseInt(document.querySelector('.progress-bar').getAttribute('aria-valuenow'));
+    
+    let novoTotalHoras = totalHoras;
+    if (totalHoras > 230) {
+        novoTotalHoras = 230;
+    }
 
-        const novoProgresso = (totalHoras / parseInt(progressValue)) * 100;
+    const novoProgresso = (novoTotalHoras / 230) * 100; // Agora estamos usando 230 como valor máximo
 
-        progressBar.style.width = `${novoProgresso}%`;
-        progressBar.textContent = `${totalHoras}h`;
-    </script>
+    const progressBar = document.querySelector('.progress-bar');
+    progressBar.style.width = `${novoProgresso}%`;
+    progressBar.textContent = `${novoTotalHoras}h`;
+</script>
+
 @endsection
 @endsection
