@@ -58,7 +58,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/{id}/edit', [UsuarioController::class, 'edit'])->where('id', '[0-9]+')->name('usuarios-edit')->middleware('can:admin-access');
             Route::get('/editAluno', [UsuarioController::class, 'editAluno'])->name('usuarios-editAluno');
             Route::put('/{id}', [UsuarioController::class, 'update'])->where('id', '[0-9]+')->name('usuarios-update')->middleware('can:admin-access');
-            Route::put('/updateAluno', [UsuarioController::class, 'update'])->where('id', '[0-9]+')->name('usuarios-update')->middleware('can:admin-access');
+            Route::put('/{id}/updateAluno', [UsuarioController::class, 'updateAluno'])->where('id', '[0-9]+')->name('usuarios-updateAluno');
             Route::put('/senha/{id}', [UsuarioController::class, 'updateSenha'])->where('id', '[0-9]+')->name('usuarios-updateSenha')->middleware('can:admin-access');
             Route::delete('/{id}', [UsuarioController::class, 'destroy'])->where('id', '[0-9]+')->name('usuarios-destroy')->middleware('can:admin-access');
             Route::get('/listUsers', [UsuarioController::class, 'listUsers'])->name('usuarios-listUser')->middleware('can:orientador-access');

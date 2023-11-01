@@ -18,8 +18,8 @@ class UsuarioController extends Controller
 
     public function editAluno()
     {
-        $usuario = User::where('id', Auth::id())->get();
-        return view('painel.usuarios.editAluno', ['usuarios' => $usuario]);
+        $usuario = User::where('id', Auth::id())->first();
+        return view('painel.usuarios.editAluno', ['usuario' => $usuario]);
     }
 
     public function create()

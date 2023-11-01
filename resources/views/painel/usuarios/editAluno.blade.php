@@ -17,7 +17,7 @@
                     <strong>Erro!</strong> {{$message}} <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
                 </div>
                 @enderror
-                <form action="{{route('usuarios-update',['id'=>$usuario->id])}}" method="POST">
+                <form action="{{route('usuarios-updateAluno',['id'=>Auth::id()])}}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="row">
@@ -166,10 +166,7 @@
                         <div class="form-group col-md-5">
                             <label for="cargo">Cargo:</label>
                             <select class="form-select @error('cargo') is-invalid @enderror" id="cargo" name="cargo">
-                                <option value=''>Selecione</option>
-                                <option value='adm' {{ "adm" == old('cargo',$usuario->cargo) ? 'selected' : '' }}>Administrador</option>
                                 <option value='aluno' {{ "aluno" == old('cargo',$usuario->cargo) ? 'selected' : '' }}>Aluno</option>
-                                <option value='prof' {{ "prof" == old('cargo',$usuario->cargo) ? 'selected' : '' }}>Orientador</option>
                             </select>
                             @error('cargo')
                             <div class="invalid-feedback">{{$message}}</div>
