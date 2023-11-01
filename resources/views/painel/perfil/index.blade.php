@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="d-flex flex-col justify-content-center text-center align-items-center my-3 mb-5">
-             <a class="btn btn-outline-secondary mx-2" type="button" href="{{ route('usuarios-editAluno')}}"  id="btn-perfil-foto" style="border-radius: 100px">Alterar foto</a> 
+             <a class="btn btn-outline-secondary mx-2" type="button" href="{{ route('usuarios-editAluno')}}"  id="btn-perfil-foto" style="border-radius: 100px">editar perfil</a> 
             </div>
             <div class="d-flex flex-col justify-content-start text-start align-items-center">
                 <div>
