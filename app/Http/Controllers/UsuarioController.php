@@ -16,6 +16,12 @@ class UsuarioController extends Controller
         return view('painel.usuarios.index', ['usuarios' => $usuarios]);
     }
 
+    public function editAluno()
+    {
+        $usuario = User::where('id', Auth::id())->get();
+        return view('painel.usuarios.editAluno', ['usuarios' => $usuario]);
+    }
+
     public function create()
     {
         return view('painel.usuarios.create');
@@ -41,21 +47,21 @@ class UsuarioController extends Controller
     public function update(UsuarioRequest $request, $id)
     {
         $data = [
-            'nome'=>$request->nome,
-            'dataNascimento'=>$request->dataNascimento,
-            'genero'=>$request->genero,
-            'cpf'=>$request->cpf,
-            'rg'=>$request->rg,
-            'telefone'=>$request->telefone,
-            'cep'=>$request->cep,
-            'logradouro'=>$request->logradouro,
-            'complemento'=>$request->complemento,
-            'numero'=>$request->numero,
-            'bairro'=>$request->bairro,
-            'cidade'=>$request->cidade,
-            'uf'=>$request->uf,
-            'email'=>$request->email,
-            'cargo'=>$request->cargo,
+            'nome' => $request->nome,
+            'dataNascimento' => $request->dataNascimento,
+            'genero' => $request->genero,
+            'cpf' => $request->cpf,
+            'rg' => $request->rg,
+            'telefone' => $request->telefone,
+            'cep' => $request->cep,
+            'logradouro' => $request->logradouro,
+            'complemento' => $request->complemento,
+            'numero' => $request->numero,
+            'bairro' => $request->bairro,
+            'cidade' => $request->cidade,
+            'uf' => $request->uf,
+            'email' => $request->email,
+            'cargo' => $request->cargo,
         ];
         User::where('id', $id)->update($data);
         return redirect()->route('usuarios-index');
@@ -65,7 +71,7 @@ class UsuarioController extends Controller
     {
         $request->merge(['password' => bcrypt($request->input('password'))]);
         $data = [
-            'password'=>$request->password,
+            'password' => $request->password,
         ];
         User::where('id', $id)->update($data);
         return redirect()->route('usuarios-index');
@@ -76,10 +82,32 @@ class UsuarioController extends Controller
         User::where('id', $id)->delete();
         return redirect()->route('usuarios-index');
     }
-    public function listUsers(){
+    public function listUsers()
+    {
         $usuarios = User::all();
         return view('painel.usuarios.listUsers', ['usuarios' => $usuarios]);
+    }
 
-
+    public function updateAluno(UsuarioRequest $request)
+    {
+        $data = [
+            'nome' => $request->nome,
+            'dataNascimento' => $request->dataNascimento,
+            'genero' => $request->genero,
+            'cpf' => $request->cpf,
+            'rg' => $request->rg,
+            'telefone' => $request->telefone,
+            'cep' => $request->cep,
+            'logradouro' => $request->logradouro,
+            'complemento' => $request->complemento,
+            'numero' => $request->numero,
+            'bairro' => $request->bairro,
+            'cidade' => $request->cidade,
+            'uf' => $request->uf,
+            'email' => $request->email,
+            'cargo' => $request->cargo,
+        ];
+        User::where('id', Auth::id())->update($data);
+        return redirect()->route('perfil-index');
     }
 }
