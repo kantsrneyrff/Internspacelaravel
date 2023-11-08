@@ -58,6 +58,7 @@
                             </form>
                         </div>
                         <div class="card-footer text-center py-3">
+                            <div class="small"> <a href="#" onclick="$('#modal').modal('show')">teste</a></div>
                             <div class="small"> <button type="button" onclick="$('#modal').modal('show')">Esqueceu sua senha?</button></div>
                         </div>
                     </div>
