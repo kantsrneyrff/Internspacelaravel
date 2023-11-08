@@ -39,6 +39,10 @@
 
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+</head>
 
     <script>
         var usuarios = {{ $usuarios }};
@@ -58,8 +62,8 @@
                 labels: ['Total', ...userAnoArray], // Adiciona "Total" como a primeira etiqueta
                 datasets: [{
                     label: userLabel,
-                    backgroundColor: ["rgba(2,117,216,1)", ...Array(userAnoArray.length).fill(
-                        "rgba(255,0,0,1)")],
+                    backgroundColor: ["rgba(248,181,52)", ...Array(userAnoArray.length).fill(
+                        "rgba(125,221,79,1)")],
                     borderColor: ["rgba(2,117,216,1)", ...Array(userAnoArray.length).fill(
                         "rgba(255,0,0,1)")],
                     data: userTotalArray,
@@ -108,12 +112,14 @@
         var setoresValores = {!! json_encode($valores) !!};
         var total = setoresValores.reduce((a, b) => a + b, 0);
 
-        var percentuais = setoresValores.map(valor => ((valor / total) * 100).toFixed(2));
+        console.log(setoresValores)
+
+       
 
         var data = {
             labels: setoresNomes,
             datasets: [{
-                data: percentuais,
+                data: setoresValores,
                 backgroundColor: ['#4F79E4', '#7DDD4F', '#ED2139', '#F8B534', '#aa48e5'],
                 borderWidth: 1
             }]
