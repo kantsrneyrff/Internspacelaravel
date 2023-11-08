@@ -81,7 +81,7 @@
                         <h4 class="my-3">Layout Simplificado
                         </h4>
                         <p class="text-muted">
-                            O layout do site foi pensado para que qualquer um possa utilizar, atingindo o máximo de
+                            O layout do site foi pensado para que seja de fácil acesso, atingindo o máximo de
                             pessoas possíveis. Dessa forma, o usuário não precisa de nenhum conhecimento específico
                             prévio.</p>
                     </div>

@@ -34,15 +34,17 @@
     </div>
     </div>
 @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-
-
+    <!-- Primeiro, carregue as bibliotecas e plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Em seguida, carregue a biblioteca Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+
+    <!-- Por último, carregue o plugin chartjs-plugin-datalabels -->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
-</head>
+    </head>
 
     <script>
         var usuarios = {{ $usuarios }};
@@ -105,16 +107,10 @@
 
             }
         });
-
-        var ctx = document.getElementById('myPieChart');
-
+        var ctx = document.getElementById("myPieChart");
         var setoresNomes = {!! json_encode($setoresNomes) !!};
         var setoresValores = {!! json_encode($valores) !!};
         var total = setoresValores.reduce((a, b) => a + b, 0);
-
-        console.log(setoresValores)
-
-       
 
         var data = {
             labels: setoresNomes,
@@ -126,14 +122,23 @@
         };
 
         var options = {
-            responsive: true
+            responsive: true,
+            plugins: {
+                datalabels: {
+                    formatter: (value,ctx) => {
+                        let percentage = (value * 100 / total).toFixed(2) + "%";
+                        return percentage;
+                    },
+                    color: '#fff',
+                }
+            }
         };
 
         var myPieChart = new Chart(ctx, {
             type: 'pie',
             data: data,
             options: options
-        });
+        }); 
     </script>
 @endsection
 @endsection
