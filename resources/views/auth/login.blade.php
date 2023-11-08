@@ -12,7 +12,7 @@
     <link href="/css/bootstrap.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css" />
-  
+
     <title>Login - InternSpace</title><!----Titulo das Páginas---->
 </head>
 
@@ -58,13 +58,33 @@
                             </form>
                         </div>
                         <div class="card-footer text-center py-3">
-                            <!-- <div class="small"><a href="esqSenha">Esqueceu sua senha?</a></div> -->
+                            <div class="small"><a onclick="$('#modal').modal('show')">Esqueceu sua senha?</a></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">
+                        <p id="tituloModal">Esqueceu sua senha?</p>
+                    </h5>
+                    <button type="button" class="close btn btn-secondary" data-dismiss="modal" onclick="$('#modal').modal('hide')" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Entre em contato com um administrador para redefinir sua senha.
+                </div>
+                <div class="modal-footer" id="modalFooter">
+                    <button type="button" class="btn btn-secondary" onclick="$('#modal').modal('hide')">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="/js/senha.js"></script>
 </body>
 
