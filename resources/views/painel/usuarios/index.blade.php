@@ -38,7 +38,7 @@
                             </td>
                             <td class="d-flex">
                                 <a href="{{ route('usuarios-edit', ['id'=>$usuario->id]) }}" class="btn btn-primary me-2"><i class="fas fa-edit" style="color: #ffffff;"></i></a>
-                                <button type="button" usuario="{{json_encode($usuario)}}" onclick="mostrarExcluir(<?php echo $usuario->id ?>)" id="btnExcluir{{$usuario->id}}" class="btn btn-danger"><i class="fa-light fa-user"></i></button>
+                                <button type="button" usuario="{{json_encode($usuario)}}" onclick="mostrarExcluir(<?php echo $usuario->id ?>)" id="btnExcluir{{$usuario->id}}" class="btn btn-danger">Desativar</button>
                             </td>
                         </tr>
                         @endforeach
