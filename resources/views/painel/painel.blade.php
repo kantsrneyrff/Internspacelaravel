@@ -36,12 +36,14 @@
                     <i class="fa-solid fa-bars-progress"></i>
                     Progresso
                 </div>
-                <a class="r-20" style="text-align: right; margin-right: 10px; text-decoration:none;">230h</a>
+                <div class="p-3">
+                <a class="d-flex" style="justify-content: flex-end; text-decoration:none;">230h</a>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="230"
                         style="width:55%">
 
                     </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -81,6 +83,11 @@
 
         var setoresNomes = {!! json_encode($setoresNomes) !!};
         var setoresValores = {!! json_encode($valores) !!};
+        var total = setoresValores.reduce((a, b) => a + b, 0);
+
+        console.log(setoresValores)
+
+
 
         var data = {
             labels: setoresNomes,
@@ -92,7 +99,20 @@
         };
 
         var options = {
-            responsive: true
+            responsive: true,
+            plugins: {
+                datalabels: {
+                    formatter: (value, ctx) => {
+
+                        let sum = ctx.dataset._meta[0].total;
+                        let percentage = (value * 100 / sum).toFixed(2) + "%";
+                        return percentage;
+                        console.log(percentage)
+
+                    },
+                    color: '#fff',
+                }
+            }
         };
 
         var myPieChart = new Chart(ctx, {
