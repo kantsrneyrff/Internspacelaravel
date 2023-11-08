@@ -58,7 +58,7 @@
                             </form>
                         </div>
                         <div class="card-footer text-center py-3">
-                            <div class="small"> <button type="button" onclick="$('#modal').modal('show')"><a href="#">Esqueceu sua senha?</a></button></div>
+                            <div class="small"> <button type="button" onclick="$('#modal').modal('show')">Esqueceu sua senha?</button></div>
                         </div>
                     </div>
                 </div>
@@ -85,6 +85,8 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="/js/senha.js"></script>
 </body>
 
